@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#fdf6f4">
+<title>Haarpflege</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  background: #fdf6f4;
+  background-image:
+    radial-gradient(at 20% 0%, #ffd9e8 0%, transparent 50%),
+    radial-gradient(at 80% 100%, #f7e0ec 0%, transparent 50%),
+    radial-gradient(at 50% 50%, #fef0f3 0%, transparent 70%);
+  background-attachment: fixed;
+  color: #3d2438;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ===== Sparkle Background ===== */
+.sparkles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.sparkle {
+  position: absolute;
+  color: #d4527a;
+  opacity: 0.35;
+  user-select: none;
+  animation: twinkle 4s ease-in-out infinite;
+  transform: rotate(var(--rotation, 0deg));
+  transform-origin: center;
+}
+
+.sparkle.tiny { font-size: 10px; opacity: 0.25; }
+.sparkle.small { font-size: 14px; opacity: 0.3; }
+.sparkle.medium { font-size: 18px; opacity: 0.35; }
+.sparkle.large { font-size: 24px; opacity: 0.28; }
+
+.sparkle.gold { color: #e8a85c; opacity: 0.25; }
+.sparkle.lilac { color: #c89cd4; opacity: 0.3; }
+.sparkle.rose { color: #ff8eb4; opacity: 0.35; }
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: var(--start-opacity, 0.25);
+    transform: rotate(var(--rotation, 0deg)) scale(1);
+  }
+  50% {
+    opacity: var(--peak-opacity, 0.55);
+    transform: rotate(calc(var(--rotation, 0deg) + 15deg)) scale(1.2);
+  }
+}
+
+a { color: #d4527a; text-decoration: none; }
+
+/* ===== Layout ===== */
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding-bottom: 90px;
+  min-height: 100vh;
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  background: linear-gradient(180deg, rgba(253, 246, 244, 0.95), rgba(253, 246, 244, 0.85));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 24px 22px 18px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(212, 82, 122, 0.1);
+}
+
+.header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #d4527a, #b3375f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.header .subtitle {
+  font-size: 11px;
+  color: #c97b95;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.content {
+  padding: 18px 22px;
+}
+
+/* ===== Bottom Nav ===== */
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 480px;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(255, 230, 240, 0.92), rgba(253, 224, 235, 0.95));
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(212, 82, 122, 0.15);
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0 calc(10px + env(safe-area-inset-bottom)) 0;
+  z-index: 20;
+  box-shadow: 0 -2px 20px rgba(212, 82, 122, 0.08);
+}
+
+.nav-item {
+  flex: 1;
+  background: none;
+  border: none;
+  color: #c4a3b0;
+  padding: 8px 4px;
+  font-family: inherit;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+
+.nav-item.active { color: #d4527a; font-weight: 700; }
+.nav-item .icon { font-size: 22px; transition: transform 0.2s; }
+.nav-item.active .icon { transform: scale(1.15); }
+
+/* ===== Cards ===== */
+.card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 82, 122, 0.12);
+  border-radius: 24px;
+  padding: 20px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 20px rgba(212, 82, 122, 0.06);
+}
+
+.card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: #3d2438;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.card h3 {
+  font-size: 12px;
+  color: #d4527a;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  margin-top: 14px;
+  font-weight: 600;
+}
+
+.card h3:first-child { margin-top: 0; }
+
+.card p {
+  font-size: 14px;
+  color: #5c3d4f;
+  margin-bottom: 8px;
+}
+
+/* ===== Heute-Banner ===== */
+.today-hero {
+  background: linear-gradient(135deg, #ffd0e0 0%, #ffb8d4 50%, #ff9ec4 100%);
+  border-radius: 28px;
+  padding: 28px 24px;
+  margin-bottom: 18px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(255, 158, 196, 0.3);
+}
+
+.today-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
+  border-radius: 50%;
+}
+
+.today-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255,255,255,0.25), transparent);
+  border-radius: 50%;
+}
+
+.today-hero > * { position: relative; z-index: 1; }
+
+.today-hero .day-label {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #8b2548;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.today-hero .day-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  color: #4a1a30;
+  margin-bottom: 10px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.today-hero .day-task {
+  font-size: 14px;
+  color: #6b1e3a;
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+}
+
+/* ===== Routine-Steps ===== */
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(212, 82, 122, 0.1);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: opacity 0.2s;
+}
+
+.step:last-child { border-bottom: none; }
+
+.step .checkbox {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #d4527a;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  transition: all 0.25s ease;
+  margin-top: 1px;
+  box-shadow: 0 2px 8px rgba(212, 82, 122, 0.1);
+}
+
+.step.done .checkbox {
+  background: linear-gradient(135deg, #ff9ec4, #d4527a);
+  border-color: #d4527a;
+  transform: scale(1.05);
+}
+
+.step.done .checkbox::after {
+  content: '✓';
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.step .content-step { flex: 1; }
+
+.step .step-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: #3d2438;
+  margin-bottom: 3px;
+}
+
+.step.done .step-title {
+  text-decoration: line-through;
+  color: #b89aa5;
+}
+
+.step.done .step-desc {
+  color: #c4a3b0;
+}
+
+.step .step-desc {
+  font-size: 13px;
+  color: #6b4d5c;
+  line-height: 1.5;
+}
+
+/* ===== Produkte ===== */
+.search-bar {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(212, 82, 122, 0.15);
+  border-radius: 18px;
+  padding: 14px 18px;
+  color: #3d2438;
+  font-family: inherit;
+  font-size: 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 12px rgba(212, 82, 122, 0.06);
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: #d4527a;
+  box-shadow: 0 0 0 4px rgba(212, 82, 122, 0.1);
+}
+.search-bar::placeholder { color: #c4a3b0; }
+
+.filter-chips {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(212, 82, 122, 0.15);
+  color: #8b6373;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.chip.active {
+  background: linear-gradient(135deg, #ff9ec4, #d4527a);
+  color: white;
+  border-color: transparent;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(212, 82, 122, 0.25);
+}
+
+.product {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(212, 82, 122, 0.1);
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-left: 4px solid #d4527a;
+  box-shadow: 0 2px 12px rgba(212, 82, 122, 0.05);
+}
+
+.product.keep { border-left-color: #7bbb8f; }
+.product.reduce { border-left-color: #e8a85c; }
+.product.discard { border-left-color: #d96868; }
+
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.product-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #3d2438;
+  flex: 1;
+  line-height: 1.3;
+}
+
+.product-store {
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 10px;
+  white-space: nowrap;
+  background: rgba(212, 82, 122, 0.1);
+  color: #d4527a;
+}
+
+.product-store.mercadona { background: #e0f4e6; color: #3d8550; }
+.product-store.rossmann { background: #fde2e7; color: #b3375f; }
+.product-store.bali { background: #f0e0f4; color: #8a4d9c; }
+
+.product-fn {
+  font-size: 12px;
+  color: #d4527a;
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 7px;
+  font-weight: 500;
+}
+
+.product-desc {
+  font-size: 13px;
+  color: #6b4d5c;
+  line-height: 1.5;
+}
+
+.product-tag {
+  display: inline-block;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 8px;
+  margin-top: 10px;
+  margin-right: 4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.tag-keep { background: #e0f4e6; color: #3d8550; }
+.tag-reduce { background: #fdedd6; color: #a06b1f; }
+.tag-discard { background: #fde2e2; color: #a83838; }
+
+/* ===== Wochenplan ===== */
+.week-day {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(212, 82, 122, 0.1);
+  border-radius: 18px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(212, 82, 122, 0.05);
+}
+
+.week-day.today {
+  border-color: #d4527a;
+  box-shadow: 0 4px 20px rgba(212, 82, 122, 0.15);
+}
+
+.week-day-header {
+  padding: 14px 16px;
+  background: rgba(255, 240, 245, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.week-day.today .week-day-header {
+  background: linear-gradient(135deg, #ffd0e0, #ffb8d4);
+}
+
+.week-day-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: #3d2438;
+  font-family: 'Playfair Display', serif;
+}
+
+.week-day.today .week-day-name { color: #4a1a30; }
+
+.week-day-name .today-badge {
+  font-size: 9px;
+  background: white;
+  color: #d4527a;
+  padding: 3px 8px;
+  border-radius: 8px;
+  margin-left: 8px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.week-day-task {
+  font-size: 11px;
+  color: #d4527a;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.week-day.today .week-day-task { color: #6b1e3a; }
+
+.week-day-body {
+  padding: 16px;
+  display: none;
+}
+
+.week-day.open .week-day-body { display: block; }
+
+/* ===== Frisuren ===== */
+.hairstyle-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  background: linear-gradient(135deg, #d4527a, #b3375f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 22px 0 12px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.hairstyle-section-title:first-child { margin-top: 4px; }
+
+.hairstyle {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(212, 82, 122, 0.1);
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 12px rgba(212, 82, 122, 0.05);
+}
+
+.hairstyle-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+
+.hairstyle-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffe5ee, #ffc8dc);
+  border: 1.5px solid #d4527a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #b3375f;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(212, 82, 122, 0.15);
+}
+
+.hairstyle-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: #3d2438;
+  font-weight: 700;
+}
+
+.hairstyle-when {
+  font-size: 11px;
+  color: #d4527a;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.hairstyle-desc {
+  font-size: 13px;
+  color: #6b4d5c;
+  line-height: 1.5;
+}
+
+/* ===== Reset Button ===== */
+.reset-btn {
+  background: linear-gradient(135deg, #fde2e7, #fcd0dc);
+  border: 1px solid rgba(212, 82, 122, 0.2);
+  color: #b3375f;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  margin-top: 14px;
+  width: 100%;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.reset-btn:active {
+  background: linear-gradient(135deg, #fcd0dc, #fab8c8);
+  transform: scale(0.98);
+}
+
+/* ===== Empty State ===== */
+.empty {
+  text-align: center;
+  padding: 50px 20px;
+  color: #c4a3b0;
+  font-size: 13px;
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+}
+
+.fade-in { animation: fadeIn 0.3s ease-out; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Spezial: Strong-Tags rosa hervorheben */
+.step-desc strong, .product-desc strong, .card p strong {
+  color: #d4527a;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div class="sparkles" id="sparkles"></div>
+
+<div class="app">
+  <header class="header">
+    <h1 id="header-title">Heute</h1>
+    <div class="subtitle" id="header-subtitle">Deine Pflege</div>
+  </header>
+
+  <main class="content" id="content"></main>
+
+  <nav class="nav">
+    <button class="nav-item active" data-view="today">
+      <span class="icon">☀</span>
+      <span>Heute</span>
+    </button>
+    <button class="nav-item" data-view="week">
+      <span class="icon">▦</span>
+      <span>Woche</span>
+    </button>
+    <button class="nav-item" data-view="products">
+      <span class="icon">⚗</span>
+      <span>Produkte</span>
+    </button>
+    <button class="nav-item" data-view="hairstyles">
+      <span class="icon">✿</span>
+      <span>Frisuren</span>
+    </button>
+  </nav>
+</div>
+
+<script>
+// =========================================
+// SPARKLES (deko)
+// =========================================
+
+function generateSparkles() {
+  const container = document.getElementById('sparkles');
+  if (!container) return;
+
+  // Symbole gemischt: Sterne, Herzen, Blumen, Sparkles
+  const symbols = [
+    '✦', '✧', '⋆', '✦', '✧', '⋆',  // Sterne (häufig)
+    '♡', '♡', '❤︎',                    // Herzen
+    '❀', '✿', '❁',                    // Blumen
+    '⁂', '✺', '✻'                     // Spezial-Sparkles
+  ];
+  const sizes = ['tiny', 'small', 'medium', 'large'];
+  const colors = ['', '', '', 'gold', 'lilac', 'rose']; // mehr standard als bunt
+  const count = 50;
+
+  for (let i = 0; i < count; i++) {
+    const s = document.createElement('span');
+    const symbol = symbols[Math.floor(Math.random() * symbols.length)];
+    const size = sizes[Math.floor(Math.random() * sizes.length)];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const top = Math.random() * 100;
+    const left = Math.random() * 100;
+    const delay = Math.random() * 5;
+    const duration = 3 + Math.random() * 5;
+    const startOpacity = 0.15 + Math.random() * 0.2;
+    const peakOpacity = 0.4 + Math.random() * 0.35;
+    const rotate = Math.floor(Math.random() * 360);
+
+    s.className = 'sparkle ' + size + (color ? ' ' + color : '');
+    s.textContent = symbol;
+    s.style.top = top + '%';
+    s.style.left = left + '%';
+    s.style.animationDelay = delay + 's';
+    s.style.animationDuration = duration + 's';
+    s.style.setProperty('--start-opacity', startOpacity);
+    s.style.setProperty('--peak-opacity', peakOpacity);
+    s.style.setProperty('--rotation', rotate + 'deg');
+    container.appendChild(s);
+  }
+}
+
+generateSparkles();
+
+// =========================================
+// DATEN
+// =========================================
+
+const STORAGE_KEY = 'haarpflege_v1';
+
+// Wochenplan: 0=So, 1=Mo, 2=Di, 3=Mi, 4=Do, 5=Fr, 6=Sa
+const WEEK_PLAN = {
+  0: { name: 'Sonntag', task: 'Schöner Wellen-Tag', type: 'wear' },
+  1: { name: 'Montag', task: 'Trockenshampoo + Sport', type: 'refresh' },
+  2: { name: 'Dienstag', task: 'Wäsche — Alltag', type: 'wash-light' },
+  3: { name: 'Mittwoch', task: 'Schönster Wellen-Tag', type: 'wear' },
+  4: { name: 'Donnerstag', task: 'Trockenshampoo + Frisur', type: 'refresh' },
+  5: { name: 'Freitag', task: 'Frisur-Tag', type: 'style' },
+  6: { name: 'Samstag', task: 'Wäsche — Pflege-Tag', type: 'wash-rich' }
+};
+
+// Routinen pro Tag-Typ
+const ROUTINES = {
+  'wash-light': {
+    title: 'Dienstag-Routine — Alltags-Wäsche',
+    duration: '~20 Min',
+    steps: [
+      { id: 'di-1', title: 'Pre-Poo (optional)', desc: 'Wenn Spitzen sehr trocken: 2 Tropfen Sérum Curl Perfect in trockene Spitzen, 5 Min einwirken.' },
+      { id: 'di-2', title: 'Hydra Hyaluronic Shampoo', desc: 'Nur am Ansatz aufschäumen, sanft massieren. Schaum läuft beim Ausspülen über die Längen — das reicht.' },
+      { id: 'di-3', title: 'L\'Oréal Hidra Conditioner', desc: 'Großzügig auf Längen + Spitzen. NICHT an den Ansatz. 1-2 Min einwirken lassen.' },
+      { id: 'di-4', title: 'Wide-Tooth-Comb', desc: 'Mit Conditioner drin durchkämmen. Von unten nach oben in kleinen Sektionen.' },
+      { id: 'di-5', title: 'Squish to Condish', desc: 'Wasser in die Längen drücken (von unten nach oben), Conditioner emulgiert. Ausspülen, kalt nachspülen.' },
+      { id: 'di-6', title: 'Plopping mit T-Shirt', desc: 'Kopf nach unten, Wellen in T-Shirt einrollen. 10 Min liegen lassen.' },
+      { id: 'di-7', title: 'Acondicionador instantáneo Spray', desc: '2-3 Sprühstöße in Längen + Spitzen. Mit Händen scrunchen (von unten pressen).' },
+      { id: 'di-8', title: 'ISANA Hitzeschutz Spray', desc: 'Komplett über die Längen sprühen. Vor jedem Föhnen Pflicht.' },
+      { id: 'di-9', title: 'Diffusor — niedrige Hitze', desc: 'Strähne in den Diffusor legen, an Kopfhaut halten, 30-60 Sek pulsieren. Zum Schluss kalter Luftstoß.' },
+      { id: 'di-10', title: 'Optional: Spitzenöl', desc: '1 Tropfen Sérum Curl Perfect zwischen den Handflächen, nur in die Spitzen.' }
+    ]
+  },
+  'wash-rich': {
+    title: 'Samstag-Routine — Pflege-Wäsche',
+    duration: '~30 Min',
+    steps: [
+      { id: 'sa-1', title: 'Champú Curl Perfect', desc: 'Sulfatfrei, milder. Nur am Ansatz aufschäumen, sanft massieren. 1 Min einwirken.' },
+      { id: 'sa-2', title: 'Mascarilla Hydra Hyaluronic (Standard)', desc: 'Statt Conditioner! Großzügig auf Längen + Spitzen. 2 Min einwirken (am Klärungstag 5-10 Min). ALTERNATIVE: Alle 4 Wochen statt der Mascarilla die L\'Oréal Glycolic Gloss 5-Min Laminierung — gibt extra Glanz, max 1× pro Monat wegen Silikon-Buildup.' },
+      { id: 'sa-3', title: 'Wide-Tooth-Comb', desc: 'Mit Maske drin durchkämmen.' },
+      { id: 'sa-4', title: 'Squish to Condish + Ausspülen', desc: 'Wasser einarbeiten, dann komplett ausspülen, kalt nachspülen.' },
+      { id: 'sa-5', title: 'Bali Curls Moisturising Conditioner', desc: 'Erbsengroße Menge nur in die Spitzen, 30 Sek, ausspülen. (Quasi als „Versiegelung" nach der Maske.)' },
+      { id: 'sa-6', title: 'Plopping 15-20 Min', desc: 'Länger als Dienstag — die Maske braucht Zeit zum Setzen.' },
+      { id: 'sa-7', title: 'Bali Curls Hydrating Curl Cream', desc: 'Erbsengroße Menge, in den Händen verteilen, mit Praying Hands in die Längen (von oben nach unten streichen). Dann scrunchen.' },
+      { id: 'sa-8', title: 'ISANA Hitzeschutz Spray', desc: 'Vor dem Föhnen.' },
+      { id: 'sa-9', title: 'Diffusor — sehr sanft', desc: 'Niedrige Hitze, niedrige Stufe. Mehr Zeit nehmen — Wellen sind durch Curl Cream definierter.' },
+      { id: 'sa-10', title: 'Optional: 1 Tropfen Sérum', desc: 'Nur wenn Spitzen noch nicht glänzen. Sonst weglassen. Bei sehr trockenen Spitzen Alternative: 1 Pump Argan Oil Leave-in (sin aclarado) — aber sehr sparsam, nur 1× pro 2-3 Wochen.' }
+    ]
+  },
+  'refresh': {
+    title: 'Refresh-Tag',
+    duration: '~5 Min',
+    steps: [
+      { id: 'rf-1', title: 'ISANA Bloom Boost (am Ansatz)', desc: '20 cm Abstand, kurz aufsprühen, 1 Min einziehen lassen, mit Fingern einarbeiten und ausschütteln. Nur Ansatz!' },
+      { id: 'rf-2', title: 'Wasser-Refresh (optional)', desc: 'Sprühflasche mit Wasser → Längen leicht anfeuchten (nicht klatschnass), mit Händen scrunchen.' },
+      { id: 'rf-3', title: '1 Tropfen Sérum Curl Perfect', desc: 'Nur in die Spitzen, wenn sie trocken wirken.' },
+      { id: 'rf-4', title: 'Frisur des Tages', desc: 'Half-Up Claw Clip, Low Bun oder Loose Side Part — siehe Frisuren-Tab.' }
+    ]
+  },
+  'wear': {
+    title: 'Schöner Wellen-Tag',
+    duration: '~2 Min',
+    steps: [
+      { id: 'we-1', title: 'Wellen prüfen', desc: 'Sind sie noch definiert? Falls ja — nichts machen, einfach genießen.' },
+      { id: 'we-2', title: 'Bei Bedarf: 1 Tropfen Sérum', desc: 'Nur in die Spitzen, wenn sie etwas Glanz brauchen.' },
+      { id: 'we-3', title: 'Offen tragen oder Half-Up', desc: 'Loose Side Part, Half-Up Claw Clip — Wellen zeigen!' },
+      { id: 'we-4', title: 'Zur Nacht: Schutz-Frisur', desc: 'Loose Pineapple oder Side Braid mit Seiden-Scrunchie, damit sie morgen noch schön sind.' }
+    ]
+  },
+  'style': {
+    title: 'Frisur-Tag',
+    duration: '~5 Min',
+    steps: [
+      { id: 'st-1', title: 'Trockenshampoo (falls Ansatz fettig)', desc: 'ISANA Bloom Boost am Ansatz, sparsam.' },
+      { id: 'st-2', title: 'Spitzenöl', desc: '1 Tropfen Sérum Curl Perfect in die Spitzen für Glanz.' },
+      { id: 'st-3', title: 'Frisur wählen', desc: 'Low Bun, French Twist, Headband Tuck oder Hochsteckfrisur — alles in der Frisuren-Bibliothek.' },
+      { id: 'st-4', title: 'Spiral-Haargummi nutzen', desc: 'Niemals normale Haargummis mit Metall — Spiral-Haargummi oder Seiden-Scrunchie.' }
+    ]
+  }
+};
+
+// Produkte
+const PRODUCTS = [
+  // Reinigung
+  { id: 'p1', name: 'Champú Curl Perfect Deliplus', store: 'mercadona', cat: 'shampoo', fn: 'Hauptshampoo · Samstag', verdict: 'keep', desc: 'Sulfatfrei, CG-konform, Lockenfokus. Standard-Shampoo für die Pflege-Wäsche am Wochenende.' },
+  { id: 'p2', name: 'Hydra Hyaluronic Shampoo Deliplus', store: 'mercadona', cat: 'shampoo', fn: 'Alltagsshampoo · Dienstag', verdict: 'keep', desc: 'Hyaluron-Fokus, mild. Schneller, leichter als Curl Perfect. Perfekt für die Mitwoche-Wäsche.' },
+  { id: 'p3', name: 'ISANA Tiefenreinigung', store: 'rossmann', cat: 'shampoo', fn: 'Klärungs-Shampoo · 1× pro Monat', verdict: 'reduce', desc: 'Entfernt Buildup. Nur am Klärungstag (1× im Monat statt normaler Wäsche).' },
+
+  // Conditioner
+  { id: 'p4', name: 'L\'Oréal Elvive Hidra Hialurónico', store: 'mercadona', cat: 'conditioner', fn: 'Conditioner · Dienstag', verdict: 'keep', desc: 'Schneller Standard-Conditioner mit Hyaluron. Nach Hydra-Shampoo am Dienstag.' },
+  { id: 'p5', name: 'Bali Curls Moisturising Conditioner', store: 'bali', cat: 'conditioner', fn: 'Conditioner · Samstag', verdict: 'keep', desc: 'Reichhaltig mit Sheabutter + Kokosöl, silikonfrei. Für die Pflege-Wäsche am Wochenende.' },
+
+  // Maske
+  { id: 'p6', name: 'Mascarilla Hydra Hyaluronic Deliplus', store: 'mercadona', cat: 'mask', fn: 'Wochenmaske · Samstag', verdict: 'keep', desc: 'Reine Feuchtigkeit (Hyaluron + Niacinamid + B5). Statt Conditioner samstags. 2 Min einwirken, ausspülen.' },
+  { id: 'p7b', name: 'L\'Oréal Glycolic Gloss 5-Min', store: 'rossmann', cat: 'mask', fn: 'Glanz-Maske · alle 4 Wochen', verdict: 'reduce', desc: 'Statt Mascarilla samstags — gibt extra Glanz und Versiegelung. MAX 1× alle 4 Wochen wegen Amodimethicone (filmbildendes Silikon, baut sich auf).' },
+
+  // Leave-in
+  { id: 'p8', name: 'Acondicionador instantáneo Hydra Spray', store: 'mercadona', cat: 'leavein', fn: 'Leave-in · Dienstag', verdict: 'keep', desc: 'Spray-Leave-in für die schnelle Mitwoche-Routine. Hyaluron + UV-Schutz.' },
+  { id: 'p9', name: 'Bali Curls Hydrating Curl Cream', store: 'bali', cat: 'leavein', fn: 'Curl Cream · Samstag', verdict: 'keep', desc: 'Echte Curl Cream — definiert Wellen, gibt Bounce, Anti-Frizz. Für die Wochenend-Routine.' },
+  { id: 'p7', name: 'Argan Oil Remedy Leave-in (sin aclarado)', store: 'mercadona', cat: 'leavein', fn: 'Leave-in · selten, Notfall', verdict: 'reduce', desc: 'Aufbrauchen — dann nicht nachkaufen. Enthält Silikone + Keratin (genau das, was bei dir Buildup macht). Wenn überhaupt: 1 Pump in trockene Spitzen, max 1× pro 2-3 Wochen.' },
+
+  // Öl
+  { id: 'p10', name: 'Sérum Oil Curl Perfect Deliplus', store: 'mercadona', cat: 'oil', fn: 'Spitzenöl · täglich bei Bedarf', verdict: 'keep', desc: '1 Tropfen, nur Spitzen, nach Föhnen oder bei Refresh. Kokos + Avocado + Macadamia + Argan.' },
+
+  // Hitzeschutz & Trockenshampoo
+  { id: 'p11', name: 'ISANA All-in-One Hitzeschutz', store: 'rossmann', cat: 'tool', fn: 'Vor jedem Föhnen', verdict: 'keep', desc: 'Schutz bis 230°C. Immer vor Diffusor-Einsatz.' },
+  { id: 'p12', name: 'ISANA Bloom Boost Trockenshampoo', store: 'rossmann', cat: 'tool', fn: 'Refresh-Tage · nur Ansatz', verdict: 'keep', desc: 'An Tag 3 oder bei fettigem Ansatz. Sparsam aufsprühen, einarbeiten, ausschütteln.' }
+];
+
+const PRODUCT_CATEGORIES = {
+  all: 'Alle',
+  shampoo: 'Shampoo',
+  conditioner: 'Conditioner',
+  mask: 'Maske',
+  leavein: 'Leave-in',
+  oil: 'Öl',
+  tool: 'Tools'
+};
+
+// Frisuren
+const HAIRSTYLES = {
+  schlafen: [
+    { name: 'Loose Pineapple', when: 'Mein Favorit · täglich', icon: '01', desc: 'Sehr hoher, lockerer Dutt am Scheitel mit Seiden-Scrunchie. Schützt die Wellen, kein Knick, am Morgen schöne Form.' },
+    { name: 'Loose Side Braid', when: 'Heatless Curls Effekt', icon: '02', desc: 'Lockerer seitlicher Zopf mit Seiden-Scrunchie. Verhindert Knoten und gibt am Morgen gleichmäßige Wellen.' },
+    { name: 'Two Loose Twists', when: 'Wenn Wellen verloren', icon: '03', desc: 'Zwei Stränge, jeden locker eindrehen, mit Scrunchie sichern. Macht müde Wellen wieder definiert.' },
+    { name: 'Bonnet oder Seidenkissen', when: 'Wenn unruhig', icon: '04', desc: 'Seidenkissenbezug oder Satin-Bonnet. Reduziert Frizz auch ohne Schlaffrisur.' },
+    { name: 'Heatless Curl Set', when: 'Special Occasion · vor Wochenende', icon: '05', desc: 'Satin-Band über den Kopf wie Heiligenschein. Haare in Sektionen drumherum wickeln (von vorne nach hinten), mit 2 Scrunchies fixieren. WICHTIG: Haare nur leicht feucht (nicht nass), Bali Curls Curl Cream rein, dann wickeln. Funktioniert besser auf Tag-2-Haaren als frisch gewaschen. Morgens auswickeln → soft definierte Beach-Waves. Nicht zu fest wickeln (sonst Druckknick). ~10-15€ bei dm/Rossmann.' },
+    { name: 'Sockenlocken', when: 'Free DIY-Heatless · Anlass', icon: '06', desc: 'Lange saubere Socke (Wollsocken funktionieren am besten — bei dir vorhanden, falls Sport-Socken). Haare leicht feucht + Curl Cream. Mittelscheitel, eine Hälfte am oberen Sockenende einrollen, die ganze Strähne nach unten um die Socke wickeln, am Ende mit Scrunchie sichern. Wiederholen mit zweiter Hälfte. Über Nacht schlafen. Morgens ausrollen → richtig definierte Wellen, fast wie Lockenstab-Curls. Bei dünnen Haaren: 2-4 Sockenrollen für mehr Volumen.' }
+  ],
+  alltag: [
+    { name: 'Half-Up Claw Clip', when: '5-Sekunden-Frisur', icon: '01', desc: 'Obere Hälfte mit großer Haarklammer hochstecken. Wellen unten sichtbar, Gesicht frei.' },
+    { name: 'Low Loose Bun', when: 'Office, Meetings', icon: '02', desc: 'Tiefer, weicher Dutt im Nacken. Mit Spange oder Tuch fixieren. Ein paar Strähnen vorne rauslassen.' },
+    { name: 'Loose Side Part', when: 'Wenn Wellen sitzen', icon: '03', desc: 'Offen tragen, Seitenscheitel. Ein Pump Hydra-Spray oder 1 Tropfen Sérum, scrunchen — fertig.' },
+    { name: 'Half-Up Bow oder Twist', when: 'Date oder Brunch', icon: '04', desc: 'Obere Hälfte zu kleinem Knoten oder mit Schleife. Wellen darunter sichtbar.' }
+  ],
+  sport: [
+    { name: 'Hoher Boxer-Braid', when: 'Glute Day', icon: '01', desc: 'Ein hoher französischer Zopf oder zwei (Boxer-Style). Hält bombensicher, kein Druck im Nacken bei Hip Thrust.' },
+    { name: 'Hoher Bun + Stirnband', when: 'Cardio, HIIT', icon: '02', desc: 'Hoher, lockerer Dutt mit Spiral-Haargummi plus Stirnband zum Schweißfangen.' },
+    { name: 'Doppelter Dutt', when: 'Yoga, lange Trainings', icon: '03', desc: 'Haare in zwei Hälften teilen, zwei kleine Dutts oben. Verteilt Zug und Gewicht.' },
+    { name: 'Low Pony + Cap', when: 'Outdoor, Joggen', icon: '04', desc: 'Tiefer Pferdeschwanz unter Cappy. UV-Schutz für Spitzen — vorher 1 Tropfen Öl.' }
+  ],
+  spezial: [
+    { name: 'Refresh-Twists', when: 'Tag 3 — Wellen platt', icon: '01', desc: 'Sprühflasche mit Wasser. Wellen anfeuchten, in 4-6 Strähnen aufteilen, eindrehen, 10 Min, auflösen — neue Wellen.' },
+    { name: 'Hochsteckfrisur', when: 'Anlass, Hochzeit', icon: '02', desc: 'Tiefer, lockerer Knoten am Hinterkopf, ein paar Wellen-Strähnen vorne und seitlich rauslassen.' },
+    { name: 'Headband Tuck', when: 'Bad-Hair-Day-Rettung', icon: '03', desc: 'Stoff- oder Seiden-Haarband. Haare unten reinstecken/reinrollen. Vintage Look, kaschiert dreckigen Ansatz.' },
+    { name: 'French Twist', when: 'Eleganter Look', icon: '04', desc: 'Haare zur Seite drehen, nach oben rollen, mit Spangen fixieren. Perfekt für Office oder Dinner.' }
+  ]
+};
+
+const HAIRSTYLE_SECTIONS = {
+  schlafen: 'Schlafen',
+  alltag: 'Alltag',
+  sport: 'Sport',
+  spezial: 'Spezial'
+};
+
+// =========================================
+// STATE
+// =========================================
+
+let state = {
+  view: 'today',
+  productFilter: 'all',
+  productSearch: '',
+  checkedSteps: {}, // { 'di-1_2025-05-09': true }
+  openWeekDays: {}
+};
+
+function loadState() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      state.checkedSteps = parsed.checkedSteps || {};
+    }
+  } catch(e) {}
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      checkedSteps: state.checkedSteps
+    }));
+  } catch(e) {}
+}
+
+// =========================================
+// HELPERS
+// =========================================
+
+function todayDayIdx() {
+  return new Date().getDay();
+}
+
+function todayKey() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function stepKey(stepId) {
+  return `${stepId}_${todayKey()}`;
+}
+
+function isStepDone(stepId) {
+  return !!state.checkedSteps[stepKey(stepId)];
+}
+
+function toggleStep(stepId) {
+  const k = stepKey(stepId);
+  if (state.checkedSteps[k]) {
+    delete state.checkedSteps[k];
+  } else {
+    state.checkedSteps[k] = true;
+  }
+  saveState();
+}
+
+function resetTodaysSteps() {
+  const today = todayKey();
+  Object.keys(state.checkedSteps).forEach(k => {
+    if (k.endsWith(today)) delete state.checkedSteps[k];
+  });
+  saveState();
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+}
+
+// =========================================
+// RENDER
+// =========================================
+
+function render() {
+  const content = document.getElementById('content');
+  content.className = 'content fade-in';
+  setTimeout(() => content.className = 'content', 250);
+
+  const headerTitle = document.getElementById('header-title');
+  const headerSubtitle = document.getElementById('header-subtitle');
+
+  document.querySelectorAll('.nav-item').forEach(b => {
+    b.classList.toggle('active', b.dataset.view === state.view);
+  });
+
+  if (state.view === 'today') {
+    const day = WEEK_PLAN[todayDayIdx()];
+    headerTitle.textContent = 'Heute';
+    headerSubtitle.textContent = day.name;
+    content.innerHTML = renderToday();
+  } else if (state.view === 'week') {
+    headerTitle.textContent = 'Wochenplan';
+    headerSubtitle.textContent = 'Di & Sa Wäsche';
+    content.innerHTML = renderWeek();
+  } else if (state.view === 'products') {
+    headerTitle.textContent = 'Produkte';
+    headerSubtitle.textContent = `${PRODUCTS.length} Produkte`;
+    content.innerHTML = renderProducts();
+    setupProductHandlers();
+  } else if (state.view === 'hairstyles') {
+    headerTitle.textContent = 'Frisuren';
+    headerSubtitle.textContent = '16 Looks';
+    content.innerHTML = renderHairstyles();
+  }
+}
+
+function renderToday() {
+  const dayIdx = todayDayIdx();
+  const day = WEEK_PLAN[dayIdx];
+  const routine = ROUTINES[day.type];
+
+  const stepsHtml = routine.steps.map(s => {
+    const done = isStepDone(s.id);
+    return `
+      <div class="step ${done ? 'done' : ''}" data-step="${s.id}">
+        <div class="checkbox"></div>
+        <div class="content-step">
+          <div class="step-title">${escapeHtml(s.title)}</div>
+          <div class="step-desc">${escapeHtml(s.desc)}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  const allDone = routine.steps.every(s => isStepDone(s.id));
+
+  return `
+    <div class="today-hero">
+      <div class="day-label">${escapeHtml(day.name)}</div>
+      <div class="day-name">${escapeHtml(day.task)}</div>
+      <div class="day-task">${escapeHtml(routine.duration)} · ${routine.steps.length} Schritte</div>
+    </div>
+
+    <div class="card">
+      <h2>${escapeHtml(routine.title)}</h2>
+      <div id="steps-container">${stepsHtml}</div>
+      ${allDone ? '<div style="text-align:center;color:#7bc47a;margin-top:12px;font-size:13px;">✓ Alle Schritte erledigt!</div>' : ''}
+      <button class="reset-btn" onclick="handleReset()">Heute zurücksetzen</button>
+    </div>
+  `;
+}
+
+function renderWeek() {
+  const today = todayDayIdx();
+  let html = '';
+  for (let i = 0; i < 7; i++) {
+    const day = WEEK_PLAN[i];
+    const routine = ROUTINES[day.type];
+    const isToday = i === today;
+    const isOpen = state.openWeekDays[i] || isToday;
+
+    const stepsHtml = routine.steps.map(s => `
+      <div class="step" style="cursor:default">
+        <div class="checkbox" style="border-color:#6a5a64;width:8px;height:8px;border-radius:50%;background:#6a5a64;margin-top:8px"></div>
+        <div class="content-step">
+          <div class="step-title" style="font-size:14px">${escapeHtml(s.title)}</div>
+          <div class="step-desc">${escapeHtml(s.desc)}</div>
+        </div>
+      </div>
+    `).join('');
+
+    html += `
+      <div class="week-day ${isToday ? 'today' : ''} ${isOpen ? 'open' : ''}" data-day="${i}">
+        <div class="week-day-header" onclick="toggleWeekDay(${i})">
+          <div>
+            <div class="week-day-name">${escapeHtml(day.name)}${isToday ? '<span class="today-badge">Heute</span>' : ''}</div>
+            <div class="week-day-task">${escapeHtml(day.task)} · ${routine.duration}</div>
+          </div>
+          <div style="color:#C8729A;font-size:18px">${isOpen ? '▴' : '▾'}</div>
+        </div>
+        <div class="week-day-body">
+          <h3 style="margin-bottom:10px;color:#C8729A;font-size:11px;letter-spacing:1.5px;text-transform:uppercase">${escapeHtml(routine.title)}</h3>
+          ${stepsHtml}
+        </div>
+      </div>
+    `;
+  }
+
+  return html + `
+    <div class="card" style="margin-top:16px">
+      <h3>Monatlich: Klärungstag</h3>
+      <p style="font-size:13px">An einem Samstag im Monat statt der normalen Wäsche: <strong style="color:#C8729A">ISANA Tiefenreinigung</strong> in die ganzen Längen, dann <strong style="color:#C8729A">Mascarilla Hydra Hyaluronic</strong> 5-10 Min einwirken. Reset für die Routine.</p>
+    </div>
+  `;
+}
+
+function renderProducts() {
+  const filtered = PRODUCTS.filter(p => {
+    if (state.productFilter !== 'all' && p.cat !== state.productFilter) return false;
+    if (state.productSearch) {
+      const q = state.productSearch.toLowerCase();
+      if (!p.name.toLowerCase().includes(q) && !p.fn.toLowerCase().includes(q) && !p.desc.toLowerCase().includes(q)) return false;
+    }
+    return true;
+  });
+
+  const chipsHtml = Object.entries(PRODUCT_CATEGORIES).map(([k, v]) =>
+    `<button class="chip ${state.productFilter === k ? 'active' : ''}" data-filter="${k}">${escapeHtml(v)}</button>`
+  ).join('');
+
+  const productsHtml = filtered.length === 0
+    ? `<div class="empty">Keine Produkte gefunden.</div>`
+    : filtered.map(p => {
+        const verdictLabel = { keep: 'Behalten', reduce: 'Reduzieren', discard: 'Aussortieren' }[p.verdict];
+        const storeLabel = { mercadona: 'Mercadona', rossmann: 'Rossmann', bali: 'Bali Curls' }[p.store];
+        return `
+          <div class="product ${p.verdict}">
+            <div class="product-header">
+              <div class="product-name">${escapeHtml(p.name)}</div>
+              <span class="product-store ${p.store}">${escapeHtml(storeLabel)}</span>
+            </div>
+            <div class="product-fn">${escapeHtml(p.fn)}</div>
+            <div class="product-desc">${escapeHtml(p.desc)}</div>
+            <span class="product-tag tag-${p.verdict}">${escapeHtml(verdictLabel)}</span>
+          </div>
+        `;
+      }).join('');
+
+  return `
+    <input type="search" class="search-bar" id="product-search" placeholder="Produkt suchen..." value="${escapeHtml(state.productSearch)}">
+    <div class="filter-chips">${chipsHtml}</div>
+    <div id="product-list">${productsHtml}</div>
+  `;
+}
+
+function renderHairstyles() {
+  let html = '';
+  Object.entries(HAIRSTYLE_SECTIONS).forEach(([key, title]) => {
+    html += `<div class="hairstyle-section-title">${escapeHtml(title)}</div>`;
+    HAIRSTYLES[key].forEach(h => {
+      html += `
+        <div class="hairstyle">
+          <div class="hairstyle-header">
+            <div class="hairstyle-icon">${h.icon}</div>
+            <div>
+              <div class="hairstyle-name">${escapeHtml(h.name)}</div>
+              <div class="hairstyle-when">${escapeHtml(h.when)}</div>
+            </div>
+          </div>
+          <div class="hairstyle-desc">${escapeHtml(h.desc)}</div>
+        </div>
+      `;
+    });
+  });
+  return html;
+}
+
+// =========================================
+// EVENT HANDLERS
+// =========================================
+
+function setupProductHandlers() {
+  const search = document.getElementById('product-search');
+  if (search) {
+    search.addEventListener('input', e => {
+      state.productSearch = e.target.value;
+      const list = document.getElementById('product-list');
+      const filtered = PRODUCTS.filter(p => {
+        if (state.productFilter !== 'all' && p.cat !== state.productFilter) return false;
+        if (state.productSearch) {
+          const q = state.productSearch.toLowerCase();
+          if (!p.name.toLowerCase().includes(q) && !p.fn.toLowerCase().includes(q) && !p.desc.toLowerCase().includes(q)) return false;
+        }
+        return true;
+      });
+      if (list) {
+        list.innerHTML = filtered.length === 0
+          ? `<div class="empty">Keine Produkte gefunden.</div>`
+          : filtered.map(p => {
+              const verdictLabel = { keep: 'Behalten', reduce: 'Reduzieren', discard: 'Aussortieren' }[p.verdict];
+              const storeLabel = { mercadona: 'Mercadona', rossmann: 'Rossmann', bali: 'Bali Curls' }[p.store];
+              return `
+                <div class="product ${p.verdict}">
+                  <div class="product-header">
+                    <div class="product-name">${escapeHtml(p.name)}</div>
+                    <span class="product-store ${p.store}">${escapeHtml(storeLabel)}</span>
+                  </div>
+                  <div class="product-fn">${escapeHtml(p.fn)}</div>
+                  <div class="product-desc">${escapeHtml(p.desc)}</div>
+                  <span class="product-tag tag-${p.verdict}">${escapeHtml(verdictLabel)}</span>
+                </div>
+              `;
+            }).join('');
+      }
+    });
+  }
+
+  document.querySelectorAll('.chip').forEach(c => {
+    c.addEventListener('click', () => {
+      state.productFilter = c.dataset.filter;
+      render();
+    });
+  });
+}
+
+function toggleWeekDay(idx) {
+  state.openWeekDays[idx] = !state.openWeekDays[idx];
+  render();
+}
+
+function handleReset() {
+  if (confirm('Alle abgehakten Schritte für heute zurücksetzen?')) {
+    resetTodaysSteps();
+    render();
+  }
+}
+
+// Step toggle
+document.addEventListener('click', e => {
+  const step = e.target.closest('.step[data-step]');
+  if (step && state.view === 'today') {
+    toggleStep(step.dataset.step);
+    render();
+  }
+});
+
+// Nav
+document.querySelectorAll('.nav-item').forEach(b => {
+  b.addEventListener('click', () => {
+    state.view = b.dataset.view;
+    render();
+  });
+});
+
+// Globals für inline-onclick
+window.toggleWeekDay = toggleWeekDay;
+window.handleReset = handleReset;
+
+// Init
+loadState();
+render();
+</script>
+</body>
+</html>

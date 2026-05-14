@@ -721,11 +721,11 @@ const STORAGE_KEY = 'haarpflege_v1';
 
 // Wochenplan: 0=So, 1=Mo, 2=Di, 3=Mi, 4=Do, 5=Fr, 6=Sa
 const WEEK_PLAN = {
-  0: { name: 'Sonntag', task: 'Schöner Wellen-Tag', type: 'wear' },
-  1: { name: 'Montag', task: 'Trockenshampoo + Sport', type: 'refresh' },
+  0: { name: 'Sonntag', task: 'Schöner Haar-Tag', type: 'wear' },
+  1: { name: 'Montag', task: 'Refresh', type: 'refresh' },
   2: { name: 'Dienstag', task: 'Wäsche — Alltag', type: 'wash-light' },
-  3: { name: 'Mittwoch', task: 'Schönster Wellen-Tag', type: 'wear' },
-  4: { name: 'Donnerstag', task: 'Trockenshampoo + Frisur', type: 'refresh' },
+  3: { name: 'Mittwoch', task: 'Schöner Haar-Tag', type: 'wear' },
+  4: { name: 'Donnerstag', task: 'Refresh', type: 'refresh' },
   5: { name: 'Freitag', task: 'Frisur-Tag', type: 'style' },
   6: { name: 'Samstag', task: 'Wäsche — Pflege-Tag', type: 'wash-rich' }
 };
@@ -734,34 +734,40 @@ const WEEK_PLAN = {
 const ROUTINES = {
   'wash-light': {
     title: 'Dienstag-Routine — Alltags-Wäsche',
-    duration: '~20 Min',
+    duration: '~25 Min',
     steps: [
       { id: 'di-1', title: 'Pre-Poo (optional)', desc: 'Wenn Spitzen sehr trocken: 2 Tropfen Sérum Curl Perfect in trockene Spitzen, 5 Min einwirken.' },
       { id: 'di-2', title: 'Hydra Hyaluronic Shampoo', desc: 'Nur am Ansatz aufschäumen, sanft massieren. Schaum läuft beim Ausspülen über die Längen — das reicht.' },
       { id: 'di-3', title: 'L\'Oréal Hidra Conditioner', desc: 'Großzügig auf Längen + Spitzen. NICHT an den Ansatz. 1-2 Min einwirken lassen.' },
       { id: 'di-4', title: 'Wide-Tooth-Comb', desc: 'Mit Conditioner drin durchkämmen. Von unten nach oben in kleinen Sektionen.' },
-      { id: 'di-5', title: 'Squish to Condish', desc: 'Wasser in die Längen drücken (von unten nach oben), Conditioner emulgiert. Ausspülen, kalt nachspülen.' },
-      { id: 'di-6', title: 'Plopping mit T-Shirt', desc: 'Kopf nach unten, Wellen in T-Shirt einrollen. 10 Min liegen lassen.' },
-      { id: 'di-7', title: 'Acondicionador instantáneo Spray', desc: '2-3 Sprühstöße in Längen + Spitzen. Mit Händen scrunchen (von unten pressen).' },
-      { id: 'di-8', title: 'ISANA Hitzeschutz Spray', desc: 'Komplett über die Längen sprühen. Vor jedem Föhnen Pflicht.' },
-      { id: 'di-9', title: 'Diffusor — niedrige Hitze', desc: 'Strähne in den Diffusor legen, an Kopfhaut halten, 30-60 Sek pulsieren. Zum Schluss kalter Luftstoß.' },
-      { id: 'di-10', title: 'Optional: Spitzenöl', desc: '1 Tropfen Sérum Curl Perfect zwischen den Handflächen, nur in die Spitzen.' }
+      { id: 'di-5', title: 'Gründlich ausspülen', desc: 'Conditioner komplett aus den Längen ausspülen. Kalt nachspülen für Glanz.' },
+      { id: 'di-6', title: 'Handtuch — sanft ausdrücken', desc: 'NICHT rubbeln! Haare ins Mikrofaser-Handtuch drücken, überschüssiges Wasser sanft entfernen. Oder 5-10 Min Plopping.' },
+      { id: 'di-7', title: 'Leave-in (eine Wahl treffen!)', desc: 'WICHTIG: NUR EIN Leave-in pro Wäsche — nicht beide gleichzeitig. Wahl A: 2-3 Sprühstöße Acondicionador instantáneo Hydra Spray (schneller, leichter). Wahl B: Erbsengroße Menge ISANA Leave-in Conditioner Hyaluron (reichhaltiger, cremig). Beides: nur Längen + Spitzen, niemals Ansatz.' },
+      { id: 'di-8', title: 'ISANA Hitzeschutz Spray (PFLICHT!)', desc: 'Komplett über Längen + Spitzen sprühen. Bei Rundbürste-Föhnen extra wichtig wegen längerer Hitze-Einwirkung pro Strähne. 20 cm Abstand.' },
+      { id: 'di-9', title: 'Vortrocknen auf 80%', desc: 'Föhn auf mittlere Hitze, mittlere Stufe. Mit Fingern durchs Haar fahren, in alle Richtungen — bis das Haar nicht mehr tropft, aber noch leicht feucht ist (~80% trocken). NOCH NICHT mit Bürste!' },
+      { id: 'di-10', title: 'Haare sektionieren', desc: 'Mit Klammern oder Haargummis in 3-4 Sektionen aufteilen (untere Hälfte, obere Hälfte, eventuell Deckhaar separat). Macht das Stylen viel einfacher und gleichmäßiger.' },
+      { id: 'di-11', title: 'Rundbürste — Strähne für Strähne', desc: 'Untere Sektion zuerst. Eine Strähne (5-10 cm breit) auf die Rundbürste wickeln, Föhn-Düse zur Spitze gerichtet, langsam von Ansatz zu Spitze ziehen. Föhn in Wuchsrichtung halten (oben nach unten) = glatte Schuppenschicht = mehr Glanz.' },
+      { id: 'di-12', title: 'Kühlluft fixieren', desc: 'WICHTIG für Halt: Nach jeder Strähne kurz mit Kühlstufe abkühlen während die Bürste noch drin ist. Erst DANN die Bürste rausziehen. Fixiert die Form und gibt extra Glanz.' },
+      { id: 'di-13', title: 'Optional: Sérum NACH dem Föhnen', desc: 'Nicht vorher! 1 Tropfen Sérum Curl Perfect in den Handflächen verteilen. Hauptsächlich in die Spitzen — bei Frizz in den Längen kannst du auch ab Mitte sanft verteilen. Macht das Haar weich und glänzend, ohne zu beschweren.' }
     ]
   },
   'wash-rich': {
     title: 'Samstag-Routine — Pflege-Wäsche',
-    duration: '~30 Min',
+    duration: '~35 Min',
     steps: [
       { id: 'sa-1', title: 'Champú Curl Perfect', desc: 'Sulfatfrei, milder. Nur am Ansatz aufschäumen, sanft massieren. 1 Min einwirken.' },
       { id: 'sa-2', title: 'Mascarilla Hydra Hyaluronic (Standard)', desc: 'Statt Conditioner! Großzügig auf Längen + Spitzen. 2 Min einwirken (am Klärungstag 5-10 Min). ALTERNATIVE: Alle 4 Wochen statt der Mascarilla die L\'Oréal Glycolic Gloss 5-Min Laminierung — gibt extra Glanz, max 1× pro Monat wegen Silikon-Buildup.' },
       { id: 'sa-3', title: 'Wide-Tooth-Comb', desc: 'Mit Maske drin durchkämmen.' },
-      { id: 'sa-4', title: 'Squish to Condish + Ausspülen', desc: 'Wasser einarbeiten, dann komplett ausspülen, kalt nachspülen.' },
-      { id: 'sa-5', title: 'Bali Curls Moisturising Conditioner', desc: 'Erbsengroße Menge nur in die Spitzen, 30 Sek, ausspülen. (Quasi als „Versiegelung" nach der Maske.)' },
-      { id: 'sa-6', title: 'Plopping 15-20 Min', desc: 'Länger als Dienstag — die Maske braucht Zeit zum Setzen.' },
-      { id: 'sa-7', title: 'Bali Curls Hydrating Curl Cream', desc: 'Erbsengroße Menge, in den Händen verteilen, mit Praying Hands in die Längen (von oben nach unten streichen). Dann scrunchen.' },
-      { id: 'sa-8', title: 'ISANA Hitzeschutz Spray', desc: 'Vor dem Föhnen.' },
-      { id: 'sa-9', title: 'Diffusor — sehr sanft', desc: 'Niedrige Hitze, niedrige Stufe. Mehr Zeit nehmen — Wellen sind durch Curl Cream definierter.' },
-      { id: 'sa-10', title: 'Optional: 1 Tropfen Sérum', desc: 'Nur wenn Spitzen noch nicht glänzen. Sonst weglassen. Bei sehr trockenen Spitzen Alternative: 1 Pump Argan Oil Leave-in (sin aclarado) — aber sehr sparsam, nur 1× pro 2-3 Wochen.' }
+      { id: 'sa-4', title: 'Gründlich ausspülen', desc: 'Maske komplett aus den Längen ausspülen. Kalt nachspülen für Glanz.' },
+      { id: 'sa-5', title: 'Bali Curls Moisturising Conditioner (kurz)', desc: 'Erbsengroße Menge nur in die Spitzen, 30 Sek einwirken, ausspülen. Quasi als „Versiegelung" nach der Maske.' },
+      { id: 'sa-6', title: 'Handtuch — sanft ausdrücken', desc: 'NICHT rubbeln! Haare ins Mikrofaser-Handtuch drücken, überschüssiges Wasser entfernen.' },
+      { id: 'sa-7', title: 'ISANA Leave-in Conditioner Hyaluron', desc: 'Reichhaltige Wahl für die Pflege-Wäsche. Erbsengroße Menge in handtuchtrockene Längen + Spitzen verteilen. Niemals Ansatz. (Bali Curls Curl Cream lässt du heute weg — die ist für Wellen-Definition gedacht, nicht für Rundbürste-Föhnen.)' },
+      { id: 'sa-8', title: 'ISANA Hitzeschutz Spray (PFLICHT!)', desc: 'Komplett über Längen + Spitzen sprühen. Bei Rundbürste extra wichtig. 20 cm Abstand.' },
+      { id: 'sa-9', title: 'Vortrocknen auf 80%', desc: 'Föhn auf mittlere Hitze. Mit Fingern durchs Haar, in alle Richtungen, bis Haar nicht mehr tropft, aber noch leicht feucht ist.' },
+      { id: 'sa-10', title: 'Haare sektionieren', desc: 'In 3-4 Sektionen mit Klammern teilen — untere Hälfte zuerst.' },
+      { id: 'sa-11', title: 'Rundbürste — Strähne für Strähne', desc: 'Strähne auf Bürste wickeln, Föhn-Düse zur Spitze, langsam von Ansatz zu Spitze ziehen. Föhn-Luft in Wuchsrichtung (oben → unten) = glatte Schuppenschicht.' },
+      { id: 'sa-12', title: 'Kühlluft fixieren', desc: 'Nach jeder Strähne mit Kühlstufe abkühlen, BEVOR du die Bürste rausziehst. Fixiert die Form und macht das Haar glänzender + hält länger.' },
+      { id: 'sa-13', title: 'Optional: Sérum NACH dem Föhnen', desc: '1 Tropfen Sérum Curl Perfect in den Handflächen. Hauptsächlich in die Spitzen — bei Frizz in den Längen kannst du auch ab Mitte sanft verteilen. Macht das Haar weich und glänzend, ohne zu beschweren.' }
     ]
   },
   'refresh': {
@@ -769,19 +775,19 @@ const ROUTINES = {
     duration: '~5 Min',
     steps: [
       { id: 'rf-1', title: 'ISANA Bloom Boost (am Ansatz)', desc: '20 cm Abstand, kurz aufsprühen, 1 Min einziehen lassen, mit Fingern einarbeiten und ausschütteln. Nur Ansatz!' },
-      { id: 'rf-2', title: 'Wasser-Refresh (optional)', desc: 'Sprühflasche mit Wasser → Längen leicht anfeuchten (nicht klatschnass), mit Händen scrunchen.' },
-      { id: 'rf-3', title: '1 Tropfen Sérum Curl Perfect', desc: 'Nur in die Spitzen, wenn sie trocken wirken.' },
-      { id: 'rf-4', title: 'Frisur des Tages', desc: 'Half-Up Claw Clip, Low Bun oder Loose Side Part — siehe Frisuren-Tab.' }
+      { id: 'rf-2', title: 'Wasser-Refresh (optional)', desc: 'Sprühflasche mit Wasser → Längen leicht anfeuchten, falls Haare platt oder strähnig wirken.' },
+      { id: 'rf-3', title: '1 Tropfen Sérum Curl Perfect', desc: 'In die Spitzen wenn sie trocken wirken. Bei Frizz in den Längen kannst du auch sanft ab Mitte verteilen — 1 Tropfen reicht.' },
+      { id: 'rf-4', title: 'Frisur deiner Wahl', desc: 'Schau im Frisuren-Tab, was dir heute gefällt.' }
     ]
   },
   'wear': {
-    title: 'Schöner Wellen-Tag',
+    title: 'Schöner Haar-Tag',
     duration: '~2 Min',
     steps: [
-      { id: 'we-1', title: 'Wellen prüfen', desc: 'Sind sie noch definiert? Falls ja — nichts machen, einfach genießen.' },
+      { id: 'we-1', title: 'Zustand prüfen', desc: 'Wie schaut dein Haar aus? Falls es noch gut sitzt — nichts machen, genießen.' },
       { id: 'we-2', title: 'Bei Bedarf: 1 Tropfen Sérum', desc: 'Nur in die Spitzen, wenn sie etwas Glanz brauchen.' },
-      { id: 'we-3', title: 'Offen tragen oder Half-Up', desc: 'Loose Side Part, Half-Up Claw Clip — Wellen zeigen!' },
-      { id: 'we-4', title: 'Zur Nacht: Schutz-Frisur', desc: 'Loose Pineapple oder Side Braid mit Seiden-Scrunchie, damit sie morgen noch schön sind.' }
+      { id: 'we-3', title: 'Trockenshampoo falls Ansatz fettig', desc: 'ISANA Bloom Boost nur am Ansatz, sparsam.' },
+      { id: 'we-4', title: 'Frisur deiner Wahl', desc: 'Schau im Frisuren-Tab, was dir heute gefällt — oder einfach offen tragen.' }
     ]
   },
   'style': {
@@ -790,8 +796,8 @@ const ROUTINES = {
     steps: [
       { id: 'st-1', title: 'Trockenshampoo (falls Ansatz fettig)', desc: 'ISANA Bloom Boost am Ansatz, sparsam.' },
       { id: 'st-2', title: 'Spitzenöl', desc: '1 Tropfen Sérum Curl Perfect in die Spitzen für Glanz.' },
-      { id: 'st-3', title: 'Frisur wählen', desc: 'Low Bun, French Twist, Headband Tuck oder Hochsteckfrisur — alles in der Frisuren-Bibliothek.' },
-      { id: 'st-4', title: 'Spiral-Haargummi nutzen', desc: 'Niemals normale Haargummis mit Metall — Spiral-Haargummi oder Seiden-Scrunchie.' }
+      { id: 'st-3', title: 'Frisur wählen', desc: 'Schau im Frisuren-Tab — du entscheidest selbst, was heute zum Anlass passt.' },
+      { id: 'st-4', title: 'Spiral-Haargummi nutzen', desc: 'Niemals normale Haargummis mit Metall — Spiral-Haargummi oder Seiden-Scrunchie schont die Haare.' }
     ]
   }
 };
@@ -812,12 +818,13 @@ const PRODUCTS = [
   { id: 'p7b', name: 'L\'Oréal Glycolic Gloss 5-Min', store: 'rossmann', cat: 'mask', fn: 'Glanz-Maske · alle 4 Wochen', verdict: 'reduce', desc: 'Statt Mascarilla samstags — gibt extra Glanz und Versiegelung. MAX 1× alle 4 Wochen wegen Amodimethicone (filmbildendes Silikon, baut sich auf).' },
 
   // Leave-in
-  { id: 'p8', name: 'Acondicionador instantáneo Hydra Spray', store: 'mercadona', cat: 'leavein', fn: 'Leave-in · Dienstag', verdict: 'keep', desc: 'Spray-Leave-in für die schnelle Mitwoche-Routine. Hyaluron + UV-Schutz.' },
-  { id: 'p9', name: 'Bali Curls Hydrating Curl Cream', store: 'bali', cat: 'leavein', fn: 'Curl Cream · Samstag', verdict: 'keep', desc: 'Echte Curl Cream — definiert Wellen, gibt Bounce, Anti-Frizz. Für die Wochenend-Routine.' },
+  { id: 'p8', name: 'Acondicionador instantáneo Hydra Spray', store: 'mercadona', cat: 'leavein', fn: 'Leave-in · Dienstag (Wahl A)', verdict: 'keep', desc: 'Schneller Spray-Leave-in für den Alltag. Hyaluron + UV-Schutz. Wasserlösliches Silikon (kein Buildup). Alternative zum ISANA Leave-in.' },
+  { id: 'p8b', name: 'ISANA Leave-in Conditioner Hyaluron', store: 'rossmann', cat: 'leavein', fn: 'Leave-in · Dienstag (Wahl B)', verdict: 'keep', desc: 'Reichhaltige Creme-Variante. 3-fach Hyaluron + Panthenol + Betain, komplett silikonfrei, vegan. Alternative zum Mercadona Spray für Dienstag — wähle eines pro Wäsche. Auch gut für Samstag.' },
+  { id: 'p9', name: 'Bali Curls Hydrating Curl Cream', store: 'bali', cat: 'leavein', fn: 'Curl Cream · für Wellen-Look', verdict: 'keep', desc: 'Echte Curl Cream — definiert Wellen, gibt Bounce, Anti-Frizz. NUR verwenden wenn du deine Wellen lufttrocknen oder mit Diffusor stylen willst. NICHT mit Rundbürste-Föhnen kombinieren (würde sich gegenseitig aufheben).' },
   { id: 'p7', name: 'Argan Oil Remedy Leave-in (sin aclarado)', store: 'mercadona', cat: 'leavein', fn: 'Leave-in · selten, Notfall', verdict: 'reduce', desc: 'Aufbrauchen — dann nicht nachkaufen. Enthält Silikone + Keratin (genau das, was bei dir Buildup macht). Wenn überhaupt: 1 Pump in trockene Spitzen, max 1× pro 2-3 Wochen.' },
 
   // Öl
-  { id: 'p10', name: 'Sérum Oil Curl Perfect Deliplus', store: 'mercadona', cat: 'oil', fn: 'Spitzenöl · täglich bei Bedarf', verdict: 'keep', desc: '1 Tropfen, nur Spitzen, nach Föhnen oder bei Refresh. Kokos + Avocado + Macadamia + Argan.' },
+  { id: 'p10', name: 'Sérum Oil Curl Perfect Deliplus', store: 'mercadona', cat: 'oil', fn: 'Spitzenöl · nach jedem Föhnen', verdict: 'keep', desc: '1 Tropfen NACH dem Föhnen, hauptsächlich Spitzen. Bei Frizz auch ab Mitte verteilen. Ersetzt zusätzliches Anti-Frizz-Produkt. Kokos + Avocado + Macadamia + Argan, silikonfrei.' },
 
   // Hitzeschutz & Trockenshampoo
   { id: 'p11', name: 'ISANA All-in-One Hitzeschutz', store: 'rossmann', cat: 'tool', fn: 'Vor jedem Föhnen', verdict: 'keep', desc: 'Schutz bis 230°C. Immer vor Diffusor-Einsatz.' },

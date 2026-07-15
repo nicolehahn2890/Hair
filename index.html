@@ -883,6 +883,22 @@ const PRODUCTS = [
     inci: 'Basis: Reisstärke (gut — kein Talkum). Enthält Alkohol und viel Parfüm → deshalb nur am Ansatz, die aufgehellten Längen aussparen. (Dejan Garz rät generell zu milden, parfümarmen Trockenshampoos — beim Nachkauf wäre eine Sensitiv-Variante die bessere Wahl.)' }
 ];
 
+// Dejan-Garz-approved Produkte, die es bei Rossmann gibt und die Lücken füllen (INCI-gecheckt)
+const DEJAN_SHOPPING = [
+  { id: 'g1', name: 'L\'Oréal Elvital Bond Repair Shampoo', store: 'rossmann', cat: 'shampoo', fn: 'Garz-Tipp · Repair für blondierte Längen · ~7 €', verdict: 'buy',
+    desc: 'Von Dejan Garz als günstiges Redken-Dupe für blondiertes Haar empfohlen. Füllt deine Repair-Lücke: 1-2× pro Woche statt Curl Perfect, besonders wenn sich die Längen strapaziert anfühlen.',
+    inci: 'Citronensäure-Bond-Komplex, silikonfrei, proteinfrei, keine trocknenden Alkohole. Tensid ohne SLS/SLES, aber kräftiger als dein Curl Perfect — deshalb im Wechsel, nicht als Ersatz.' },
+  { id: 'g2', name: 'Gliss Blonde Perfector Purple Shampoo', store: 'rossmann', cat: 'shampoo', fn: 'Garz-Tipp · gegen Gelbstich · ~4 €', verdict: 'buy',
+    desc: 'Einer von Garz\' zwei Silbershampoo-Favoriten unter 4 €. Neutralisiert Gelbstich in deinen aufgehellten Längen. Max. 1× pro Woche, 2-5 Min einwirken (Einwirkzeit steuert die Intensität).',
+    inci: 'Stark pigmentiert (Acid Violet 43). Enthält Dimethicone und 2× hydrolysiertes Keratin — bei deiner Porosität in kleiner Dosis okay, aber deshalb nicht öfter als wöchentlich.' },
+  { id: 'g3', name: 'Nivea Fresh & Mild Trockenshampoo (helle Haartöne)', store: 'rossmann', cat: 'tool', fn: 'Garz-Tipp · milder Bloom-Boost-Nachfolger · ~3,50 €', verdict: 'buy',
+    desc: 'Garz findet aggressive, stark parfümierte Trockenshampoos unnötig — das milde Nivea ist seine Empfehlung. Die Variante für helle Töne hinterlässt keinen Grauschleier. Guter Nachfolger, wenn dein Bloom Boost leer ist.',
+    inci: 'Reisstärke als einziger Puder, dezenter parfümiert als Bloom Boost, aber nicht parfümfrei. Alkohol als Träger (verfliegt am Ansatz).' },
+  { id: 'g4', name: 'L\'Oréal Elvital Öl Magique Midnight Serum', store: 'rossmann', cat: 'oil', fn: 'Garz-Tipp · Overnight-Anti-Frizz · ~8 € (optional)', verdict: 'buy',
+    desc: 'Von Garz direkt empfohlen. Besetzt die einzige freie Nische in deiner Routine: Overnight-Pflege gegen Frizz. Abends erbsengroß in die trockenen Längen, nicht ausspülen. Nice-to-have, kein Muss.',
+    inci: 'Creme-Basis aus Fettalkoholen (pflegend, nicht trocknend) + Kokos-/Kamelienöl, proteinfrei. Amodimethicone in kleiner Dosis, haftet gezielt an geschädigten Stellen — gut für Balayage, zählt aber zum Klär-Rhythmus dazu.' }
+];
+
 // Nachkauf-Empfehlungen für den leeren Alltags-Conditioner (INCI-gecheckt)
 const SHOPPING = [
   { id: 'n1', name: 'Mascarilla Curl Perfect Deliplus', store: 'mercadona', cat: 'conditioner', fn: 'Nachkauf-Tipp · ~2,60 €', verdict: 'buy',
@@ -1119,7 +1135,7 @@ function renderRoutines() {
       <p style="font-size:13px"><strong>4. Maske alle 5-6 Wäschen, 5-10 Min, danach kurz Conditioner</strong> — entspricht deinem Glanz-Masken-Rhythmus im Pflege-Wäsche-Guide.</p>
       <p style="font-size:13px"><strong>5. Silikone & Sulfate sind nicht böse</strong> — er sagt: die Dosis macht das Gift. Genau so ist deine Routine gebaut: Silikon-Glanzmasken ja, aber mit Klärungs-Reset.</p>
       <p style="font-size:13px"><strong>6. Öl nach jeder Wäsche</strong> — dein Sérum-Finish. Und: dünne Haargummis meiden — Spiral-Gummi oder Seiden-Scrunchie hast du schon im Einsatz.</p>
-      <p style="font-size:12px;color:#8b6373;font-style:italic">Hinweis: Dejan Garz verkauft seit 2025 eine eigene Pflegeserie bei dm — bei seinen neueren Produktempfehlungen also im Hinterkopf behalten, dass er auch Eigeninteresse hat. Seine Grundregeln oben sind davon unabhängig und fachlich solide.</p>
+      <p style="font-size:12px;color:#8b6373;font-style:italic">Hinweis: Dejan Garz verkauft seit 2025 eine eigene Pflegeserie („The Foundation", Öl „The Britney") — inzwischen auch bei Rossmann. Bei seinen neueren Produktempfehlungen also im Hinterkopf behalten, dass er Eigeninteresse hat. Seine Grundregeln oben sind davon unabhängig und fachlich solide. Seine Marken-Tipps, die zu deinem Haar passen, findest du im Produkte-Tab unter „Einkaufszettel — Dejan-Garz-Tipps".</p>
     </div>
   `;
 }
@@ -1155,14 +1171,19 @@ function filterProducts(list) {
 function productListHtml() {
   const filtered = filterProducts(PRODUCTS);
   const shopping = filterProducts(SHOPPING);
+  const dejan = filterProducts(DEJAN_SHOPPING);
 
-  let html = filtered.length === 0 && shopping.length === 0
+  let html = filtered.length === 0 && shopping.length === 0 && dejan.length === 0
     ? `<div class="empty">Keine Produkte gefunden.</div>`
     : filtered.map(productCard).join('');
 
   if (shopping.length > 0) {
     html += `<h3 style="font-size:12px;color:#35618f;letter-spacing:1.5px;text-transform:uppercase;margin:18px 0 10px;font-weight:600">Einkaufszettel — Conditioner-Nachkauf</h3>`;
     html += shopping.map(productCard).join('');
+  }
+  if (dejan.length > 0) {
+    html += `<h3 style="font-size:12px;color:#35618f;letter-spacing:1.5px;text-transform:uppercase;margin:18px 0 10px;font-weight:600">Einkaufszettel — Dejan-Garz-Tipps bei Rossmann</h3>`;
+    html += dejan.map(productCard).join('');
   }
   return html;
 }

@@ -196,7 +196,7 @@ a { color: #d4527a; text-decoration: none; }
   margin-bottom: 8px;
 }
 
-/* ===== Heute-Banner ===== */
+/* ===== Profil-Hero ===== */
 .today-hero {
   background: linear-gradient(135deg, #ffd0e0 0%, #ffb8d4 50%, #ff9ec4 100%);
   border-radius: 28px;
@@ -243,18 +243,19 @@ a { color: #d4527a; text-decoration: none; }
 
 .today-hero .day-name {
   font-family: 'Playfair Display', serif;
-  font-size: 30px;
+  font-size: 26px;
   color: #4a1a30;
   margin-bottom: 10px;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .today-hero .day-task {
-  font-size: 14px;
+  font-size: 13.5px;
   color: #6b1e3a;
   font-style: italic;
   font-family: 'Playfair Display', serif;
+  line-height: 1.5;
 }
 
 /* ===== Routine-Steps ===== */
@@ -386,6 +387,8 @@ a { color: #d4527a; text-decoration: none; }
 .product.keep { border-left-color: #7bbb8f; }
 .product.reduce { border-left-color: #e8a85c; }
 .product.discard { border-left-color: #d96868; }
+.product.empty { border-left-color: #b0a3ab; }
+.product.buy { border-left-color: #8fb3d9; }
 
 .product-header {
   display: flex;
@@ -434,6 +437,26 @@ a { color: #d4527a; text-decoration: none; }
   line-height: 1.5;
 }
 
+.product-inci {
+  font-size: 11px;
+  color: #8b6373;
+  line-height: 1.5;
+  margin-top: 8px;
+  padding: 8px 10px;
+  background: rgba(253, 240, 245, 0.7);
+  border-radius: 10px;
+}
+
+.product-inci .inci-label {
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 9px;
+  color: #d4527a;
+  display: block;
+  margin-bottom: 2px;
+}
+
 .product-tag {
   display: inline-block;
   font-size: 10px;
@@ -449,8 +472,10 @@ a { color: #d4527a; text-decoration: none; }
 .tag-keep { background: #e0f4e6; color: #3d8550; }
 .tag-reduce { background: #fdedd6; color: #a06b1f; }
 .tag-discard { background: #fde2e2; color: #a83838; }
+.tag-empty { background: #ece5e9; color: #7a6a72; }
+.tag-buy { background: #e2edf8; color: #35618f; }
 
-/* ===== Wochenplan ===== */
+/* ===== Guides (Akkordeon) ===== */
 .week-day {
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba(212, 82, 122, 0.1);
@@ -460,7 +485,7 @@ a { color: #d4527a; text-decoration: none; }
   box-shadow: 0 2px 12px rgba(212, 82, 122, 0.05);
 }
 
-.week-day.today {
+.week-day.open {
   border-color: #d4527a;
   box-shadow: 0 4px 20px rgba(212, 82, 122, 0.15);
 }
@@ -474,7 +499,7 @@ a { color: #d4527a; text-decoration: none; }
   cursor: pointer;
 }
 
-.week-day.today .week-day-header {
+.week-day.open .week-day-header {
   background: linear-gradient(135deg, #ffd0e0, #ffb8d4);
 }
 
@@ -485,19 +510,7 @@ a { color: #d4527a; text-decoration: none; }
   font-family: 'Playfair Display', serif;
 }
 
-.week-day.today .week-day-name { color: #4a1a30; }
-
-.week-day-name .today-badge {
-  font-size: 9px;
-  background: white;
-  color: #d4527a;
-  padding: 3px 8px;
-  border-radius: 8px;
-  margin-left: 8px;
-  letter-spacing: 1px;
-  font-weight: 700;
-  font-family: 'DM Sans', sans-serif;
-}
+.week-day.open .week-day-name { color: #4a1a30; }
 
 .week-day-task {
   font-size: 11px;
@@ -508,7 +521,7 @@ a { color: #d4527a; text-decoration: none; }
   margin-top: 2px;
 }
 
-.week-day.today .week-day-task { color: #6b1e3a; }
+.week-day.open .week-day-task { color: #6b1e3a; }
 
 .week-day-body {
   padding: 16px;
@@ -516,6 +529,15 @@ a { color: #d4527a; text-decoration: none; }
 }
 
 .week-day.open .week-day-body { display: block; }
+
+.guide-intro {
+  font-size: 13px;
+  color: #6b4d5c;
+  line-height: 1.55;
+  padding: 4px 2px 10px;
+  border-bottom: 1px solid rgba(212, 82, 122, 0.1);
+  font-style: italic;
+}
 
 /* ===== Frisuren ===== */
 .hairstyle-section-title {
@@ -626,7 +648,6 @@ a { color: #d4527a; text-decoration: none; }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Spezial: Strong-Tags rosa hervorheben */
 .step-desc strong, .product-desc strong, .card p strong {
   color: #d4527a;
   font-weight: 600;
@@ -639,20 +660,16 @@ a { color: #d4527a; text-decoration: none; }
 
 <div class="app">
   <header class="header">
-    <h1 id="header-title">Heute</h1>
-    <div class="subtitle" id="header-subtitle">Deine Pflege</div>
+    <h1 id="header-title">Routinen</h1>
+    <div class="subtitle" id="header-subtitle">Dein Haar-Guide</div>
   </header>
 
   <main class="content" id="content"></main>
 
   <nav class="nav">
-    <button class="nav-item active" data-view="today">
-      <span class="icon">☀</span>
-      <span>Heute</span>
-    </button>
-    <button class="nav-item" data-view="week">
-      <span class="icon">▦</span>
-      <span>Woche</span>
+    <button class="nav-item active" data-view="routines">
+      <span class="icon">✧</span>
+      <span>Routinen</span>
     </button>
     <button class="nav-item" data-view="products">
       <span class="icon">⚗</span>
@@ -674,15 +691,14 @@ function generateSparkles() {
   const container = document.getElementById('sparkles');
   if (!container) return;
 
-  // Symbole gemischt: Sterne, Herzen, Blumen, Sparkles
   const symbols = [
-    '✦', '✧', '⋆', '✦', '✧', '⋆',  // Sterne (häufig)
-    '♡', '♡', '❤︎',                    // Herzen
-    '❀', '✿', '❁',                    // Blumen
-    '⁂', '✺', '✻'                     // Spezial-Sparkles
+    '✦', '✧', '⋆', '✦', '✧', '⋆',
+    '♡', '♡', '❤︎',
+    '❀', '✿', '❁',
+    '⁂', '✺', '✻'
   ];
   const sizes = ['tiny', 'small', 'medium', 'large'];
-  const colors = ['', '', '', 'gold', 'lilac', 'rose']; // mehr standard als bunt
+  const colors = ['', '', '', 'gold', 'lilac', 'rose'];
   const count = 50;
 
   for (let i = 0; i < count; i++) {
@@ -719,116 +735,165 @@ generateSparkles();
 
 const STORAGE_KEY = 'haarpflege_v1';
 
-// Wochenplan: 0=So, 1=Mo, 2=Di, 3=Mi, 4=Do, 5=Fr, 6=Sa
-const WEEK_PLAN = {
-  0: { name: 'Sonntag', task: 'Schöner Haar-Tag', type: 'wear' },
-  1: { name: 'Montag', task: 'Refresh', type: 'refresh' },
-  2: { name: 'Dienstag', task: 'Wäsche — Alltag', type: 'wash-light' },
-  3: { name: 'Mittwoch', task: 'Schöner Haar-Tag', type: 'wear' },
-  4: { name: 'Donnerstag', task: 'Refresh', type: 'refresh' },
-  5: { name: 'Freitag', task: 'Frisur-Tag', type: 'style' },
-  6: { name: 'Samstag', task: 'Wäsche — Pflege-Tag', type: 'wash-rich' }
-};
-
-// Routinen pro Tag-Typ
-const ROUTINES = {
-  'wash-light': {
-    title: 'Dienstag-Routine — Alltags-Wäsche',
-    duration: '~25 Min',
+// Routinen als flexible Guides — kein fester Wochenplan.
+// Du entscheidest selbst, wann du wäschst; die Guides sagen dir WIE.
+const GUIDES = [
+  {
+    id: 'wash-quick',
+    title: 'Wäsche — Schnell',
+    tag: 'Waschtag · ~20 Min',
+    intro: 'Die Alltags-Wäsche, wenn es fix gehen soll. Danach weiter mit einem der beiden Styling-Guides (Wellen oder Glatt).',
     steps: [
-      { id: 'di-1', title: 'Pre-Poo (optional)', desc: 'Wenn Spitzen sehr trocken: 2 Tropfen Sérum Curl Perfect in trockene Spitzen, 5 Min einwirken.' },
-      { id: 'di-2', title: 'Hydra Hyaluronic Shampoo', desc: 'Nur am Ansatz aufschäumen, sanft massieren. Schaum läuft beim Ausspülen über die Längen — das reicht.' },
-      { id: 'di-3', title: 'L\'Oréal Hidra Conditioner', desc: 'Großzügig auf Längen + Spitzen. NICHT an den Ansatz. 1-2 Min einwirken lassen.' },
-      { id: 'di-4', title: 'Wide-Tooth-Comb', desc: 'Mit Conditioner drin durchkämmen. Von unten nach oben in kleinen Sektionen.' },
-      { id: 'di-5', title: 'Gründlich ausspülen', desc: 'Conditioner komplett aus den Längen ausspülen. Kalt nachspülen für Glanz.' },
-      { id: 'di-6', title: 'Handtuch — sanft ausdrücken', desc: 'NICHT rubbeln! Haare ins Mikrofaser-Handtuch drücken, überschüssiges Wasser sanft entfernen. Oder 5-10 Min Plopping.' },
-      { id: 'di-7', title: 'Leave-in (eine Wahl treffen!)', desc: 'WICHTIG: NUR EIN Leave-in pro Wäsche — nicht beide gleichzeitig. Wahl A: 2-3 Sprühstöße Acondicionador instantáneo Hydra Spray (schneller, leichter). Wahl B: Erbsengroße Menge ISANA Leave-in Conditioner Hyaluron (reichhaltiger, cremig). Beides: nur Längen + Spitzen, niemals Ansatz.' },
-      { id: 'di-8', title: 'ISANA Hitzeschutz Spray (PFLICHT!)', desc: 'Komplett über Längen + Spitzen sprühen. Bei Rundbürste-Föhnen extra wichtig wegen längerer Hitze-Einwirkung pro Strähne. 20 cm Abstand.' },
-      { id: 'di-9', title: 'Vortrocknen auf 80%', desc: 'Föhn auf mittlere Hitze, mittlere Stufe. Mit Fingern durchs Haar fahren, in alle Richtungen — bis das Haar nicht mehr tropft, aber noch leicht feucht ist (~80% trocken). NOCH NICHT mit Bürste!' },
-      { id: 'di-10', title: 'Haare sektionieren', desc: 'Mit Klammern oder Haargummis in 3-4 Sektionen aufteilen (untere Hälfte, obere Hälfte, eventuell Deckhaar separat). Macht das Stylen viel einfacher und gleichmäßiger.' },
-      { id: 'di-11', title: 'Rundbürste — Strähne für Strähne', desc: 'Untere Sektion zuerst. Eine Strähne (5-10 cm breit) auf die Rundbürste wickeln, Föhn-Düse zur Spitze gerichtet, langsam von Ansatz zu Spitze ziehen. Föhn in Wuchsrichtung halten (oben nach unten) = glatte Schuppenschicht = mehr Glanz.' },
-      { id: 'di-12', title: 'Kühlluft fixieren', desc: 'WICHTIG für Halt: Nach jeder Strähne kurz mit Kühlstufe abkühlen während die Bürste noch drin ist. Erst DANN die Bürste rausziehen. Fixiert die Form und gibt extra Glanz.' },
-      { id: 'di-13', title: 'Optional: Sérum NACH dem Föhnen', desc: 'Nicht vorher! 1 Tropfen Sérum Curl Perfect in den Handflächen verteilen. Hauptsächlich in die Spitzen — bei Frizz in den Längen kannst du auch ab Mitte sanft verteilen. Macht das Haar weich und glänzend, ohne zu beschweren.' }
+      { id: 'wq-1', title: 'Detangling vor der Dusche', desc: 'Trockene Haare mit den Fingern oder dem Wide-Tooth-Comb grob entwirren. Keine Bürste auf trockenen Wellen.' },
+      { id: 'wq-2', title: 'Shampoo: Champú Curl Perfect', desc: 'Haselnussgroße Menge, in den Händen aufschäumen, nur die Kopfhaut massieren. Beim Ausspülen läuft der Schaum durch die Längen — das reicht. (Das Hydra-Shampoo nur noch aufbrauchen — es ist strenger als gedacht, siehe Produkte-Tab.)' },
+      { id: 'wq-3', title: 'Conditioner: Bali Curls Moisturising', desc: 'Walnussgroße Menge in Längen + Spitzen, NICHT an den Ansatz. Er ist reichhaltig — lieber sparsam. 1-2 Min einwirken. (Übernimmt, bis der leere L\'Oréal ersetzt ist — Nachkauf-Tipps im Produkte-Tab.)' },
+      { id: 'wq-4', title: 'Wide-Tooth-Comb', desc: 'Mit Conditioner im Haar durchkämmen. Von den Spitzen nach oben, in kleinen Sektionen.' },
+      { id: 'wq-5', title: 'Squish to Condish + ausspülen', desc: 'Eine Handvoll Wasser ins Haar, von unten nach oben pressen — dann den Conditioner gründlich ausspülen. Optional 10 Sek kalt nachspülen (kleiner Glanz-Bonus, kein Muss).' },
+      { id: 'wq-6', title: 'Sanft trocknen', desc: 'NICHT rubbeln. Haare ins Mikrofaser-Handtuch oder T-Shirt drücken. Bei Wellen-Styling: 5-10 Min Plopping.' },
+      { id: 'wq-7', title: 'Leave-in — EINE Wahl', desc: 'Wahl A: 2-3 Sprühstöße Hydra Spray (am leichtesten, mit UV-Schutz — gut für die aufgehellten Längen). Wahl B: erbsengroß ISANA Leave-in (silikonfrei, etwas reichhaltiger). Nie beide gleichzeitig, nur Längen + Spitzen.' },
+      { id: 'wq-8', title: 'Weiter mit Styling', desc: 'Jetzt den passenden Styling-Guide öffnen: „Wellen & Locken" (Diffusor/Lufttrocknen) oder „Glatt geföhnt" (Rundbürste).' }
     ]
   },
-  'wash-rich': {
-    title: 'Samstag-Routine — Pflege-Wäsche',
-    duration: '~35 Min',
+  {
+    id: 'wash-care',
+    title: 'Wäsche — Pflege intensiv',
+    tag: 'Waschtag · ~35 Min',
+    intro: 'Die gründliche Wäsche mit mehr Pflegezeit — z.B. am Wochenende. Etwa alle 1-2 Wochen darf hier eine Glanz-Maske rein.',
     steps: [
-      { id: 'sa-1', title: 'Champú Curl Perfect', desc: 'Sulfatfrei, milder. Nur am Ansatz aufschäumen, sanft massieren. 1 Min einwirken.' },
-      { id: 'sa-2', title: 'Mascarilla Hydra Hyaluronic (Standard)', desc: 'Statt Conditioner! Großzügig auf Längen + Spitzen. 2 Min einwirken (am Klärungstag 5-10 Min). ALTERNATIVE: Alle 4 Wochen statt der Mascarilla die L\'Oréal Glycolic Gloss 5-Min Laminierung — gibt extra Glanz, max 1× pro Monat wegen Silikon-Buildup.' },
-      { id: 'sa-3', title: 'Wide-Tooth-Comb', desc: 'Mit Maske drin durchkämmen.' },
-      { id: 'sa-4', title: 'Gründlich ausspülen', desc: 'Maske komplett aus den Längen ausspülen. Kalt nachspülen für Glanz.' },
-      { id: 'sa-5', title: 'Bali Curls Moisturising Conditioner (kurz)', desc: 'Erbsengroße Menge nur in die Spitzen, 30 Sek einwirken, ausspülen. Quasi als „Versiegelung" nach der Maske.' },
-      { id: 'sa-6', title: 'Handtuch — sanft ausdrücken', desc: 'NICHT rubbeln! Haare ins Mikrofaser-Handtuch drücken, überschüssiges Wasser entfernen.' },
-      { id: 'sa-7', title: 'ISANA Leave-in Conditioner Hyaluron', desc: 'Reichhaltige Wahl für die Pflege-Wäsche. Erbsengroße Menge in handtuchtrockene Längen + Spitzen verteilen. Niemals Ansatz. (Bali Curls Curl Cream lässt du heute weg — die ist für Wellen-Definition gedacht, nicht für Rundbürste-Föhnen.)' },
-      { id: 'sa-8', title: 'ISANA Hitzeschutz Spray (PFLICHT!)', desc: 'Komplett über Längen + Spitzen sprühen. Bei Rundbürste extra wichtig. 20 cm Abstand.' },
-      { id: 'sa-9', title: 'Vortrocknen auf 80%', desc: 'Föhn auf mittlere Hitze. Mit Fingern durchs Haar, in alle Richtungen, bis Haar nicht mehr tropft, aber noch leicht feucht ist.' },
-      { id: 'sa-10', title: 'Haare sektionieren', desc: 'In 3-4 Sektionen mit Klammern teilen — untere Hälfte zuerst.' },
-      { id: 'sa-11', title: 'Rundbürste — Strähne für Strähne', desc: 'Strähne auf Bürste wickeln, Föhn-Düse zur Spitze, langsam von Ansatz zu Spitze ziehen. Föhn-Luft in Wuchsrichtung (oben → unten) = glatte Schuppenschicht.' },
-      { id: 'sa-12', title: 'Kühlluft fixieren', desc: 'Nach jeder Strähne mit Kühlstufe abkühlen, BEVOR du die Bürste rausziehst. Fixiert die Form und macht das Haar glänzender + hält länger.' },
-      { id: 'sa-13', title: 'Optional: Sérum NACH dem Föhnen', desc: '1 Tropfen Sérum Curl Perfect in den Handflächen. Hauptsächlich in die Spitzen — bei Frizz in den Längen kannst du auch ab Mitte sanft verteilen. Macht das Haar weich und glänzend, ohne zu beschweren.' }
+      { id: 'wc-1', title: 'Detangling vor der Dusche', desc: 'Trockene Haare mit den Fingern entwirren. Keine Bürste.' },
+      { id: 'wc-2', title: 'Shampoo: Curl Perfect — 2× (Double Cleansing)', desc: 'Beim ersten Durchgang löst sich Buildup, beim zweiten reinigt das Shampoo richtig. Beide Male nur am Ansatz aufschäumen.' },
+      { id: 'wc-3', title: 'Pflege: Standard = Bali Curls Conditioner', desc: 'Großzügiger als bei der schnellen Wäsche: walnussgroße Menge in Längen + Spitzen, 3-5 Min einwirken. Das ist dein Feuchtigkeits-Standard.' },
+      { id: 'wc-4', title: 'ODER alle 1-2 Wochen: Glanz-Maske', desc: 'Statt Schritt 3: Mascarilla Hydra Hyaluronic ODER L\'Oréal Glycolic Gloss (nie beide in derselben Woche!). Beide versiegeln mit Silikon — toller Sofort-Effekt, baut sich aber auf. Deshalb: im Wechsel mit dem Klärungs-Reset einplanen.' },
+      { id: 'wc-5', title: 'Wide-Tooth-Comb + Squish to Condish', desc: 'Mit Pflege im Haar durchkämmen, dann Wasser von unten nach oben ins Haar pressen. Gründlich ausspülen, optional kalt nachspülen.' },
+      { id: 'wc-6', title: 'Sanft trocknen', desc: 'Ins Mikrofaser-Handtuch oder T-Shirt drücken, nicht rubbeln. Bei Wellen-Styling: 10-15 Min Plopping für mehr Definition.' },
+      { id: 'wc-7', title: 'Leave-in — EINE Wahl', desc: 'Hydra Spray (leicht, UV-Schutz) oder ISANA Leave-in (silikonfrei, reichhaltiger). Nur Längen + Spitzen.' },
+      { id: 'wc-8', title: 'Weiter mit Styling', desc: 'Styling-Guide öffnen: „Wellen & Locken" oder „Glatt geföhnt". Für maximale Wellen-Definition ist heute der beste Tag.' }
     ]
   },
-  'refresh': {
-    title: 'Refresh-Tag',
-    duration: '~5 Min',
+  {
+    id: 'style-waves',
+    title: 'Styling: Wellen & Locken',
+    tag: 'Nach der Wäsche · Diffusor',
+    intro: 'Für deine natürlichen 2a-2b-Wellen. Auf den Fotos sieht man: mit Curl Cream + Diffusor werden daraus richtig definierte Wellen.',
     steps: [
-      { id: 'rf-1', title: 'ISANA Bloom Boost (am Ansatz)', desc: '20 cm Abstand, kurz aufsprühen, 1 Min einziehen lassen, mit Fingern einarbeiten und ausschütteln. Nur Ansatz!' },
-      { id: 'rf-2', title: 'Wasser-Refresh (optional)', desc: 'Sprühflasche mit Wasser → Längen leicht anfeuchten, falls Haare platt oder strähnig wirken.' },
-      { id: 'rf-3', title: '1 Tropfen Sérum Curl Perfect', desc: 'In die Spitzen wenn sie trocken wirken. Bei Frizz in den Längen kannst du auch sanft ab Mitte verteilen — 1 Tropfen reicht.' },
-      { id: 'rf-4', title: 'Frisur deiner Wahl', desc: 'Schau im Frisuren-Tab, was dir heute gefällt.' }
+      { id: 'sw-1', title: 'Bali Curls Curl Cream', desc: 'Erbsen- bis haselnussgroße Menge in den Händen verreiben, ins SEHR feuchte Haar. Von unten nach oben scrunchen, nicht reiben. Nur Längen + Spitzen.' },
+      { id: 'sw-2', title: 'Hitzeschutz', desc: 'ISANA Hitzeschutz über die Längen sprühen (20 cm Abstand) — auch beim Diffusor mit niedriger Hitze.' },
+      { id: 'sw-3', title: 'Diffusor — niedrige Hitze, niedrige Stufe', desc: 'Strähne in den Diffusor legen, Richtung Kopfhaut halten, 30-60 Sek pulsieren. Nicht durchs Haar fahren. Kopfüber föhnen gibt mehr Ansatz-Volumen.' },
+      { id: 'sw-4', title: 'Kalter Luftstoß zum Fixieren', desc: 'Zum Schluss mit der Kühlstufe über alle Längen — fixiert die Wellen und schließt die Schuppenschicht.' },
+      { id: 'sw-5', title: 'Finish: 1 Tropfen Sérum', desc: '1 Tropfen Sérum Curl Perfect zwischen den Handflächen, sanft in die Spitzen. Danach: Haare nicht mehr anfassen, bis sie ganz trocken sind — Anfassen macht Frizz.' },
+      { id: 'sw-6', title: 'Alternative: Lufttrocknen', desc: 'Geht auch — dauert aber lange und die Schuppenschicht bleibt länger offen (mehr Frizz-Risiko). Wenn Lufttrocknen, dann vorher gut ploppen.' }
     ]
   },
-  'wear': {
-    title: 'Schöner Haar-Tag',
-    duration: '~2 Min',
+  {
+    id: 'style-blowout',
+    title: 'Styling: Glatt geföhnt',
+    tag: 'Nach der Wäsche · Rundbürste',
+    intro: 'Für glatte, glänzende Blowout-Tage. Mehr Hitze pro Strähne als beim Diffusor — Hitzeschutz ist hier Pflicht.',
     steps: [
-      { id: 'we-1', title: 'Zustand prüfen', desc: 'Wie schaut dein Haar aus? Falls es noch gut sitzt — nichts machen, genießen.' },
-      { id: 'we-2', title: 'Bei Bedarf: 1 Tropfen Sérum', desc: 'Nur in die Spitzen, wenn sie etwas Glanz brauchen.' },
-      { id: 'we-3', title: 'Trockenshampoo falls Ansatz fettig', desc: 'ISANA Bloom Boost nur am Ansatz, sparsam.' },
-      { id: 'we-4', title: 'Frisur deiner Wahl', desc: 'Schau im Frisuren-Tab, was dir heute gefällt — oder einfach offen tragen.' }
+      { id: 'sb-1', title: 'Hitzeschutz (PFLICHT!)', desc: 'ISANA Hitzeschutz komplett über Längen + Spitzen, 20 cm Abstand. Beim Rundbürsten-Föhnen wirkt die Hitze länger pro Strähne ein. (Prüfe im Produkte-Tab, welches der zwei ISANA-Hitzeschutz-Produkte du hast!)' },
+      { id: 'sb-2', title: 'Vortrocknen auf 80%', desc: 'Föhn auf mittlere Hitze, mit den Fingern durchs Haar in alle Richtungen — bis es nicht mehr tropft, aber noch leicht feucht ist. Noch keine Bürste.' },
+      { id: 'sb-3', title: 'Sektionieren', desc: 'Mit Klammern in 3-4 Sektionen teilen: untere Hälfte, obere Hälfte, evtl. Deckhaar. Macht das Ergebnis gleichmäßiger.' },
+      { id: 'sb-4', title: 'Rundbürste — Strähne für Strähne', desc: 'Strähne (5-10 cm) auf die Bürste wickeln, Föhn-Düse zur Spitze gerichtet, langsam von Ansatz zu Spitze ziehen. Luft in Wuchsrichtung = glatte Schuppenschicht = Glanz.' },
+      { id: 'sb-5', title: 'Kühlluft fixieren', desc: 'Nach jeder Strähne kurz die Kühlstufe, WÄHREND die Bürste noch im Haar ist. Erst dann rausziehen — das fixiert Form und Glanz.' },
+      { id: 'sb-6', title: 'Finish: 1 Tropfen Sérum', desc: 'NACH dem Föhnen: 1 Tropfen Sérum Curl Perfect in den Handflächen verreiben, in Spitzen und bei Frizz ab Mitte der Längen. Nicht vorher — Öl unter der Rundbürste brät ein.' }
     ]
   },
-  'style': {
-    title: 'Frisur-Tag',
-    duration: '~5 Min',
+  {
+    id: 'refresh',
+    title: 'Refresh zwischen den Wäschen',
+    tag: 'An Nicht-Waschtagen · ~5 Min',
+    intro: 'Je nachdem, was dein Haar heute braucht — nicht alles auf einmal.',
     steps: [
-      { id: 'st-1', title: 'Trockenshampoo (falls Ansatz fettig)', desc: 'ISANA Bloom Boost am Ansatz, sparsam.' },
-      { id: 'st-2', title: 'Spitzenöl', desc: '1 Tropfen Sérum Curl Perfect in die Spitzen für Glanz.' },
-      { id: 'st-3', title: 'Frisur wählen', desc: 'Schau im Frisuren-Tab — du entscheidest selbst, was heute zum Anlass passt.' },
-      { id: 'st-4', title: 'Spiral-Haargummi nutzen', desc: 'Niemals normale Haargummis mit Metall — Spiral-Haargummi oder Seiden-Scrunchie schont die Haare.' }
+      { id: 'rf-1', title: 'Ansatz fettig? Trockenshampoo', desc: 'ISANA Bloom Boost: 20 cm Abstand, sparsam NUR an den Ansatz, 1 Min einziehen lassen, mit den Fingern einarbeiten. Abends ausbürsten, damit sich keine Stärke ansammelt. Nicht in die Längen (der Alkohol trocknet sie aus).' },
+      { id: 'rf-2', title: 'Wellen platt? Wasser-Refresh', desc: 'Sprühflasche mit Wasser: Längen leicht anfeuchten (nicht nass), scrunchen. Für mehr Definition: Refresh-Twists (siehe Frisuren-Tab).' },
+      { id: 'rf-3', title: 'Spitzen trocken? 1 Tropfen Sérum', desc: '1 Tropfen Sérum Curl Perfect in die Spitzen. Bei Frizz auch sanft ab Mitte der Längen — mehr als 1 Tropfen braucht es nicht.' },
+      { id: 'rf-4', title: 'Blowout retten', desc: 'Nach Glatt-Föhn-Tagen: nachts Silk Wrap oder tiefer Seidenzopf (siehe Frisuren-Tab „Schlafen") — hält den Blowout 2-3 Tage ohne neue Hitze.' },
+      { id: 'rf-5', title: 'Frisur wählen', desc: 'Im Frisuren-Tab nach Anlass stöbern — 30 Looks für jede Situation.' }
+    ]
+  },
+  {
+    id: 'clarify',
+    title: 'Klärungs-Reset',
+    tag: 'Alle 2-4 Wochen',
+    intro: 'Silikonhaltige Produkte (Glycolic Gloss, Mascarilla, Hydra-Spray) bauen sich langsam auf. Der Reset holt alles wieder runter. Faustregel: Wellen hängen schlapp, Haar fühlt sich belegt an, Produkte „wirken nicht mehr" → Zeit zu klären. Nutzt du die Glanz-Masken regelmäßig, eher alle 2 Wochen; sonst reicht 1× im Monat.',
+    steps: [
+      { id: 'cl-1', title: 'ISANA Tiefenreinigung — Ansatz UND Längen', desc: 'Ausnahmsweise durch die kompletten Längen massieren, nicht nur am Ansatz. Gründlich ausspülen. (Enthält Menthol — das Kribbeln ist normal.)' },
+      { id: 'cl-2', title: 'Danach ZWINGEND reichhaltig pflegen', desc: 'Bali Curls Conditioner, 5 Min einwirken. Die Klärwäsche ist streng — die aufgehellten Längen brauchen danach sofort Feuchtigkeit zurück.' },
+      { id: 'cl-3', title: 'Leave-in + Styling wie gewohnt', desc: 'Heute ist die silikonfreie Leave-in-Wahl (ISANA Leave-in) die bessere — so startest du wirklich bei Null.' },
+      { id: 'cl-4', title: 'Gut zu wissen', desc: 'Die Tiefenreinigung entfernt Produkt-Buildup, aber keinen Kalk aus hartem Wasser. Wenn das Haar trotz Klärung stumpf bleibt (z.B. bei sehr hartem Leitungswasser), hilft gelegentlich eine saure Rinse oder ein Chelat-Shampoo.' }
     ]
   }
-};
+];
 
-// Produkte
+// Produkte — alle Bewertungen anhand recherchierter INCI-Listen (Stand Juli 2026).
+// Rezepturen ändern sich — im Zweifel Etikett gegen den INCI-Check halten.
 const PRODUCTS = [
   // Reinigung
-  { id: 'p1', name: 'Champú Curl Perfect Deliplus', store: 'mercadona', cat: 'shampoo', fn: 'Hauptshampoo · Samstag', verdict: 'keep', desc: 'Sulfatfrei, CG-konform, Lockenfokus. Standard-Shampoo für die Pflege-Wäsche am Wochenende.' },
-  { id: 'p2', name: 'Hydra Hyaluronic Shampoo Deliplus', store: 'mercadona', cat: 'shampoo', fn: 'Alltagsshampoo · Dienstag', verdict: 'keep', desc: 'Hyaluron-Fokus, mild. Schneller, leichter als Curl Perfect. Perfekt für die Mitwoche-Wäsche.' },
-  { id: 'p3', name: 'ISANA Tiefenreinigung', store: 'rossmann', cat: 'shampoo', fn: 'Klärungs-Shampoo · 1× pro Monat', verdict: 'reduce', desc: 'Entfernt Buildup. Nur am Klärungstag (1× im Monat statt normaler Wäsche).' },
+  { id: 'p1', name: 'Champú Curl Perfect Deliplus', store: 'mercadona', cat: 'shampoo', fn: 'Standard-Shampoo · jede Wäsche', verdict: 'keep',
+    desc: 'Dein Hauptshampoo für jede Wäsche. Mild, aber gründlich genug — beschwert nicht.',
+    inci: 'Sulfatfrei (mildes Sulfosuccinat statt Sulfat), silikonfrei, proteinfrei. Leichtes Buildup-Potenzial durch Polyquats → der Klärungs-Reset fängt das ab.' },
+  { id: 'p2', name: 'Hydra Hyaluronic Shampoo Deliplus', store: 'mercadona', cat: 'shampoo', fn: 'Aufbrauchen · nicht nachkaufen', verdict: 'reduce',
+    desc: 'Korrektur nach INCI-Check: nicht so mild wie gedacht. Aufbrauchen ist okay (z.B. an Glatt-Föhn-Tagen — der Silikonfilm glättet), aber nicht nachkaufen.',
+    inci: 'Enthält Sodium Laureth Sulfate an Position 2 UND Amodimethicone (filmbildendes Silikon) — es wäscht streng und legt gleichzeitig Silikon ab. Hyaluron + Panthenol + Niacinamid sind drin, retten es aber nicht.' },
+  { id: 'p3', name: 'ISANA Tiefenreinigung', store: 'rossmann', cat: 'shampoo', fn: 'Klärungs-Reset · alle 2-4 Wochen', verdict: 'keep',
+    desc: 'Dein Reset gegen Silikon- und Produkt-Buildup. Alle 2-4 Wochen (je nachdem, wie oft du die Glanz-Masken nutzt). Danach immer reichhaltig pflegen.',
+    inci: 'SLES-basiert (deshalb nur als Klärung!), aber silikon- und proteinfrei. Enthält Menthol/Campher — Kribbeln auf der Kopfhaut ist normal. Entfernt Produkt-Buildup, keinen Kalk.' },
 
   // Conditioner
-  { id: 'p4', name: 'L\'Oréal Elvive Hidra Hialurónico', store: 'mercadona', cat: 'conditioner', fn: 'Conditioner · Dienstag', verdict: 'keep', desc: 'Schneller Standard-Conditioner mit Hyaluron. Nach Hydra-Shampoo am Dienstag.' },
-  { id: 'p5', name: 'Bali Curls Moisturising Conditioner', store: 'bali', cat: 'conditioner', fn: 'Conditioner · Samstag', verdict: 'keep', desc: 'Reichhaltig mit Sheabutter + Kokosöl, silikonfrei. Für die Pflege-Wäsche am Wochenende.' },
+  { id: 'p4', name: 'L\'Oréal Elvive Hidra Hialurónico', store: 'mercadona', cat: 'conditioner', fn: 'LEER — Ersatz nötig', verdict: 'empty',
+    desc: 'Ist leer! Übergangslösung: der Bali Curls Conditioner übernimmt (sparsam dosieren). Nachkauf-Optionen: siehe die blauen Karten unten.',
+    inci: 'Zur Einordnung: war proteinfrei und feuchtigkeitsspendend, enthielt aber Dimethicone (Position 3) + Amodimethicone — funktionierte gut, brauchte aber regelmäßige Klärung.' },
+  { id: 'p5', name: 'Bali Curls Moisturising Conditioner', store: 'bali', cat: 'conditioner', fn: 'Conditioner · aktuell dein Standard', verdict: 'keep',
+    desc: 'Übernimmt als einziger Conditioner, bis Ersatz da ist. Reichhaltig — walnussgroße Menge reicht, nur Längen + Spitzen, gründlich ausspülen.',
+    inci: 'INCI-geprüft: silikonfrei, proteinfrei, BTMS-mild. Glycerin + Betain + Panthenol = echte Feuchtigkeit. Shea + Kokos stehen weit vorn → bei feinem Haar sparsam dosieren.' },
 
-  // Maske
-  { id: 'p6', name: 'Mascarilla Hydra Hyaluronic Deliplus', store: 'mercadona', cat: 'mask', fn: 'Wochenmaske · Samstag', verdict: 'keep', desc: 'Reine Feuchtigkeit (Hyaluron + Niacinamid + B5). Statt Conditioner samstags. 2 Min einwirken, ausspülen.' },
-  { id: 'p7b', name: 'L\'Oréal Glycolic Gloss 5-Min', store: 'rossmann', cat: 'mask', fn: 'Glanz-Maske · alle 4 Wochen', verdict: 'reduce', desc: 'Statt Mascarilla samstags — gibt extra Glanz und Versiegelung. MAX 1× alle 4 Wochen wegen Amodimethicone (filmbildendes Silikon, baut sich auf).' },
+  // Masken
+  { id: 'p6', name: 'Mascarilla Hydra Hyaluronic Deliplus', store: 'mercadona', cat: 'mask', fn: 'Glanz-Maske · alle 1-2 Wochen', verdict: 'reduce',
+    desc: 'Korrektur nach INCI-Check: keine „reine Feuchtigkeitsmaske", sondern eine Silikon-Glättmaske mit Feuchtigkeits-Zusätzen. Toller Sofort-Effekt (glatt, glänzend, super vor Glatt-Föhn-Tagen) — aber nicht jede Woche, sonst hängen die Wellen.',
+    inci: 'Enthält DREI filmbildende Silikone: Dimethicone (Position 6), Amodimethicone und Dimethiconol — plus Hyaluron, Panthenol, Niacinamid. Baut sich auf → immer mit Klärungs-Reset im Wechsel.' },
+  { id: 'p7b', name: 'L\'Oréal Glycolic Gloss 5-Min', store: 'rossmann', cat: 'mask', fn: 'Glanz-Maske · alle 2 Wochen', verdict: 'reduce',
+    desc: 'Die Glykolsäure versiegelt die Schuppenschicht wirklich — gut für deine aufgehellten, poröseren Längen. Alle 2 Wochen ist okay (Hersteller: jede 5. Wäsche). Nie in derselben Woche wie die Mascarilla — beide zählen als Glanz-Maske.',
+    inci: 'Sulfat- und proteinfrei. Enthält Amodimethicone + Polyquaternium-37 (beide bauen sich auf feinem Haar auf) → nur Längen, Klärungs-Reset einplanen.' },
 
   // Leave-in
-  { id: 'p8', name: 'Acondicionador instantáneo Hydra Spray', store: 'mercadona', cat: 'leavein', fn: 'Leave-in · Dienstag (Wahl A)', verdict: 'keep', desc: 'Schneller Spray-Leave-in für den Alltag. Hyaluron + UV-Schutz. Wasserlösliches Silikon (kein Buildup). Alternative zum ISANA Leave-in.' },
-  { id: 'p8b', name: 'ISANA Leave-in Conditioner Hyaluron', store: 'rossmann', cat: 'leavein', fn: 'Leave-in · Dienstag (Wahl B)', verdict: 'keep', desc: 'Reichhaltige Creme-Variante. 3-fach Hyaluron + Panthenol + Betain, komplett silikonfrei, vegan. Alternative zum Mercadona Spray für Dienstag — wähle eines pro Wäsche. Auch gut für Samstag.' },
-  { id: 'p9', name: 'Bali Curls Hydrating Curl Cream', store: 'bali', cat: 'leavein', fn: 'Curl Cream · für Wellen-Look', verdict: 'keep', desc: 'Echte Curl Cream — definiert Wellen, gibt Bounce, Anti-Frizz. NUR verwenden wenn du deine Wellen lufttrocknen oder mit Diffusor stylen willst. NICHT mit Rundbürste-Föhnen kombinieren (würde sich gegenseitig aufheben).' },
-  { id: 'p7', name: 'Argan Oil Remedy Leave-in (sin aclarado)', store: 'mercadona', cat: 'leavein', fn: 'Leave-in · selten, Notfall', verdict: 'reduce', desc: 'Aufbrauchen — dann nicht nachkaufen. Enthält Silikone + Keratin (genau das, was bei dir Buildup macht). Wenn überhaupt: 1 Pump in trockene Spitzen, max 1× pro 2-3 Wochen.' },
+  { id: 'p8', name: 'Acondicionador instantáneo Hydra Spray', store: 'mercadona', cat: 'leavein', fn: 'Leave-in · Wahl A (leicht)', verdict: 'keep',
+    desc: 'Die leichteste Leave-in-Wahl — ideal für Alltagswäschen und Sommer: der UV-Filter schützt die aufgehellten Längen. 2-3 Sprühstöße, nur Längen + Spitzen.',
+    inci: 'Korrektur: enthält neben flüchtigen und wasserlöslichen Silikonen auch Amodimethicone + Quaternium-80 (bauen sich langsam auf). Dafür: 3 Hyaluron-Formen, Panthenol, Niacinamid + UV-Filter (Benzophenone-4), kein Protein. Mit Klärungs-Rhythmus unproblematisch.' },
+  { id: 'p8b', name: 'ISANA Leave-in Conditioner Hyaluron', store: 'rossmann', cat: 'leavein', fn: 'Leave-in · Wahl B (silikonfrei)', verdict: 'keep',
+    desc: 'Die silikonfreie, cremigere Leave-in-Wahl — perfekt nach dem Klärungs-Reset und an Pflege-Waschtagen. Erbsengroße Menge in handtuchfeuchte Längen. Danach 1 Tropfen Sérum obendrauf versiegelt die Feuchtigkeit.',
+    inci: 'INCI-geprüft: wirklich silikonfrei, proteinfrei. („3-fach Hyaluron" auf der Packung ist Marketing — es ist eine Hyaluronform, plus Panthenol und Betain. Wirkt trotzdem.)' },
+  { id: 'p9', name: 'Bali Curls Hydrating Curl Cream', store: 'bali', cat: 'leavein', fn: 'Curl Cream · nur für Wellen-Styling', verdict: 'keep',
+    desc: 'Deine Styling-Cream für Wellen-Tage: definiert, gibt Bounce, Anti-Frizz. NICHT vor dem Rundbürsten-Föhnen verwenden (hebt sich gegenseitig auf).',
+    inci: 'INCI-geprüft: silikon- und proteinfrei. Halt kommt von Stärke + Gums statt schweren Wachsen → für eine Curl Cream angenehm leicht. Erbsengroß dosieren.' },
+  { id: 'p7', name: 'Argan Oil Remedy Leave-in (sin aclarado)', store: 'mercadona', cat: 'leavein', fn: 'Notfall · aufbrauchen, dann weg', verdict: 'discard',
+    desc: 'Dein schwerstes Produkt — Sheabutter, Silikone, Keratin und Schimmerpartikel. Wenn überhaupt: 1 Pump in trockene Spitzen, max. alle 2 Wochen. Aufbrauchen oder aussortieren, nicht nachkaufen.',
+    inci: 'Enthält Dimethicone + Cyclopentasiloxane, Hydrolyzed Keratin und Mica. Für feines Wellenhaar zu beschwerend; das Keratin braucht dein Haar aus anderen Quellen nicht doppelt.' },
 
   // Öl
-  { id: 'p10', name: 'Sérum Oil Curl Perfect Deliplus', store: 'mercadona', cat: 'oil', fn: 'Spitzenöl · nach jedem Föhnen', verdict: 'keep', desc: '1 Tropfen NACH dem Föhnen, hauptsächlich Spitzen. Bei Frizz auch ab Mitte verteilen. Ersetzt zusätzliches Anti-Frizz-Produkt. Kokos + Avocado + Macadamia + Argan, silikonfrei.' },
+  { id: 'p10', name: 'Sérum Oil Curl Perfect Deliplus', store: 'mercadona', cat: 'oil', fn: 'Spitzenöl · Finish nach jedem Styling', verdict: 'keep',
+    desc: 'Dein bestes Produkt im Bad. 1 Tropfen NACH dem Styling in die Spitzen, bei Frizz ab Mitte der Längen. Ersetzt jedes extra Anti-Frizz-Produkt.',
+    inci: 'INCI-geprüft: silikonfrei, proteinfrei, ohne trocknende Alkohole. Leichte Ester-Basis (Coco-Caprylate) + Avocado, Macadamia, Argan, Squalan. Sparsam = perfekt für feines Haar.' },
 
-  // Hitzeschutz & Trockenshampoo
-  { id: 'p11', name: 'ISANA All-in-One Hitzeschutz', store: 'rossmann', cat: 'tool', fn: 'Vor jedem Föhnen', verdict: 'keep', desc: 'Schutz bis 230°C. Immer vor Diffusor-Einsatz.' },
-  { id: 'p12', name: 'ISANA Bloom Boost Trockenshampoo', store: 'rossmann', cat: 'tool', fn: 'Refresh-Tage · nur Ansatz', verdict: 'keep', desc: 'An Tag 3 oder bei fettigem Ansatz. Sparsam aufsprühen, einarbeiten, ausschütteln.' }
+  // Tools
+  { id: 'p11', name: 'ISANA Hitzeschutz', store: 'rossmann', cat: 'tool', fn: 'Vor JEDEM Föhnen', verdict: 'keep',
+    desc: 'Immer vor Diffusor und Rundbürste. Wichtig: Es gibt ZWEI ISANA-Hitzeschutz-Produkte — schau auf deine Flasche!',
+    inci: 'Pumpspray 150 ml („Hitzeschutz Spray"): leicht, echter Hitzeschutz-Film, enthält Alkohol → auf handtuchFEUCHTEM Haar anwenden, dann verfliegt er unkritisch. „All-in-one-Treatment" 200 ml: ölbasiert und pflegend, aber schwerer und als reiner Hitzeschutz schwächer → sehr sparsam, nur Längen.' },
+  { id: 'p12', name: 'ISANA Bloom Boost Trockenshampoo', store: 'rossmann', cat: 'tool', fn: 'Refresh-Tage · nur Ansatz', verdict: 'keep',
+    desc: 'Bei fettigem Ansatz zwischen den Wäschen. Sparsam aufsprühen, einarbeiten, abends ausbürsten. Nie in die Längen.',
+    inci: 'Basis: Reisstärke (gut — kein Talkum). Enthält Alkohol und viel Parfüm → deshalb nur am Ansatz, die aufgehellten Längen aussparen.' }
+];
+
+// Nachkauf-Empfehlungen für den leeren Alltags-Conditioner (INCI-gecheckt)
+const SHOPPING = [
+  { id: 'n1', name: 'Mascarilla Curl Perfect Deliplus', store: 'mercadona', cat: 'conditioner', fn: 'Nachkauf-Tipp · ~2,60 €', verdict: 'buy',
+    desc: 'Die wellenfreundlichste Option: als Alltags-Conditioner kurz einwirken lassen und ausspülen. Aus derselben Linie wie dein Shampoo und Sérum.',
+    inci: 'Silikonfrei, sulfatfrei, proteinfrei. Betain + Sheabutter + Soja-Öl — bei feinem Haar sparsam dosieren.' },
+  { id: 'n2', name: 'ISANA Spülung Feuchtigkeit (Kokoswasser)', store: 'rossmann', cat: 'conditioner', fn: 'Nachkauf-Tipp · ~1,50 €', verdict: 'buy',
+    desc: 'Die leichteste Alltagsspülung fürs Budget — beschwert feines Haar am wenigsten. Gute Wahl, wenn du in Deutschland nachkaufst.',
+    inci: 'Silikonfrei, proteinfrei, keine trocknenden Alkohole. Glycerin + Panthenol + Niacinamid, nur wenig Öl.' },
+  { id: 'n3', name: 'L\'Oréal Elvital Hydra Hyaluronic Spülung', store: 'rossmann', cat: 'conditioner', fn: 'Nachkauf-Tipp · ~4 € (das Original)', verdict: 'buy',
+    desc: 'Der direkte Ersatz für dein leeres Produkt (gleiche Formel-Plattform, deutscher Name). Funktioniert bewährt gut — dann aber den Klärungs-Reset regelmäßig machen.',
+    inci: 'Proteinfrei, Hyaluron + Glycerin. Enthält Dimethicone + Amodimethicone (filmbildend) → zusammen mit den Glanz-Masken summiert sich die Silikonlast.' }
 ];
 
 const PRODUCT_CATEGORIES = {
@@ -841,33 +906,45 @@ const PRODUCT_CATEGORIES = {
   tool: 'Tools'
 };
 
-// Frisuren
+// Frisuren — 30 Looks
 const HAIRSTYLES = {
   schlafen: [
     { name: 'Loose Pineapple', when: 'Mein Favorit · täglich', icon: '01', desc: 'Sehr hoher, lockerer Dutt am Scheitel mit Seiden-Scrunchie. Schützt die Wellen, kein Knick, am Morgen schöne Form.' },
     { name: 'Loose Side Braid', when: 'Heatless Curls Effekt', icon: '02', desc: 'Lockerer seitlicher Zopf mit Seiden-Scrunchie. Verhindert Knoten und gibt am Morgen gleichmäßige Wellen.' },
     { name: 'Two Loose Twists', when: 'Wenn Wellen verloren', icon: '03', desc: 'Zwei Stränge, jeden locker eindrehen, mit Scrunchie sichern. Macht müde Wellen wieder definiert.' },
-    { name: 'Bonnet oder Seidenkissen', when: 'Wenn unruhig', icon: '04', desc: 'Seidenkissenbezug oder Satin-Bonnet. Reduziert Frizz auch ohne Schlaffrisur.' },
-    { name: 'Heatless Curl Set', when: 'Special Occasion · vor Wochenende', icon: '05', desc: 'Satin-Band über den Kopf wie Heiligenschein. Haare in Sektionen drumherum wickeln (von vorne nach hinten), mit 2 Scrunchies fixieren. WICHTIG: Haare nur leicht feucht (nicht nass), Bali Curls Curl Cream rein, dann wickeln. Funktioniert besser auf Tag-2-Haaren als frisch gewaschen. Morgens auswickeln → soft definierte Beach-Waves. Nicht zu fest wickeln (sonst Druckknick). ~10-15€ bei dm/Rossmann.' },
-    { name: 'Sockenlocken', when: 'Free DIY-Heatless · Anlass', icon: '06', desc: 'Lange saubere Socke (Wollsocken funktionieren am besten — bei dir vorhanden, falls Sport-Socken). Haare leicht feucht + Curl Cream. Mittelscheitel, eine Hälfte am oberen Sockenende einrollen, die ganze Strähne nach unten um die Socke wickeln, am Ende mit Scrunchie sichern. Wiederholen mit zweiter Hälfte. Über Nacht schlafen. Morgens ausrollen → richtig definierte Wellen, fast wie Lockenstab-Curls. Bei dünnen Haaren: 2-4 Sockenrollen für mehr Volumen.' }
+    { name: 'Bonnet oder Seidenkissen', when: 'Wenn unruhig', icon: '04', desc: 'Seidenkissenbezug oder Satin-Bonnet. Reduziert Frizz auch ohne Schlaffrisur — die beste Basis-Investition.' },
+    { name: 'Heatless Curl Set', when: 'Vor besonderen Anlässen', icon: '05', desc: 'Satin-Band wie ein Heiligenschein über den Kopf, Haare in Sektionen drumherum wickeln, mit 2 Scrunchies fixieren. Haare nur LEICHT feucht + etwas Curl Cream. Funktioniert auf Tag-2-Haaren besser als frisch gewaschen. Morgens: soft definierte Beach-Waves. Nicht zu fest wickeln (Druckknick).' },
+    { name: 'Sockenlocken', when: 'Gratis-Heatless-Variante', icon: '06', desc: 'Lange saubere Socke, Haare leicht feucht + Curl Cream. Mittelscheitel, jede Hälfte um eine Socke nach unten wickeln, mit Scrunchie sichern, über Nacht schlafen. Morgens ausrollen: definierte Wellen fast wie vom Lockenstab. Bei feinem Haar: 2-4 Socken für mehr Volumen.' },
+    { name: 'Silk Wrap', when: 'Nach Glatt-Föhn-Tagen', icon: '07', desc: 'Haare glatt um den Kopf legen (wickeln), mit Seidentuch oder großen Klammern fixieren — oder alternativ ein sehr tiefer, lockerer Seidenzopf. Hält den Blowout 2-3 Tage glatt, ganz ohne neue Hitze.' }
   ],
   alltag: [
     { name: 'Half-Up Claw Clip', when: '5-Sekunden-Frisur', icon: '01', desc: 'Obere Hälfte mit großer Haarklammer hochstecken. Wellen unten sichtbar, Gesicht frei.' },
     { name: 'Low Loose Bun', when: 'Office, Meetings', icon: '02', desc: 'Tiefer, weicher Dutt im Nacken. Mit Spange oder Tuch fixieren. Ein paar Strähnen vorne rauslassen.' },
     { name: 'Loose Side Part', when: 'Wenn Wellen sitzen', icon: '03', desc: 'Offen tragen, Seitenscheitel. Ein Pump Hydra-Spray oder 1 Tropfen Sérum, scrunchen — fertig.' },
-    { name: 'Half-Up Bow oder Twist', when: 'Date oder Brunch', icon: '04', desc: 'Obere Hälfte zu kleinem Knoten oder mit Schleife. Wellen darunter sichtbar.' }
+    { name: 'Half-Up Bow oder Twist', when: 'Date oder Brunch', icon: '04', desc: 'Obere Hälfte zu kleinem Knoten oder mit Schleife. Wellen darunter sichtbar.' },
+    { name: 'Messy Mid Bun', when: 'Casual, Tag 2-3', icon: '05', desc: 'Auf Höhe der Ohren ein lockerer Dutt mit Spiral-Haargummi. Bewusst chaotisch — perfekt, wenn die Wellen nicht mehr frisch sind.' },
+    { name: 'Sleek Low Pony', when: 'Tag 3-4 nach der Wäsche', icon: '06', desc: 'Tiefer Pferdeschwanz, 1 Tropfen Öl in die Längen, vorne mit der Hand glätten. Bürste nur unter dem Pferdeschwanz ansetzen.' },
+    { name: 'Bubble Braid', when: 'Schnell + verspielt', icon: '07', desc: 'Pferdeschwanz, dann alle 5-8 cm ein Gummi setzen und die Abschnitte leicht aufziehen („Bubbles"). Sieht aufwendig aus, dauert 2 Minuten, schont die Längen.' },
+    { name: 'Twist mit Claw Clip', when: 'Eleganter als Half-Up', icon: '08', desc: 'Alle Haare locker eindrehen, nach oben klappen, mit großer Klammer fixieren. Spitzen oben rausfallen lassen — der schnellste „erwachsene" Look.' }
   ],
   sport: [
-    { name: 'Hoher Boxer-Braid', when: 'Glute Day', icon: '01', desc: 'Ein hoher französischer Zopf oder zwei (Boxer-Style). Hält bombensicher, kein Druck im Nacken bei Hip Thrust.' },
+    { name: 'Hoher Boxer-Braid', when: 'Krafttraining, Glute Day', icon: '01', desc: 'Ein hoher französischer Zopf oder zwei (Boxer-Style). Hält bombensicher, kein Druck im Nacken bei Hip Thrust oder Bankdrücken.' },
     { name: 'Hoher Bun + Stirnband', when: 'Cardio, HIIT', icon: '02', desc: 'Hoher, lockerer Dutt mit Spiral-Haargummi plus Stirnband zum Schweißfangen.' },
     { name: 'Doppelter Dutt', when: 'Yoga, lange Trainings', icon: '03', desc: 'Haare in zwei Hälften teilen, zwei kleine Dutts oben. Verteilt Zug und Gewicht.' },
-    { name: 'Low Pony + Cap', when: 'Outdoor, Joggen', icon: '04', desc: 'Tiefer Pferdeschwanz unter Cappy. UV-Schutz für Spitzen — vorher 1 Tropfen Öl.' }
+    { name: 'Low Pony + Cap', when: 'Outdoor, Joggen', icon: '04', desc: 'Tiefer Pferdeschwanz unter Cappy. UV-Schutz für die Spitzen — vorher 1 Tropfen Öl.' },
+    { name: 'Doppelter French Braid', when: 'Lange Workouts', icon: '05', desc: 'Zwei eng geflochtene Zöpfe vom Scheitel bis zur Spitze. Verteilt den Zug, schützt die Spitzen vor Schweiß. Bonus: Heatless Waves am nächsten Tag.' },
+    { name: 'Geflochtener Low Pony', when: 'Laufen, Wandern', icon: '06', desc: 'Tiefer Pferdeschwanz, die Länge locker durchflechten. Schlägt beim Laufen nicht und die Spitzen scheuern nicht am Rücken.' }
   ],
   spezial: [
-    { name: 'Refresh-Twists', when: 'Tag 3 — Wellen platt', icon: '01', desc: 'Sprühflasche mit Wasser. Wellen anfeuchten, in 4-6 Strähnen aufteilen, eindrehen, 10 Min, auflösen — neue Wellen.' },
+    { name: 'Refresh-Twists', when: 'Wellen platt — Rettung', icon: '01', desc: 'Sprühflasche mit Wasser: Wellen anfeuchten, in 4-6 Strähnen teilen, eindrehen, 10 Min warten, auflösen — neue Wellen ohne Wäsche.' },
     { name: 'Hochsteckfrisur', when: 'Anlass, Hochzeit', icon: '02', desc: 'Tiefer, lockerer Knoten am Hinterkopf, ein paar Wellen-Strähnen vorne und seitlich rauslassen.' },
-    { name: 'Headband Tuck', when: 'Bad-Hair-Day-Rettung', icon: '03', desc: 'Stoff- oder Seiden-Haarband. Haare unten reinstecken/reinrollen. Vintage Look, kaschiert dreckigen Ansatz.' },
-    { name: 'French Twist', when: 'Eleganter Look', icon: '04', desc: 'Haare zur Seite drehen, nach oben rollen, mit Spangen fixieren. Perfekt für Office oder Dinner.' }
+    { name: 'Headband Tuck', when: 'Bad-Hair-Day-Rettung', icon: '03', desc: 'Stoff- oder Seiden-Haarband aufsetzen, Haare unten reinstecken/einrollen. Vintage-Look, kaschiert den Ansatz.' },
+    { name: 'French Twist', when: 'Office-Dinner, elegant', icon: '04', desc: 'Haare zur Seite drehen, nach oben rollen, mit Spangen fixieren. Perfekt zu Blazer oder Abendkleid.' },
+    { name: 'Hollywood Waves', when: 'Festlich · nach Pflege-Wäsche', icon: '05', desc: 'Nach der intensiven Wäsche mit Curl Cream + Diffusor stylen. Tiefer Seitenscheitel, die vorderen Strähnen mit den Fingern in eine einheitliche S-Form legen, 1 Tropfen Sérum.' },
+    { name: 'Beach Wave Look', when: 'Sommer, Strand', icon: '06', desc: 'Nur Wasser mit einer Prise Salz aus der Sprühflasche (oder Sea-Salt-Spray), lufttrocknen, scrunchen. Bewusst undone. Danach gut pflegen — Salz trocknet aus.' },
+    { name: 'Romantic Half-Crown', when: 'Hochzeit, Date', icon: '07', desc: 'Zwei kleine Strähnen von den Seiten nach hinten führen, kreuzen, mit Spange im Nacken fixieren. Vorne romantisch, hinten fallen die Wellen offen.' },
+    { name: 'Slicked-Back Bun', when: 'Modern-edgy', icon: '08', desc: 'Etwas Curl Cream oder Leave-in am Ansatz zum Glätten, alle Haare streng nach hinten, tiefer Dutt. Cooler Kontrast zur sonst weichen Welle.' },
+    { name: 'Bandana / Seidentuch', when: 'Letzter Tag vor der Wäsche', icon: '09', desc: 'Buntes Tuch oder Bandana am Ansatz binden. Versteckt den fettigen Ansatz, lässt die Wellen sichtbar. Geheimwaffe.' }
   ]
 };
 
@@ -875,7 +952,7 @@ const HAIRSTYLE_SECTIONS = {
   schlafen: 'Schlafen',
   alltag: 'Alltag',
   sport: 'Sport',
-  spezial: 'Spezial'
+  spezial: 'Spezial & Anlass'
 };
 
 // =========================================
@@ -883,11 +960,11 @@ const HAIRSTYLE_SECTIONS = {
 // =========================================
 
 let state = {
-  view: 'today',
+  view: 'routines',
   productFilter: 'all',
   productSearch: '',
-  checkedSteps: {}, // { 'di-1_2025-05-09': true }
-  openWeekDays: {}
+  checkedSteps: {}, // { 'wq-1_2026-07-15': true }
+  openGuides: {}
 };
 
 function loadState() {
@@ -911,10 +988,6 @@ function saveState() {
 // =========================================
 // HELPERS
 // =========================================
-
-function todayDayIdx() {
-  return new Date().getDay();
-}
 
 function todayKey() {
   const d = new Date();
@@ -947,6 +1020,10 @@ function resetTodaysSteps() {
   saveState();
 }
 
+function hairstyleCount() {
+  return Object.values(HAIRSTYLES).reduce((n, arr) => n + arr.length, 0);
+}
+
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
 }
@@ -967,109 +1044,93 @@ function render() {
     b.classList.toggle('active', b.dataset.view === state.view);
   });
 
-  if (state.view === 'today') {
-    const day = WEEK_PLAN[todayDayIdx()];
-    headerTitle.textContent = 'Heute';
-    headerSubtitle.textContent = day.name;
-    content.innerHTML = renderToday();
-  } else if (state.view === 'week') {
-    headerTitle.textContent = 'Wochenplan';
-    headerSubtitle.textContent = 'Di & Sa Wäsche';
-    content.innerHTML = renderWeek();
+  if (state.view === 'routines') {
+    headerTitle.textContent = 'Routinen';
+    headerSubtitle.textContent = 'Dein Haar-Guide';
+    content.innerHTML = renderRoutines();
   } else if (state.view === 'products') {
     headerTitle.textContent = 'Produkte';
-    headerSubtitle.textContent = `${PRODUCTS.length} Produkte`;
+    headerSubtitle.textContent = `${PRODUCTS.length} im Bad · INCI-geprüft`;
     content.innerHTML = renderProducts();
     setupProductHandlers();
   } else if (state.view === 'hairstyles') {
     headerTitle.textContent = 'Frisuren';
-    headerSubtitle.textContent = '16 Looks';
+    headerSubtitle.textContent = `${hairstyleCount()} Looks`;
     content.innerHTML = renderHairstyles();
   }
 }
 
-function renderToday() {
-  const dayIdx = todayDayIdx();
-  const day = WEEK_PLAN[dayIdx];
-  const routine = ROUTINES[day.type];
+function renderRoutines() {
+  const guidesHtml = GUIDES.map(g => {
+    const isOpen = !!state.openGuides[g.id];
+    const stepsHtml = g.steps.map(s => {
+      const done = isStepDone(s.id);
+      return `
+        <div class="step ${done ? 'done' : ''}" data-step="${s.id}">
+          <div class="checkbox"></div>
+          <div class="content-step">
+            <div class="step-title">${escapeHtml(s.title)}</div>
+            <div class="step-desc">${escapeHtml(s.desc)}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
 
-  const stepsHtml = routine.steps.map(s => {
-    const done = isStepDone(s.id);
     return `
-      <div class="step ${done ? 'done' : ''}" data-step="${s.id}">
-        <div class="checkbox"></div>
-        <div class="content-step">
-          <div class="step-title">${escapeHtml(s.title)}</div>
-          <div class="step-desc">${escapeHtml(s.desc)}</div>
+      <div class="week-day ${isOpen ? 'open' : ''}">
+        <div class="week-day-header" onclick="toggleGuide('${g.id}')">
+          <div>
+            <div class="week-day-name">${escapeHtml(g.title)}</div>
+            <div class="week-day-task">${escapeHtml(g.tag)}</div>
+          </div>
+          <div style="color:#C8729A;font-size:18px">${isOpen ? '▴' : '▾'}</div>
+        </div>
+        <div class="week-day-body">
+          <div class="guide-intro">${escapeHtml(g.intro)}</div>
+          ${stepsHtml}
         </div>
       </div>
     `;
   }).join('');
 
-  const allDone = routine.steps.every(s => isStepDone(s.id));
-
   return `
     <div class="today-hero">
-      <div class="day-label">${escapeHtml(day.name)}</div>
-      <div class="day-name">${escapeHtml(day.task)}</div>
-      <div class="day-task">${escapeHtml(routine.duration)} · ${routine.steps.length} Schritte</div>
+      <div class="day-label">Dein Haar</div>
+      <div class="day-name">Feine Wellen, große Mähne</div>
+      <div class="day-task">2a-2b Wellen · feines bis mittleres Haar in hoher Dichte · aufgehellte Längen mit erhöhter Porosität. Braucht: Feuchtigkeit, leichte Produkte, Hitzeschutz — und Silikone nur mit Klär-Rhythmus.</div>
     </div>
 
-    <div class="card">
-      <h2>${escapeHtml(routine.title)}</h2>
-      <div id="steps-container">${stepsHtml}</div>
-      ${allDone ? '<div style="text-align:center;color:#7bc47a;margin-top:12px;font-size:13px;">✓ Alle Schritte erledigt!</div>' : ''}
-      <button class="reset-btn" onclick="handleReset()">Heute zurücksetzen</button>
-    </div>
-  `;
-}
+    ${guidesHtml}
 
-function renderWeek() {
-  const today = todayDayIdx();
-  let html = '';
-  for (let i = 0; i < 7; i++) {
-    const day = WEEK_PLAN[i];
-    const routine = ROUTINES[day.type];
-    const isToday = i === today;
-    const isOpen = state.openWeekDays[i] || isToday;
-
-    const stepsHtml = routine.steps.map(s => `
-      <div class="step" style="cursor:default">
-        <div class="checkbox" style="border-color:#6a5a64;width:8px;height:8px;border-radius:50%;background:#6a5a64;margin-top:8px"></div>
-        <div class="content-step">
-          <div class="step-title" style="font-size:14px">${escapeHtml(s.title)}</div>
-          <div class="step-desc">${escapeHtml(s.desc)}</div>
-        </div>
-      </div>
-    `).join('');
-
-    html += `
-      <div class="week-day ${isToday ? 'today' : ''} ${isOpen ? 'open' : ''}" data-day="${i}">
-        <div class="week-day-header" onclick="toggleWeekDay(${i})">
-          <div>
-            <div class="week-day-name">${escapeHtml(day.name)}${isToday ? '<span class="today-badge">Heute</span>' : ''}</div>
-            <div class="week-day-task">${escapeHtml(day.task)} · ${routine.duration}</div>
-          </div>
-          <div style="color:#C8729A;font-size:18px">${isOpen ? '▴' : '▾'}</div>
-        </div>
-        <div class="week-day-body">
-          <h3 style="margin-bottom:10px;color:#C8729A;font-size:11px;letter-spacing:1.5px;text-transform:uppercase">${escapeHtml(routine.title)}</h3>
-          ${stepsHtml}
-        </div>
-      </div>
-    `;
-  }
-
-  return html + `
     <div class="card" style="margin-top:16px">
-      <h3>Monatlich: Klärungstag</h3>
-      <p style="font-size:13px">An einem Samstag im Monat statt der normalen Wäsche: <strong style="color:#C8729A">ISANA Tiefenreinigung</strong> in die ganzen Längen, dann <strong style="color:#C8729A">Mascarilla Hydra Hyaluronic</strong> 5-10 Min einwirken. Reset für die Routine.</p>
+      <h3>Gut zu wissen</h3>
+      <p style="font-size:13px"><strong>Silikone sind nicht gleich Silikone:</strong> Filmbildende (Dimethicone, Amodimethicone, Dimethiconol, Quaternium-80) bleiben im Haar und bauen sich auf — bei feinem Haar hängen die Wellen dann durch. Wasserlösliche (PEG-Dimethicone) spülen sich aus, flüchtige (Cyclopentasiloxane) verdunsten von selbst. Deshalb: Glanz-Masken genießen, aber den Klärungs-Reset ernst nehmen.</p>
+      <p style="font-size:13px"><strong>Protein:</strong> Ein bisschen hydrolysiertes Protein kann aufgehelltem Haar sogar helfen — nur stapeln sollte man es nicht. Fühlt sich dein Haar trotz Pflege strohig-steif an, eine Zeit lang proteinfrei pflegen (deine aktuelle Routine ist es fast komplett).</p>
+      <p style="font-size:13px"><strong>Kalt ausspülen</strong> ist ein netter Glanz-Bonus, aber kein Wundermittel — wichtiger sind Leave-in, sanftes Trocknen und der kalte Luftstoß am Ende des Föhnens.</p>
+      <button class="reset-btn" onclick="handleReset()">Häkchen von heute zurücksetzen</button>
     </div>
   `;
 }
 
-function renderProducts() {
-  const filtered = PRODUCTS.filter(p => {
+function productCard(p) {
+  const verdictLabel = { keep: 'Behalten', reduce: 'Reduzieren', discard: 'Aussortieren', empty: 'Leer', buy: 'Nachkauf-Tipp' }[p.verdict];
+  const storeLabel = { mercadona: 'Mercadona', rossmann: 'Rossmann', bali: 'Bali Curls' }[p.store];
+  return `
+    <div class="product ${p.verdict}">
+      <div class="product-header">
+        <div class="product-name">${escapeHtml(p.name)}</div>
+        <span class="product-store ${p.store}">${escapeHtml(storeLabel)}</span>
+      </div>
+      <div class="product-fn">${escapeHtml(p.fn)}</div>
+      <div class="product-desc">${escapeHtml(p.desc)}</div>
+      ${p.inci ? `<div class="product-inci"><span class="inci-label">INCI-Check</span>${escapeHtml(p.inci)}</div>` : ''}
+      <span class="product-tag tag-${p.verdict}">${escapeHtml(verdictLabel)}</span>
+    </div>
+  `;
+}
+
+function filterProducts(list) {
+  return list.filter(p => {
     if (state.productFilter !== 'all' && p.cat !== state.productFilter) return false;
     if (state.productSearch) {
       const q = state.productSearch.toLowerCase();
@@ -1077,33 +1138,32 @@ function renderProducts() {
     }
     return true;
   });
+}
 
+function productListHtml() {
+  const filtered = filterProducts(PRODUCTS);
+  const shopping = filterProducts(SHOPPING);
+
+  let html = filtered.length === 0 && shopping.length === 0
+    ? `<div class="empty">Keine Produkte gefunden.</div>`
+    : filtered.map(productCard).join('');
+
+  if (shopping.length > 0) {
+    html += `<h3 style="font-size:12px;color:#35618f;letter-spacing:1.5px;text-transform:uppercase;margin:18px 0 10px;font-weight:600">Einkaufszettel — Conditioner-Nachkauf</h3>`;
+    html += shopping.map(productCard).join('');
+  }
+  return html;
+}
+
+function renderProducts() {
   const chipsHtml = Object.entries(PRODUCT_CATEGORIES).map(([k, v]) =>
     `<button class="chip ${state.productFilter === k ? 'active' : ''}" data-filter="${k}">${escapeHtml(v)}</button>`
   ).join('');
 
-  const productsHtml = filtered.length === 0
-    ? `<div class="empty">Keine Produkte gefunden.</div>`
-    : filtered.map(p => {
-        const verdictLabel = { keep: 'Behalten', reduce: 'Reduzieren', discard: 'Aussortieren' }[p.verdict];
-        const storeLabel = { mercadona: 'Mercadona', rossmann: 'Rossmann', bali: 'Bali Curls' }[p.store];
-        return `
-          <div class="product ${p.verdict}">
-            <div class="product-header">
-              <div class="product-name">${escapeHtml(p.name)}</div>
-              <span class="product-store ${p.store}">${escapeHtml(storeLabel)}</span>
-            </div>
-            <div class="product-fn">${escapeHtml(p.fn)}</div>
-            <div class="product-desc">${escapeHtml(p.desc)}</div>
-            <span class="product-tag tag-${p.verdict}">${escapeHtml(verdictLabel)}</span>
-          </div>
-        `;
-      }).join('');
-
   return `
     <input type="search" class="search-bar" id="product-search" placeholder="Produkt suchen..." value="${escapeHtml(state.productSearch)}">
     <div class="filter-chips">${chipsHtml}</div>
-    <div id="product-list">${productsHtml}</div>
+    <div id="product-list">${productListHtml()}</div>
   `;
 }
 
@@ -1139,33 +1199,7 @@ function setupProductHandlers() {
     search.addEventListener('input', e => {
       state.productSearch = e.target.value;
       const list = document.getElementById('product-list');
-      const filtered = PRODUCTS.filter(p => {
-        if (state.productFilter !== 'all' && p.cat !== state.productFilter) return false;
-        if (state.productSearch) {
-          const q = state.productSearch.toLowerCase();
-          if (!p.name.toLowerCase().includes(q) && !p.fn.toLowerCase().includes(q) && !p.desc.toLowerCase().includes(q)) return false;
-        }
-        return true;
-      });
-      if (list) {
-        list.innerHTML = filtered.length === 0
-          ? `<div class="empty">Keine Produkte gefunden.</div>`
-          : filtered.map(p => {
-              const verdictLabel = { keep: 'Behalten', reduce: 'Reduzieren', discard: 'Aussortieren' }[p.verdict];
-              const storeLabel = { mercadona: 'Mercadona', rossmann: 'Rossmann', bali: 'Bali Curls' }[p.store];
-              return `
-                <div class="product ${p.verdict}">
-                  <div class="product-header">
-                    <div class="product-name">${escapeHtml(p.name)}</div>
-                    <span class="product-store ${p.store}">${escapeHtml(storeLabel)}</span>
-                  </div>
-                  <div class="product-fn">${escapeHtml(p.fn)}</div>
-                  <div class="product-desc">${escapeHtml(p.desc)}</div>
-                  <span class="product-tag tag-${p.verdict}">${escapeHtml(verdictLabel)}</span>
-                </div>
-              `;
-            }).join('');
-      }
+      if (list) list.innerHTML = productListHtml();
     });
   }
 
@@ -1177,8 +1211,8 @@ function setupProductHandlers() {
   });
 }
 
-function toggleWeekDay(idx) {
-  state.openWeekDays[idx] = !state.openWeekDays[idx];
+function toggleGuide(id) {
+  state.openGuides[id] = !state.openGuides[id];
   render();
 }
 
@@ -1192,7 +1226,7 @@ function handleReset() {
 // Step toggle
 document.addEventListener('click', e => {
   const step = e.target.closest('.step[data-step]');
-  if (step && state.view === 'today') {
+  if (step && state.view === 'routines') {
     toggleStep(step.dataset.step);
     render();
   }
@@ -1207,7 +1241,7 @@ document.querySelectorAll('.nav-item').forEach(b => {
 });
 
 // Globals für inline-onclick
-window.toggleWeekDay = toggleWeekDay;
+window.toggleGuide = toggleGuide;
 window.handleReset = handleReset;
 
 // Init

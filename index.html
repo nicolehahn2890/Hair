@@ -899,17 +899,65 @@ const DEJAN_SHOPPING = [
     inci: 'Creme-Basis aus Fettalkoholen (pflegend, nicht trocknend) + Kokos-/Kamelienöl, proteinfrei. Amodimethicone in kleiner Dosis, haftet gezielt an geschädigten Stellen — gut für Balayage, zählt aber zum Klär-Rhythmus dazu.' }
 ];
 
-// Nachkauf-Empfehlungen für den leeren Alltags-Conditioner (INCI-gecheckt)
+// Nachkauf-Empfehlungen pro Kategorie (alle INCI-gecheckt, passend zum Haarprofil)
 const SHOPPING = [
-  { id: 'n1', name: 'Mascarilla Curl Perfect Deliplus', store: 'mercadona', cat: 'conditioner', fn: 'Nachkauf-Tipp · ~2,60 €', verdict: 'buy',
-    desc: 'Die wellenfreundlichste Option: als Alltags-Conditioner kurz einwirken lassen und ausspülen. Aus derselben Linie wie dein Shampoo und Sérum.',
-    inci: 'Silikonfrei, sulfatfrei, proteinfrei. Betain + Sheabutter + Soja-Öl — bei feinem Haar sparsam dosieren.' },
-  { id: 'n2', name: 'ISANA Spülung Feuchtigkeit (Kokoswasser)', store: 'rossmann', cat: 'conditioner', fn: 'Nachkauf-Tipp · ~1,50 €', verdict: 'buy',
+  // Conditioner
+  { id: 'n1', name: 'Mascarilla Curl Perfect Deliplus', store: 'mercadona', cat: 'conditioner', fn: 'Conditioner & Maske in einem · ~2,75 €', verdict: 'buy',
+    desc: 'Die wellenfreundlichste Option: kurz einwirken = Alltags-Conditioner, 3-5 Min = Feuchtigkeitsmaske. Aus derselben Linie wie dein Shampoo und Sérum.',
+    inci: 'Silikonfrei, sulfatfrei, proteinfrei. Betain + Panthenol + Squalan geben Feuchtigkeit; Sheabutter macht sie reichhaltig — bei feinem Haar sparsam dosieren.' },
+  { id: 'n2', name: 'ISANA Spülung Feuchtigkeit (Kokoswasser)', store: 'rossmann', cat: 'conditioner', fn: 'Leichteste Alltagsspülung · ~1,50 €', verdict: 'buy',
     desc: 'Die leichteste Alltagsspülung fürs Budget — beschwert feines Haar am wenigsten. Gute Wahl, wenn du in Deutschland nachkaufst.',
     inci: 'Silikonfrei, proteinfrei, keine trocknenden Alkohole. Glycerin + Panthenol + Niacinamid, nur wenig Öl.' },
-  { id: 'n3', name: 'L\'Oréal Elvital Hydra Hyaluronic Spülung', store: 'rossmann', cat: 'conditioner', fn: 'Nachkauf-Tipp · ~4 € (das Original)', verdict: 'buy',
+  { id: 'n3', name: 'L\'Oréal Elvital Hydra Hyaluronic Spülung', store: 'rossmann', cat: 'conditioner', fn: 'Das Original nachkaufen · ~4 €', verdict: 'buy',
     desc: 'Der direkte Ersatz für dein leeres Produkt (gleiche Formel-Plattform, deutscher Name). Funktioniert bewährt gut — dann aber den Klärungs-Reset regelmäßig machen.',
-    inci: 'Proteinfrei, Hyaluron + Glycerin. Enthält Dimethicone + Amodimethicone (filmbildend) → zusammen mit den Glanz-Masken summiert sich die Silikonlast.' }
+    inci: 'Proteinfrei, Hyaluron + Glycerin. Enthält Dimethicone + Amodimethicone (filmbildend) → zusammen mit den Glanz-Masken summiert sich die Silikonlast.' },
+  { id: 'n4', name: 'Garnier Fructis Hair Food Aloe Vera Spülung', store: 'rossmann', cat: 'conditioner', fn: 'Feuchtigkeits-Booster · ~5 €', verdict: 'buy',
+    desc: 'Für einen Drogerie-Conditioner ungewöhnlich feuchtigkeitslastig: Glycerin steht an zweiter Stelle. Leicht, entwirrt gut, beschwert nicht.',
+    inci: 'Silikonfrei, proteinfrei, sulfatfrei, keine trocknenden Alkohole. Glycerin (Position 2!) + Aloe + leichte Öle.' },
+
+  // Masken (silikonfrei — die Lücke zu deinen Silikon-Glanzmasken)
+  { id: 'n5', name: 'Garnier Fructis Hair Food 3in1 Maske (Aloe Vera)', store: 'rossmann', cat: 'mask', fn: 'Feuchtigkeitsmaske ohne Silikon · ~5 €', verdict: 'buy',
+    desc: 'Deine fehlende ECHTE Feuchtigkeitsmaske — im Gegensatz zu Mascarilla/Glycolic Gloss ganz ohne Silikon, dafür beliebig oft verwendbar. Auch als Conditioner oder Leave-in für die Spitzen nutzbar. (Die Watermelon-Variante ist fast identisch und extra für feines Haar positioniert.)',
+    inci: 'Silikonfrei, proteinfrei, vegan. Glycerin + Aloe hoch dosiert, keine schweren Buttern vorn — beschwert feines Haar nicht.' },
+  { id: 'n6', name: 'Bali Curls Deep Hydration Mask', store: 'bali', cat: 'mask', fn: 'Intensiv-Maske · ~9 € · alle 2 Wochen', verdict: 'buy',
+    desc: 'Die reichhaltige Variante für sehr durstige Längen — z.B. nach dem Klärungs-Reset oder im Sommer. Sparsam, nur Längen + Spitzen, 5-10 Min.',
+    inci: 'Silikonfrei, proteinfrei, sulfatfrei. Glycerin (Position 3) + Betain + Panthenol; Shea + Kokos + Avocado sind reparierend, aber butterlastig → nicht wöchentlich stapeln.' },
+  { id: 'n7', name: 'Mascarilla Natural Deliplus', store: 'mercadona', cat: 'mask', fn: 'Leichte Maske / Conditioner-Ersatz · ~2,40 €', verdict: 'buy',
+    desc: 'Sehr leichte Formel — eher cremiger Conditioner als schwere Kur, und genau das ist bei feinem Haar ein Vorteil. Gut als Zwischenmaske oder leichter Rinse-off-Conditioner.',
+    inci: 'Silikonfrei, proteinfrei, keine trocknenden Alkohole. Leichte Öle (Abessinien-Öl), 97% natürlichen Ursprungs.' },
+
+  // Leave-in & Styling
+  { id: 'n8', name: 'Alterra Leave-In Feuchtigkeitsserum (Granatapfel)', store: 'rossmann', cat: 'leavein', fn: 'Leichtestes Leave-in · ~5 €', verdict: 'buy',
+    desc: 'Naturkosmetik-Leave-in auf Aloe-Basis — noch leichter als deine beiden aktuellen. Ideal ins handtuchfeuchte Haar vor dem Wellen-Styling.',
+    inci: 'Silikon-, PEG- und proteinfrei. Aloe (Position 2) + Glycerin + Betain + etwas Stärke gegen Beschweren. Alkohol erst weit hinten (unkritisch).' },
+  { id: 'n9', name: 'Bali Curls Curl Defining Spray', store: 'bali', cat: 'leavein', fn: 'Silikonfreier Hitzeschutz + Definition · ~10 €', verdict: 'buy',
+    desc: 'Die seltene Kombination: Hitzeschutz bis 220°C UND komplett silikonfrei. Perfekt vor dem Diffusor — Definition und Schutz in einem Schritt. Starke Alternative zu deinem ISANA-Hitzeschutz an Wellen-Tagen.',
+    inci: 'Silikonfrei, sulfatfrei, keine trocknenden Alkohole. Betain + Glycerin + Panthenol; Mais-Stärke-Hydrolysat als pflanzlicher Schutzfilm (kein Protein-Overload).' },
+  { id: 'n10', name: 'Mascarilla sin aclarado Curl Perfect Deliplus', store: 'mercadona', cat: 'leavein', fn: 'Bester Mercadona-Leave-in · ~2,75 €', verdict: 'buy',
+    desc: 'Der beste INCI-Match im ganzen Mercadona-Sortiment für dein Haar: Glycerin, Aloe, Betain und Panthenol ganz vorn, cremig-leicht. Erbsengroß ins handtuchfeuchte Haar, scrunchen. (Nicht mit deinem alten Argan-Spray verwechseln!)',
+    inci: 'Keine klassischen Silikone, proteinfrei, keine trocknenden Alkohole. Enthält minimal Quaternium-80 (silikonbasiertes Quat, sehr geringe Last). Bei der neuen 125-ml-Charge Etikett gegenprüfen.' },
+  { id: 'n11', name: 'Gel activador Curl Perfect Fix 3 Deliplus', store: 'mercadona', cat: 'leavein', fn: 'Wellen-Gel zum Testen · ~3 €', verdict: 'buy',
+    desc: 'Das einzige echte Wellen-Stylinggel bei Mercadona: leichter Halt (Stufe 3), Glycerin-Aloe-Basis. Auf nasses Haar über das Leave-in, scrunchen, nach dem Trocknen den Gel-Cast ausbrechen. 1-2× pro Woche testen.',
+    inci: 'Silikonfrei, keine trocknenden Alkohole. ABER: enthält mehrere hydrolysierte Proteine (Soja/Mais/Weizen/Hafer) — bei Strohgefühl absetzen. Kleine Proteinmengen können deinen aufgehellten Längen aber sogar gut tun.' },
+
+  // Öle
+  { id: 'n12', name: 'Alterra Nutri-Care Haaröl', store: 'rossmann', cat: 'oil', fn: 'Pflanzliches Spitzenöl · ~3 €', verdict: 'buy',
+    desc: 'Der Rossmann-Zwilling zu deinem Sérum Curl Perfect: leichter Ester + Argan, Mandel, Avocado. 1-2 Tropfen in feuchte oder trockene Spitzen.',
+    inci: '100% pflanzlich, silikonfrei, proteinfrei, parfümiert. Coco-Caprylate als leichte Basis — macht feines Haar nicht strähnig.' },
+  { id: 'n13', name: 'Sérum Natural Deliplus', store: 'mercadona', cat: 'oil', fn: 'Leichtes Creme-Serum · ~4 €', verdict: 'buy',
+    desc: 'Cremiges, sehr leichtes Anti-Frizz-Serum ohne Silikon — die silikonfreie Alternative zum bekannten „10 en 1" (das ein Voll-Silikonserum ist). 1-2 Pumps in die Längen, täglich möglich.',
+    inci: 'Silikonfrei, keine trocknenden Alkohole. Enthält weit hinten ein mildes quaternisiertes Weizenprotein (konditionierend, unkritisch in der Menge).' },
+  { id: 'n14', name: 'Alterra 100% Bio-Arganöl', store: 'rossmann', cat: 'oil', fn: 'Overnight-Kur · ~7-9 €', verdict: 'buy',
+    desc: 'Pures Arganöl als Vorwäsche- oder Overnight-Kur für die aufgehellten Längen (1 Stunde bis über Nacht vor dem Waschtag einwirken lassen). Auch 1 Tropfen als Finish.',
+    inci: 'Ein einziger Inhaltsstoff: Argania Spinosa Kernel Oil. Kein Parfüm, nichts sonst. Mittleres Gewicht — für feines Haar in kleinen Mengen gut tragbar.' },
+
+  // Shampoos
+  { id: 'n15', name: 'Bali Curls Nourishing Shampoo', store: 'bali', cat: 'shampoo', fn: 'Mildestes Shampoo für DE-Einkäufe · ~9 €', verdict: 'buy',
+    desc: 'Der direkte deutsche Ersatz für dein Mercadona Curl Perfect: das mildeste INCI-verifizierte Shampoo im Rossmann-Sortiment. Kopfhaut waschen, Schaum durch die Längen laufen lassen.',
+    inci: 'SLS/SLES-frei — Isethionat/Taurat/Sarcosinat gehören zur mildesten Tensidklasse. Silikonfrei, proteinfrei, mit Glycerin + Panthenol.' },
+  { id: 'n16', name: 'Champú Silver Blond Deliplus', store: 'mercadona', cat: 'shampoo', fn: 'Anti-Gelbstich in Spanien · 2,75 €', verdict: 'buy',
+    desc: 'Das Mercadona-Pendant zum Gliss Purple Shampoo: Violett-Pigment neutralisiert Gelbstich in den aufgehellten Längen. Max. 1× pro Woche, 2-3 Min einwirken, danach gut pflegen.',
+    inci: 'Enthält SLES (bei 1×/Woche als Matizador vertretbar) + zwei leichte wasserdispergierbare Silikon-Quats (kein klassisches Buildup). Proteinfrei, mit Panthenol.' }
 ];
 
 const PRODUCT_CATEGORIES = {
@@ -1178,7 +1226,7 @@ function productListHtml() {
     : filtered.map(productCard).join('');
 
   if (shopping.length > 0) {
-    html += `<h3 style="font-size:12px;color:#35618f;letter-spacing:1.5px;text-transform:uppercase;margin:18px 0 10px;font-weight:600">Einkaufszettel — Conditioner-Nachkauf</h3>`;
+    html += `<h3 style="font-size:12px;color:#35618f;letter-spacing:1.5px;text-transform:uppercase;margin:18px 0 10px;font-weight:600">Einkaufszettel — passende Nachkäufe (INCI-geprüft)</h3>`;
     html += shopping.map(productCard).join('');
   }
   if (dejan.length > 0) {

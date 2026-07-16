@@ -5,18 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#fdf6f4">
+<meta name="theme-color" content="#faf4f1">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <title>Haarpflege</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 html, body {
-  background: #fdf6f4;
+  background: #faf4f1;
   background-image:
-    radial-gradient(at 20% 0%, #ffd9e8 0%, transparent 50%),
-    radial-gradient(at 80% 100%, #f7e0ec 0%, transparent 50%),
-    radial-gradient(at 50% 50%, #fef0f3 0%, transparent 70%);
+    radial-gradient(at 20% 0%, #f3dde6 0%, transparent 50%),
+    radial-gradient(at 80% 100%, #f5e8ee 0%, transparent 50%),
+    radial-gradient(at 50% 50%, #faf0f2 0%, transparent 70%);
   background-attachment: fixed;
   color: #3d2438;
   font-family: 'DM Sans', sans-serif;
@@ -41,7 +43,7 @@ html, body {
 
 .sparkle {
   position: absolute;
-  color: #d4527a;
+  color: #b34568;
   opacity: 0.35;
   user-select: none;
   animation: twinkle 4s ease-in-out infinite;
@@ -54,9 +56,9 @@ html, body {
 .sparkle.medium { font-size: 18px; opacity: 0.35; }
 .sparkle.large { font-size: 24px; opacity: 0.28; }
 
-.sparkle.gold { color: #e8a85c; opacity: 0.25; }
-.sparkle.lilac { color: #c89cd4; opacity: 0.3; }
-.sparkle.rose { color: #ff8eb4; opacity: 0.35; }
+.sparkle.gold { color: #c9a15f; opacity: 0.25; }
+.sparkle.lilac { color: #bfa3cc; opacity: 0.3; }
+.sparkle.rose { color: #d98ea9; opacity: 0.35; }
 
 @keyframes twinkle {
   0%, 100% {
@@ -69,7 +71,7 @@ html, body {
   }
 }
 
-a { color: #d4527a; text-decoration: none; }
+a { color: #b34568; text-decoration: none; }
 
 /* ===== Layout ===== */
 .app {
@@ -89,23 +91,20 @@ a { color: #d4527a; text-decoration: none; }
   position: sticky;
   top: 0;
   z-index: 10;
-  border-bottom: 1px solid rgba(212, 82, 122, 0.1);
+  border-bottom: 1px solid rgba(179, 69, 104, 0.1);
 }
 
 .header h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  font-weight: 700;
-  background: linear-gradient(135deg, #d4527a, #b3375f);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -0.5px;
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: #472736;
+  letter-spacing: -0.2px;
 }
 
 .header .subtitle {
   font-size: 11px;
-  color: #c97b95;
+  color: #b57690;
   letter-spacing: 3px;
   text-transform: uppercase;
   margin-top: 4px;
@@ -124,15 +123,15 @@ a { color: #d4527a; text-decoration: none; }
   transform: translateX(-50%);
   max-width: 480px;
   width: 100%;
-  background: linear-gradient(180deg, rgba(255, 230, 240, 0.92), rgba(253, 224, 235, 0.95));
+  background: linear-gradient(180deg, rgba(250, 236, 241, 0.92), rgba(248, 228, 235, 0.95));
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-top: 1px solid rgba(212, 82, 122, 0.15);
+  border-top: 1px solid rgba(179, 69, 104, 0.15);
   display: flex;
   justify-content: space-around;
   padding: 10px 0 calc(10px + env(safe-area-inset-bottom)) 0;
   z-index: 20;
-  box-shadow: 0 -2px 20px rgba(212, 82, 122, 0.08);
+  box-shadow: 0 -2px 20px rgba(179, 69, 104, 0.08);
 }
 
 .nav-item {
@@ -154,7 +153,7 @@ a { color: #d4527a; text-decoration: none; }
   transition: all 0.2s;
 }
 
-.nav-item.active { color: #d4527a; font-weight: 700; }
+.nav-item.active { color: #b34568; font-weight: 700; }
 .nav-item .icon { font-size: 22px; transition: transform 0.2s; }
 .nav-item.active .icon { transform: scale(1.15); }
 
@@ -163,15 +162,15 @@ a { color: #d4527a; text-decoration: none; }
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(212, 82, 122, 0.12);
-  border-radius: 24px;
+  border: 1px solid rgba(179, 69, 104, 0.10);
+  border-radius: 18px;
   padding: 20px;
   margin-bottom: 14px;
-  box-shadow: 0 4px 20px rgba(212, 82, 122, 0.06);
+  box-shadow: 0 1px 2px rgba(60,36,48,0.03), 0 8px 24px rgba(179,69,104,0.06);
 }
 
 .card h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', serif;
   font-size: 20px;
   color: #3d2438;
   margin-bottom: 4px;
@@ -180,7 +179,7 @@ a { color: #d4527a; text-decoration: none; }
 
 .card h3 {
   font-size: 12px;
-  color: #d4527a;
+  color: #b34568;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -198,14 +197,14 @@ a { color: #d4527a; text-decoration: none; }
 
 /* ===== Profil-Hero ===== */
 .today-hero {
-  background: linear-gradient(135deg, #ffd0e0 0%, #ffb8d4 50%, #ff9ec4 100%);
-  border-radius: 28px;
-  padding: 28px 24px;
+  background: linear-gradient(135deg, #f6dbe4 0%, #efc6d4 50%, #e5aec2 100%);
+  border-radius: 20px;
+  padding: 26px 24px;
   margin-bottom: 18px;
   text-align: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(255, 158, 196, 0.3);
+  box-shadow: 0 1px 2px rgba(60,36,48,0.05), 0 10px 30px rgba(179,69,104,0.14);
 }
 
 .today-hero::before {
@@ -236,15 +235,16 @@ a { color: #d4527a; text-decoration: none; }
   font-size: 11px;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: #8b2548;
+  color: #7d2f49;
   margin-bottom: 8px;
   font-weight: 600;
 }
 
 .today-hero .day-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 26px;
-  color: #4a1a30;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 25px;
+  color: #40222f;
   margin-bottom: 10px;
   font-weight: 700;
   line-height: 1.15;
@@ -252,9 +252,9 @@ a { color: #d4527a; text-decoration: none; }
 
 .today-hero .day-task {
   font-size: 13.5px;
-  color: #6b1e3a;
+  color: #5d2a3e;
   font-style: italic;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', serif;
   line-height: 1.5;
 }
 
@@ -264,7 +264,7 @@ a { color: #d4527a; text-decoration: none; }
   align-items: flex-start;
   gap: 14px;
   padding: 16px 0;
-  border-bottom: 1px solid rgba(212, 82, 122, 0.1);
+  border-bottom: 1px solid rgba(179, 69, 104, 0.1);
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
@@ -277,7 +277,7 @@ a { color: #d4527a; text-decoration: none; }
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 2px solid #d4527a;
+  border: 2px solid #b34568;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -285,12 +285,12 @@ a { color: #d4527a; text-decoration: none; }
   background: white;
   transition: all 0.25s ease;
   margin-top: 1px;
-  box-shadow: 0 2px 8px rgba(212, 82, 122, 0.1);
+  box-shadow: 0 2px 8px rgba(179, 69, 104, 0.1);
 }
 
 .step.done .checkbox {
-  background: linear-gradient(135deg, #ff9ec4, #d4527a);
-  border-color: #d4527a;
+  background: linear-gradient(135deg, #e5aec2, #b34568);
+  border-color: #b34568;
   transform: scale(1.05);
 }
 
@@ -329,20 +329,20 @@ a { color: #d4527a; text-decoration: none; }
 .search-bar {
   width: 100%;
   background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(212, 82, 122, 0.15);
+  border: 1px solid rgba(179, 69, 104, 0.15);
   border-radius: 18px;
   padding: 14px 18px;
   color: #3d2438;
   font-family: inherit;
   font-size: 14px;
   margin-bottom: 14px;
-  box-shadow: 0 2px 12px rgba(212, 82, 122, 0.06);
+  box-shadow: 0 2px 12px rgba(179, 69, 104, 0.06);
 }
 
 .search-bar:focus {
   outline: none;
-  border-color: #d4527a;
-  box-shadow: 0 0 0 4px rgba(212, 82, 122, 0.1);
+  border-color: #b34568;
+  box-shadow: 0 0 0 4px rgba(179, 69, 104, 0.1);
 }
 .search-bar::placeholder { color: #c4a3b0; }
 
@@ -355,7 +355,7 @@ a { color: #d4527a; text-decoration: none; }
 
 .chip {
   background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(212, 82, 122, 0.15);
+  border: 1px solid rgba(179, 69, 104, 0.15);
   color: #8b6373;
   padding: 7px 14px;
   border-radius: 20px;
@@ -367,25 +367,25 @@ a { color: #d4527a; text-decoration: none; }
 }
 
 .chip.active {
-  background: linear-gradient(135deg, #ff9ec4, #d4527a);
+  background: linear-gradient(135deg, #e5aec2, #b34568);
   color: white;
   border-color: transparent;
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(212, 82, 122, 0.25);
+  box-shadow: 0 4px 12px rgba(179, 69, 104, 0.25);
 }
 
 .product {
   background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(212, 82, 122, 0.1);
+  border: 1px solid rgba(179, 69, 104, 0.1);
   border-radius: 18px;
   padding: 16px;
   margin-bottom: 12px;
-  border-left: 4px solid #d4527a;
-  box-shadow: 0 2px 12px rgba(212, 82, 122, 0.05);
+  border-left: 4px solid #b34568;
+  box-shadow: 0 2px 12px rgba(179, 69, 104, 0.05);
 }
 
 .product.keep { border-left-color: #7bbb8f; }
-.product.reduce { border-left-color: #e8a85c; }
+.product.reduce { border-left-color: #c9a15f; }
 .product.discard { border-left-color: #d96868; }
 .product.empty { border-left-color: #b0a3ab; }
 .product.buy { border-left-color: #8fb3d9; }
@@ -416,20 +416,20 @@ a { color: #d4527a; text-decoration: none; }
   padding: 4px 9px;
   border-radius: 10px;
   white-space: nowrap;
-  background: rgba(212, 82, 122, 0.1);
-  color: #d4527a;
+  background: rgba(179, 69, 104, 0.1);
+  color: #b34568;
 }
 
 .product-store.mercadona { background: #e0f4e6; color: #3d8550; }
-.product-store.rossmann { background: #fde2e7; color: #b3375f; }
+.product-store.rossmann { background: #f7dce3; color: #8e3050; }
 .product-store.bali { background: #f0e0f4; color: #8a4d9c; }
 .product-store.super { background: #e8e9f4; color: #565e96; }
 
 .product-fn {
   font-size: 12px;
-  color: #d4527a;
+  color: #b34568;
   font-style: italic;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', serif;
   margin-bottom: 7px;
   font-weight: 500;
 }
@@ -455,7 +455,7 @@ a { color: #d4527a; text-decoration: none; }
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 9px;
-  color: #d4527a;
+  color: #b34568;
   display: block;
   margin-bottom: 2px;
 }
@@ -483,21 +483,21 @@ a { color: #d4527a; text-decoration: none; }
 /* ===== Guides (Akkordeon) ===== */
 .week-day {
   background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(212, 82, 122, 0.1);
+  border: 1px solid rgba(179, 69, 104, 0.1);
   border-radius: 18px;
   margin-bottom: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(212, 82, 122, 0.05);
+  box-shadow: 0 2px 12px rgba(179, 69, 104, 0.05);
 }
 
 .week-day.open {
-  border-color: #d4527a;
-  box-shadow: 0 4px 20px rgba(212, 82, 122, 0.15);
+  border-color: #b34568;
+  box-shadow: 0 4px 20px rgba(179, 69, 104, 0.15);
 }
 
 .week-day-header {
   padding: 14px 16px;
-  background: rgba(255, 240, 245, 0.5);
+  background: rgba(250, 238, 242, 0.5);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -505,28 +505,28 @@ a { color: #d4527a; text-decoration: none; }
 }
 
 .week-day.open .week-day-header {
-  background: linear-gradient(135deg, #ffd0e0, #ffb8d4);
+  background: linear-gradient(135deg, #f6dbe4, #efc6d4);
 }
 
 .week-day-name {
   font-weight: 700;
   font-size: 15px;
   color: #3d2438;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', serif;
 }
 
-.week-day.open .week-day-name { color: #4a1a30; }
+.week-day.open .week-day-name { color: #40222f; }
 
 .week-day-task {
   font-size: 11px;
-  color: #d4527a;
+  color: #b34568;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-weight: 500;
   margin-top: 2px;
 }
 
-.week-day.open .week-day-task { color: #6b1e3a; }
+.week-day.open .week-day-task { color: #5d2a3e; }
 
 .week-day-body {
   padding: 16px;
@@ -540,32 +540,30 @@ a { color: #d4527a; text-decoration: none; }
   color: #6b4d5c;
   line-height: 1.55;
   padding: 4px 2px 10px;
-  border-bottom: 1px solid rgba(212, 82, 122, 0.1);
+  border-bottom: 1px solid rgba(179, 69, 104, 0.1);
   font-style: italic;
 }
 
 /* ===== Frisuren ===== */
 .hairstyle-section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  background: linear-gradient(135deg, #d4527a, #b3375f);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 22px 0 12px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 21px;
+  color: #7d3450;
+  margin: 24px 0 12px;
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
 .hairstyle-section-title:first-child { margin-top: 4px; }
 
 .hairstyle {
   background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(212, 82, 122, 0.1);
+  border: 1px solid rgba(179, 69, 104, 0.1);
   border-radius: 20px;
   padding: 16px;
   margin-bottom: 12px;
-  box-shadow: 0 2px 12px rgba(212, 82, 122, 0.05);
+  box-shadow: 0 2px 12px rgba(179, 69, 104, 0.05);
 }
 
 .hairstyle-header {
@@ -580,20 +578,20 @@ a { color: #d4527a; text-decoration: none; }
   height: 38px;
   border-radius: 50%;
   background: linear-gradient(135deg, #ffe5ee, #ffc8dc);
-  border: 1.5px solid #d4527a;
+  border: 1.5px solid #b34568;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', serif;
   font-size: 14px;
   font-weight: 700;
-  color: #b3375f;
+  color: #8e3050;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(212, 82, 122, 0.15);
+  box-shadow: 0 2px 8px rgba(179, 69, 104, 0.15);
 }
 
 .hairstyle-name {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', serif;
   font-size: 16px;
   color: #3d2438;
   font-weight: 700;
@@ -601,7 +599,7 @@ a { color: #d4527a; text-decoration: none; }
 
 .hairstyle-when {
   font-size: 11px;
-  color: #d4527a;
+  color: #b34568;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-weight: 500;
@@ -616,9 +614,9 @@ a { color: #d4527a; text-decoration: none; }
 
 /* ===== Reset Button ===== */
 .reset-btn {
-  background: linear-gradient(135deg, #fde2e7, #fcd0dc);
-  border: 1px solid rgba(212, 82, 122, 0.2);
-  color: #b3375f;
+  background: linear-gradient(135deg, #f7dce3, #f3cdd9);
+  border: 1px solid rgba(179, 69, 104, 0.2);
+  color: #8e3050;
   padding: 12px 18px;
   border-radius: 14px;
   font-family: inherit;
@@ -633,7 +631,7 @@ a { color: #d4527a; text-decoration: none; }
 }
 
 .reset-btn:active {
-  background: linear-gradient(135deg, #fcd0dc, #fab8c8);
+  background: linear-gradient(135deg, #f3cdd9, #eec0cd);
   transform: scale(0.98);
 }
 
@@ -644,7 +642,7 @@ a { color: #d4527a; text-decoration: none; }
   color: #c4a3b0;
   font-size: 13px;
   font-style: italic;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', serif;
 }
 
 .fade-in { animation: fadeIn 0.3s ease-out; }
@@ -654,7 +652,7 @@ a { color: #d4527a; text-decoration: none; }
 }
 
 .step-desc strong, .product-desc strong, .card p strong {
-  color: #d4527a;
+  color: #b34568;
   font-weight: 600;
 }
 </style>
@@ -698,13 +696,12 @@ function generateSparkles() {
 
   const symbols = [
     '✦', '✧', '⋆', '✦', '✧', '⋆',
-    '♡', '♡', '❤︎',
-    '❀', '✿', '❁',
-    '⁂', '✺', '✻'
+    '♡',
+    '❀', '✿'
   ];
   const sizes = ['tiny', 'small', 'medium', 'large'];
   const colors = ['', '', '', 'gold', 'lilac', 'rose'];
-  const count = 50;
+  const count = 22;
 
   for (let i = 0; i < count; i++) {
     const s = document.createElement('span');
@@ -715,8 +712,8 @@ function generateSparkles() {
     const left = Math.random() * 100;
     const delay = Math.random() * 5;
     const duration = 3 + Math.random() * 5;
-    const startOpacity = 0.15 + Math.random() * 0.2;
-    const peakOpacity = 0.4 + Math.random() * 0.35;
+    const startOpacity = 0.08 + Math.random() * 0.12;
+    const peakOpacity = 0.22 + Math.random() * 0.2;
     const rotate = Math.floor(Math.random() * 360);
 
     s.className = 'sparkle ' + size + (color ? ' ' + color : '');
@@ -1227,7 +1224,7 @@ function renderRoutines() {
             <div class="week-day-name">${escapeHtml(g.title)}</div>
             <div class="week-day-task">${escapeHtml(g.tag)}</div>
           </div>
-          <div style="color:#C8729A;font-size:18px">${isOpen ? '▴' : '▾'}</div>
+          <div style="color:#b57690;font-size:18px">${isOpen ? '▴' : '▾'}</div>
         </div>
         <div class="week-day-body">
           <div class="guide-intro">${escapeHtml(g.intro)}</div>

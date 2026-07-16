@@ -5,115 +5,80 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#faf4f1">
+<meta name="theme-color" content="#f7f1e8">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <title>Haarpflege</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+/* ===== Journal de Beauté — Papier & Tinte ===== */
+:root {
+  --paper: #f7f1e8;
+  --paper-deep: #f1e7d9;
+  --blush: #efdfdb;
+  --blush-deep: #e6cbcc;
+  --ink: #33222b;
+  --ink-soft: #5d4a52;
+  --ink-mute: #8a7480;
+  --rose: #8f3c5b;
+  --rose-soft: #b06a82;
+  --gold: #a8823c;
+  --line: #dccdc0;
+  --line-soft: #e8dccd;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 html, body {
-  background: #faf4f1;
-  background-image:
-    radial-gradient(at 20% 0%, #f3dde6 0%, transparent 50%),
-    radial-gradient(at 80% 100%, #f5e8ee 0%, transparent 50%),
-    radial-gradient(at 50% 50%, #faf0f2 0%, transparent 70%);
-  background-attachment: fixed;
-  color: #3d2438;
-  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Karla', sans-serif;
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.55;
   min-height: 100vh;
   overflow-x: hidden;
-  position: relative;
 }
 
-/* ===== Sparkle Background ===== */
-.sparkles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.sparkle {
-  position: absolute;
-  color: #b34568;
-  opacity: 0.35;
-  user-select: none;
-  animation: twinkle 4s ease-in-out infinite;
-  transform: rotate(var(--rotation, 0deg));
-  transform-origin: center;
-}
-
-.sparkle.tiny { font-size: 10px; opacity: 0.25; }
-.sparkle.small { font-size: 14px; opacity: 0.3; }
-.sparkle.medium { font-size: 18px; opacity: 0.35; }
-.sparkle.large { font-size: 24px; opacity: 0.28; }
-
-.sparkle.gold { color: #c9a15f; opacity: 0.25; }
-.sparkle.lilac { color: #bfa3cc; opacity: 0.3; }
-.sparkle.rose { color: #d98ea9; opacity: 0.35; }
-
-@keyframes twinkle {
-  0%, 100% {
-    opacity: var(--start-opacity, 0.25);
-    transform: rotate(var(--rotation, 0deg)) scale(1);
-  }
-  50% {
-    opacity: var(--peak-opacity, 0.55);
-    transform: rotate(calc(var(--rotation, 0deg) + 15deg)) scale(1.2);
-  }
-}
-
-a { color: #b34568; text-decoration: none; }
+a { color: var(--rose); text-decoration: none; }
 
 /* ===== Layout ===== */
 .app {
   max-width: 480px;
   margin: 0 auto;
-  padding-bottom: 90px;
+  padding-bottom: 86px;
   min-height: 100vh;
-  position: relative;
-  z-index: 2;
 }
 
 .header {
-  background: linear-gradient(180deg, rgba(253, 246, 244, 0.95), rgba(253, 246, 244, 0.85));
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 24px 22px 18px;
+  background: var(--paper);
+  padding: 20px 22px 12px;
   position: sticky;
   top: 0;
   z-index: 10;
-  border-bottom: 1px solid rgba(179, 69, 104, 0.1);
+  border-bottom: 4px double var(--ink);
+  text-align: center;
 }
 
 .header h1 {
-  font-family: 'Fraunces', serif;
-  font-size: 26px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 31px;
   font-weight: 600;
-  color: #472736;
-  letter-spacing: -0.2px;
+  color: var(--ink);
+  letter-spacing: 0.5px;
+  line-height: 1.1;
 }
 
 .header .subtitle {
-  font-size: 11px;
-  color: #b57690;
-  letter-spacing: 3px;
+  font-size: 9.5px;
+  color: var(--rose);
+  letter-spacing: 3.5px;
   text-transform: uppercase;
-  margin-top: 4px;
-  font-weight: 500;
+  margin-top: 5px;
+  font-weight: 700;
 }
 
-.content {
-  padding: 18px 22px;
-}
+.content { padding: 20px 22px; }
 
 /* ===== Bottom Nav ===== */
 .nav {
@@ -123,138 +88,104 @@ a { color: #b34568; text-decoration: none; }
   transform: translateX(-50%);
   max-width: 480px;
   width: 100%;
-  background: linear-gradient(180deg, rgba(250, 236, 241, 0.92), rgba(248, 228, 235, 0.95));
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-top: 1px solid rgba(179, 69, 104, 0.15);
+  background: var(--paper);
+  border-top: 1px solid var(--ink);
   display: flex;
   justify-content: space-around;
-  padding: 10px 0 calc(10px + env(safe-area-inset-bottom)) 0;
+  padding: 8px 0 calc(8px + env(safe-area-inset-bottom)) 0;
   z-index: 20;
-  box-shadow: 0 -2px 20px rgba(179, 69, 104, 0.08);
 }
 
 .nav-item {
   flex: 1;
   background: none;
   border: none;
-  color: #c4a3b0;
-  padding: 8px 4px;
+  color: var(--ink-mute);
+  padding: 7px 4px 5px;
   font-family: inherit;
-  font-size: 10px;
+  font-size: 9.5px;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
-  font-weight: 500;
+  letter-spacing: 2px;
+  font-weight: 600;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  transition: all 0.2s;
+  gap: 4px;
 }
 
-.nav-item.active { color: #b34568; font-weight: 700; }
-.nav-item .icon { font-size: 22px; transition: transform 0.2s; }
-.nav-item.active .icon { transform: scale(1.15); }
+.nav-item .icon { font-size: 17px; line-height: 1; }
+.nav-item.active { color: var(--rose); font-weight: 800; }
 
-/* ===== Cards ===== */
+/* ===== Sektionen (ehem. Cards) ===== */
 .card {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(179, 69, 104, 0.10);
-  border-radius: 18px;
-  padding: 20px;
-  margin-bottom: 14px;
-  box-shadow: 0 1px 2px rgba(60,36,48,0.03), 0 8px 24px rgba(179,69,104,0.06);
+  border-top: 1px solid var(--line);
+  padding: 20px 2px 18px;
+  margin-bottom: 4px;
 }
 
 .card h2 {
-  font-family: 'Fraunces', serif;
-  font-size: 20px;
-  color: #3d2438;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
   margin-bottom: 4px;
-  font-weight: 700;
 }
 
 .card h3 {
-  font-size: 12px;
-  color: #b34568;
-  letter-spacing: 1.5px;
+  font-size: 10.5px;
+  color: var(--rose);
+  letter-spacing: 2.5px;
   text-transform: uppercase;
-  margin-bottom: 10px;
-  margin-top: 14px;
-  font-weight: 600;
+  margin: 16px 0 10px;
+  font-weight: 700;
 }
 
 .card h3:first-child { margin-top: 0; }
 
 .card p {
-  font-size: 14px;
-  color: #5c3d4f;
-  margin-bottom: 8px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  margin-bottom: 9px;
 }
 
-/* ===== Profil-Hero ===== */
+/* ===== Editor's Note (Haarprofil) ===== */
 .today-hero {
-  background: linear-gradient(135deg, #f6dbe4 0%, #efc6d4 50%, #e5aec2 100%);
-  border-radius: 20px;
-  padding: 26px 24px;
-  margin-bottom: 18px;
+  background: var(--blush);
+  border: 1px solid var(--blush-deep);
+  box-shadow: inset 0 0 0 4px var(--blush), inset 0 0 0 5px var(--rose-soft);
+  padding: 26px 26px 24px;
+  margin-bottom: 22px;
   text-align: center;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 1px 2px rgba(60,36,48,0.05), 0 10px 30px rgba(179,69,104,0.14);
 }
 
-.today-hero::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
-  border-radius: 50%;
-}
-
-.today-hero::after {
-  content: '';
-  position: absolute;
-  bottom: -30%;
-  left: -10%;
-  width: 150px;
-  height: 150px;
-  background: radial-gradient(circle, rgba(255,255,255,0.25), transparent);
-  border-radius: 50%;
-}
-
-.today-hero > * { position: relative; z-index: 1; }
+.today-hero::before, .today-hero::after { content: none; }
 
 .today-hero .day-label {
-  font-size: 11px;
+  font-size: 9.5px;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: #7d2f49;
-  margin-bottom: 8px;
-  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 9px;
+  font-weight: 700;
 }
 
 .today-hero .day-name {
-  font-family: 'Fraunces', serif;
-  font-weight: 600;
-  font-size: 25px;
-  color: #40222f;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 27px;
+  color: var(--ink);
   margin-bottom: 10px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.15;
+  text-wrap: balance;
 }
 
 .today-hero .day-task {
-  font-size: 13.5px;
-  color: #5d2a3e;
+  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-family: 'Fraunces', serif;
+  font-size: 15.5px;
+  color: var(--ink-soft);
   line-height: 1.5;
 }
 
@@ -262,404 +193,410 @@ a { color: #b34568; text-decoration: none; }
 .step {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  padding: 16px 0;
-  border-bottom: 1px solid rgba(179, 69, 104, 0.1);
+  gap: 13px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-soft);
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
-  transition: opacity 0.2s;
 }
 
 .step:last-child { border-bottom: none; }
 
 .step .checkbox {
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  border: 2px solid #b34568;
+  border: 1.5px solid var(--ink-mute);
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
-  transition: all 0.25s ease;
-  margin-top: 1px;
-  box-shadow: 0 2px 8px rgba(179, 69, 104, 0.1);
+  background: transparent;
+  transition: all 0.2s ease;
+  margin-top: 2px;
 }
 
 .step.done .checkbox {
-  background: linear-gradient(135deg, #e5aec2, #b34568);
-  border-color: #b34568;
-  transform: scale(1.05);
+  background: var(--rose);
+  border-color: var(--rose);
 }
 
 .step.done .checkbox::after {
   content: '✓';
-  color: white;
+  color: var(--paper);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .step .content-step { flex: 1; }
 
 .step .step-title {
-  font-weight: 600;
-  font-size: 15px;
-  color: #3d2438;
-  margin-bottom: 3px;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--ink);
+  margin-bottom: 2px;
 }
 
-.step.done .step-title {
-  text-decoration: line-through;
-  color: #b89aa5;
-}
-
-.step.done .step-desc {
-  color: #c4a3b0;
-}
+.step.done .step-title { text-decoration: line-through; color: var(--ink-mute); }
+.step.done .step-desc { color: var(--ink-mute); }
 
 .step .step-desc {
   font-size: 13px;
-  color: #6b4d5c;
+  color: var(--ink-soft);
   line-height: 1.5;
 }
 
 /* ===== Produkte ===== */
 .search-bar {
   width: 100%;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(179, 69, 104, 0.15);
-  border-radius: 18px;
-  padding: 14px 18px;
-  color: #3d2438;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  padding: 12px 14px;
+  color: var(--ink);
   font-family: inherit;
   font-size: 14px;
-  margin-bottom: 14px;
-  box-shadow: 0 2px 12px rgba(179, 69, 104, 0.06);
+  margin-bottom: 12px;
 }
 
-.search-bar:focus {
-  outline: none;
-  border-color: #b34568;
-  box-shadow: 0 0 0 4px rgba(179, 69, 104, 0.1);
-}
-.search-bar::placeholder { color: #c4a3b0; }
+.search-bar:focus { outline: none; border-color: var(--rose); }
+.search-bar::placeholder { color: var(--ink-mute); font-style: italic; }
 
 .filter-chips {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 4px 16px;
+  margin-bottom: 18px;
   flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 10px;
 }
 
 .chip {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(179, 69, 104, 0.15);
-  color: #8b6373;
-  padding: 7px 14px;
-  border-radius: 20px;
-  font-size: 12px;
+  background: none;
+  border: none;
+  color: var(--ink-mute);
+  padding: 4px 0;
+  font-size: 10.5px;
   font-family: inherit;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.2s;
+  border-bottom: 1px solid transparent;
 }
 
 .chip.active {
-  background: linear-gradient(135deg, #e5aec2, #b34568);
-  color: white;
-  border-color: transparent;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(179, 69, 104, 0.25);
+  color: var(--rose);
+  font-weight: 800;
+  border-bottom-color: var(--rose);
 }
 
 .product {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(179, 69, 104, 0.1);
-  border-radius: 18px;
-  padding: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255, 252, 245, 0.5);
+  padding: 16px 16px 14px;
   margin-bottom: 12px;
-  border-left: 4px solid #b34568;
-  box-shadow: 0 2px 12px rgba(179, 69, 104, 0.05);
 }
-
-.product.keep { border-left-color: #7bbb8f; }
-.product.reduce { border-left-color: #c9a15f; }
-.product.discard { border-left-color: #d96868; }
-.product.empty { border-left-color: #b0a3ab; }
-.product.buy { border-left-color: #8fb3d9; }
-.product.maybe { border-left-color: #d9b45c; }
-.product.skip { border-left-color: #c98f8f; }
 
 .product-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 10px;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .product-name {
-  font-weight: 600;
-  font-size: 14px;
-  color: #3d2438;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--ink);
   flex: 1;
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
 .product-store {
-  font-size: 9px;
-  letter-spacing: 1px;
+  font-size: 8.5px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   font-weight: 700;
-  padding: 4px 9px;
-  border-radius: 10px;
+  padding: 3px 7px;
   white-space: nowrap;
-  background: rgba(179, 69, 104, 0.1);
-  color: #b34568;
+  border: 1px solid var(--line);
+  color: var(--ink-mute);
+  background: transparent;
 }
 
-.product-store.mercadona { background: #e0f4e6; color: #3d8550; }
-.product-store.rossmann { background: #f7dce3; color: #8e3050; }
-.product-store.bali { background: #f0e0f4; color: #8a4d9c; }
-.product-store.super { background: #e8e9f4; color: #565e96; }
+.product-store.mercadona { color: #4e7a5a; border-color: #b8cfc0; }
+.product-store.rossmann { color: var(--rose); border-color: #d8b3c0; }
+.product-store.bali { color: #6d5486; border-color: #c8bcd6; }
+.product-store.super { color: #4a6b8a; border-color: #b5c4d2; }
 
 .product-fn {
-  font-size: 12px;
-  color: #b34568;
-  font-style: italic;
-  font-family: 'Fraunces', serif;
-  margin-bottom: 7px;
-  font-weight: 500;
+  font-size: 9.5px;
+  color: var(--rose);
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 
 .product-desc {
   font-size: 13px;
-  color: #6b4d5c;
-  line-height: 1.5;
+  color: var(--ink-soft);
+  line-height: 1.55;
 }
 
 .product-inci {
-  font-size: 11px;
-  color: #8b6373;
+  font-size: 11.5px;
+  color: var(--ink-soft);
   line-height: 1.5;
-  margin-top: 8px;
-  padding: 8px 10px;
-  background: rgba(253, 240, 245, 0.7);
-  border-radius: 10px;
+  margin-top: 10px;
+  padding: 9px 11px;
+  background: var(--paper-deep);
+  border-left: 2px solid var(--gold);
 }
 
 .product-inci .inci-label {
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
-  font-size: 9px;
-  color: #b34568;
+  font-size: 8.5px;
+  color: var(--gold);
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
 .product-tag {
   display: inline-block;
-  font-size: 10px;
-  padding: 3px 8px;
-  border-radius: 8px;
-  margin-top: 10px;
-  margin-right: 4px;
-  letter-spacing: 0.5px;
+  font-size: 9px;
+  padding: 3px 9px;
+  margin-top: 12px;
+  margin-right: 6px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 800;
+  border: 1px solid currentColor;
+  background: transparent;
 }
 
-.tag-keep { background: #e0f4e6; color: #3d8550; }
-.tag-reduce { background: #fdedd6; color: #a06b1f; }
-.tag-discard { background: #fde2e2; color: #a83838; }
-.tag-empty { background: #ece5e9; color: #7a6a72; }
-.tag-buy { background: #e2edf8; color: #35618f; }
-.tag-maybe { background: #faf0d8; color: #8f6b1f; }
-.tag-skip { background: #f5e6e6; color: #8f4a4a; }
+.tag-keep { color: #4e7a5a; }
+.tag-reduce { color: var(--gold); }
+.tag-discard { color: #a04b43; }
+.tag-empty { color: var(--ink-mute); }
+.tag-buy { color: #4a6b8a; }
+.tag-maybe { color: var(--gold); }
+.tag-skip { color: #a04b43; }
 
-/* ===== Guides (Akkordeon) ===== */
+/* Listen-Überschriften (Einkaufszettel, Regal-Check) */
+.list-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--rose);
+  margin: 26px 0 12px;
+}
+
+.list-heading::before, .list-heading::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid var(--line);
+}
+
+.list-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14.5px;
+  color: var(--ink-mute);
+  text-align: center;
+  margin: -4px 0 14px;
+}
+
+/* ===== Guides (Akkordeon-Register) ===== */
 .week-day {
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(179, 69, 104, 0.1);
-  border-radius: 18px;
-  margin-bottom: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(179, 69, 104, 0.05);
+  border: 1px solid var(--line);
+  margin-bottom: -1px;
+  background: transparent;
 }
 
-.week-day.open {
-  border-color: #b34568;
-  box-shadow: 0 4px 20px rgba(179, 69, 104, 0.15);
-}
+.week-day.open { border-color: var(--rose-soft); position: relative; z-index: 1; }
 
 .week-day-header {
-  padding: 14px 16px;
-  background: rgba(250, 238, 242, 0.5);
+  padding: 15px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  gap: 12px;
 }
 
-.week-day.open .week-day-header {
-  background: linear-gradient(135deg, #f6dbe4, #efc6d4);
+.week-day.open .week-day-header { background: var(--blush); }
+
+.guide-no {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--gold);
+  margin-right: 10px;
 }
 
 .week-day-name {
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 700;
-  font-size: 15px;
-  color: #3d2438;
-  font-family: 'Fraunces', serif;
+  font-size: 18.5px;
+  color: var(--ink);
+  line-height: 1.2;
 }
-
-.week-day.open .week-day-name { color: #40222f; }
 
 .week-day-task {
-  font-size: 11px;
-  color: #b34568;
-  letter-spacing: 1px;
+  font-size: 9px;
+  color: var(--ink-mute);
+  letter-spacing: 2px;
   text-transform: uppercase;
-  font-weight: 500;
-  margin-top: 2px;
+  font-weight: 700;
+  margin-top: 3px;
 }
 
-.week-day.open .week-day-task { color: #5d2a3e; }
+.week-day.open .week-day-task { color: var(--rose); }
 
-.week-day-body {
-  padding: 16px;
-  display: none;
+.acc-arrow {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--rose-soft);
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
+.week-day-body { padding: 4px 16px 16px; display: none; }
 .week-day.open .week-day-body { display: block; }
 
 .guide-intro {
-  font-size: 13px;
-  color: #6b4d5c;
-  line-height: 1.55;
-  padding: 4px 2px 10px;
-  border-bottom: 1px solid rgba(179, 69, 104, 0.1);
+  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
+  font-size: 15.5px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  padding: 10px 0 12px;
+  border-bottom: 1px solid var(--line-soft);
 }
 
 /* ===== Frisuren ===== */
 .hairstyle-section-title {
-  font-family: 'Fraunces', serif;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 21px;
-  color: #7d3450;
-  margin: 24px 0 12px;
+  font-size: 22px;
   font-weight: 600;
-  letter-spacing: 0;
+  color: var(--ink);
+  margin: 26px 0 4px;
 }
 
 .hairstyle-section-title:first-child { margin-top: 4px; }
 
+.hairstyle-section-title::before, .hairstyle-section-title::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid var(--line);
+}
+
 .hairstyle {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(179, 69, 104, 0.1);
-  border-radius: 20px;
-  padding: 16px;
-  margin-bottom: 12px;
-  box-shadow: 0 2px 12px rgba(179, 69, 104, 0.05);
+  border-bottom: 1px solid var(--line-soft);
+  padding: 16px 2px;
 }
 
 .hairstyle-header {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 8px;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
 }
 
 .hairstyle-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ffe5ee, #ffc8dc);
-  border: 1.5px solid #b34568;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Fraunces', serif;
-  font-size: 14px;
-  font-weight: 700;
-  color: #8e3050;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--gold);
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(179, 69, 104, 0.15);
+  white-space: nowrap;
 }
 
 .hairstyle-name {
-  font-family: 'Fraunces', serif;
-  font-size: 16px;
-  color: #3d2438;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  color: var(--ink);
   font-weight: 700;
+  line-height: 1.2;
 }
 
 .hairstyle-when {
-  font-size: 11px;
-  color: #b34568;
-  letter-spacing: 1px;
+  font-size: 9px;
+  color: var(--rose);
+  letter-spacing: 1.8px;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 700;
   margin-top: 2px;
 }
 
 .hairstyle-desc {
   font-size: 13px;
-  color: #6b4d5c;
-  line-height: 1.5;
+  color: var(--ink-soft);
+  line-height: 1.55;
 }
 
 /* ===== Reset Button ===== */
 .reset-btn {
-  background: linear-gradient(135deg, #f7dce3, #f3cdd9);
-  border: 1px solid rgba(179, 69, 104, 0.2);
-  color: #8e3050;
-  padding: 12px 18px;
-  border-radius: 14px;
+  background: transparent;
+  border: 1px solid var(--ink-mute);
+  color: var(--ink-soft);
+  padding: 11px 18px;
   font-family: inherit;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
   cursor: pointer;
   margin-top: 14px;
   width: 100%;
   text-transform: uppercase;
-  transition: all 0.2s;
 }
 
-.reset-btn:active {
-  background: linear-gradient(135deg, #f3cdd9, #eec0cd);
-  transform: scale(0.98);
-}
+.reset-btn:active { background: var(--blush); }
 
 /* ===== Empty State ===== */
 .empty {
   text-align: center;
   padding: 50px 20px;
-  color: #c4a3b0;
-  font-size: 13px;
+  color: var(--ink-mute);
+  font-size: 16px;
   font-style: italic;
-  font-family: 'Fraunces', serif;
+  font-family: 'Cormorant Garamond', serif;
 }
 
-.fade-in { animation: fadeIn 0.3s ease-out; }
+.fade-in { animation: fadeIn 0.25s ease-out; }
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .fade-in { animation: none; }
+}
+
 .step-desc strong, .product-desc strong, .card p strong {
-  color: #b34568;
-  font-weight: 600;
+  color: var(--rose);
+  font-weight: 700;
 }
 </style>
 </head>
 <body>
-
-<div class="sparkles" id="sparkles"></div>
 
 <div class="app">
   <header class="header">
@@ -686,51 +623,6 @@ a { color: #b34568; text-decoration: none; }
 </div>
 
 <script>
-// =========================================
-// SPARKLES (deko)
-// =========================================
-
-function generateSparkles() {
-  const container = document.getElementById('sparkles');
-  if (!container) return;
-
-  const symbols = [
-    '✦', '✧', '⋆', '✦', '✧', '⋆',
-    '♡',
-    '❀', '✿'
-  ];
-  const sizes = ['tiny', 'small', 'medium', 'large'];
-  const colors = ['', '', '', 'gold', 'lilac', 'rose'];
-  const count = 22;
-
-  for (let i = 0; i < count; i++) {
-    const s = document.createElement('span');
-    const symbol = symbols[Math.floor(Math.random() * symbols.length)];
-    const size = sizes[Math.floor(Math.random() * sizes.length)];
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    const top = Math.random() * 100;
-    const left = Math.random() * 100;
-    const delay = Math.random() * 5;
-    const duration = 3 + Math.random() * 5;
-    const startOpacity = 0.08 + Math.random() * 0.12;
-    const peakOpacity = 0.22 + Math.random() * 0.2;
-    const rotate = Math.floor(Math.random() * 360);
-
-    s.className = 'sparkle ' + size + (color ? ' ' + color : '');
-    s.textContent = symbol;
-    s.style.top = top + '%';
-    s.style.left = left + '%';
-    s.style.animationDelay = delay + 's';
-    s.style.animationDuration = duration + 's';
-    s.style.setProperty('--start-opacity', startOpacity);
-    s.style.setProperty('--peak-opacity', peakOpacity);
-    s.style.setProperty('--rotation', rotate + 'deg');
-    container.appendChild(s);
-  }
-}
-
-generateSparkles();
-
 // =========================================
 // DATEN
 // =========================================
@@ -1202,7 +1094,7 @@ function render() {
 }
 
 function renderRoutines() {
-  const guidesHtml = GUIDES.map(g => {
+  const guidesHtml = GUIDES.map((g, gi) => {
     const isOpen = !!state.openGuides[g.id];
     const stepsHtml = g.steps.map(s => {
       const done = isStepDone(s.id);
@@ -1221,10 +1113,10 @@ function renderRoutines() {
       <div class="week-day ${isOpen ? 'open' : ''}">
         <div class="week-day-header" onclick="toggleGuide('${g.id}')">
           <div>
-            <div class="week-day-name">${escapeHtml(g.title)}</div>
+            <div class="week-day-name"><span class="guide-no">N&ordm; ${String(gi + 1).padStart(2, '0')}</span>${escapeHtml(g.title)}</div>
             <div class="week-day-task">${escapeHtml(g.tag)}</div>
           </div>
-          <div style="color:#b57690;font-size:18px">${isOpen ? '▴' : '▾'}</div>
+          <div class="acc-arrow">${isOpen ? '&minus;' : '+'}</div>
         </div>
         <div class="week-day-body">
           <div class="guide-intro">${escapeHtml(g.intro)}</div>
@@ -1260,7 +1152,7 @@ function renderRoutines() {
       <p style="font-size:13px"><strong>4. Maske alle 5-6 Wäschen, 5-10 Min, danach kurz Conditioner</strong> — entspricht deinem Glanz-Masken-Rhythmus im Pflege-Wäsche-Guide.</p>
       <p style="font-size:13px"><strong>5. Silikone & Sulfate sind nicht böse</strong> — er sagt: die Dosis macht das Gift. Genau so ist deine Routine gebaut: Silikon-Glanzmasken ja, aber mit Klärungs-Reset.</p>
       <p style="font-size:13px"><strong>6. Öl nach jeder Wäsche</strong> — dein Sérum-Finish. Und: dünne Haargummis meiden — Spiral-Gummi oder Seiden-Scrunchie hast du schon im Einsatz.</p>
-      <p style="font-size:12px;color:#8b6373;font-style:italic">Hinweis: Dejan Garz verkauft seit 2025 eine eigene Pflegeserie („The Foundation", Öl „The Britney") — inzwischen auch bei Rossmann. Bei seinen neueren Produktempfehlungen also im Hinterkopf behalten, dass er Eigeninteresse hat. Seine Grundregeln oben sind davon unabhängig und fachlich solide. Seine Marken-Tipps, die zu deinem Haar passen, findest du im Produkte-Tab unter „Einkaufszettel — Dejan-Garz-Tipps".</p>
+      <p style="font-size:12px;color:var(--ink-mute);font-style:italic">Hinweis: Dejan Garz verkauft seit 2025 eine eigene Pflegeserie („The Foundation", Öl „The Britney") — inzwischen auch bei Rossmann. Bei seinen neueren Produktempfehlungen also im Hinterkopf behalten, dass er Eigeninteresse hat. Seine Grundregeln oben sind davon unabhängig und fachlich solide. Seine Marken-Tipps, die zu deinem Haar passen, findest du im Produkte-Tab unter „Einkaufszettel — Dejan-Garz-Tipps".</p>
     </div>
   `;
 }
@@ -1304,17 +1196,17 @@ function productListHtml() {
     : filtered.map(productCard).join('');
 
   if (shopping.length > 0) {
-    html += `<h3 style="font-size:12px;color:#35618f;letter-spacing:1.5px;text-transform:uppercase;margin:18px 0 10px;font-weight:600">Einkaufszettel — passende Nachkäufe (INCI-geprüft)</h3>`;
+    html += `<h3 class="list-heading">Einkaufszettel · INCI-geprüft</h3>`;
     html += shopping.map(productCard).join('');
   }
   if (dejan.length > 0) {
-    html += `<h3 style="font-size:12px;color:#35618f;letter-spacing:1.5px;text-transform:uppercase;margin:18px 0 10px;font-weight:600">Einkaufszettel — Dejan-Garz-Tipps bei Rossmann</h3>`;
+    html += `<h3 class="list-heading">Dejan-Garz-Tipps bei Rossmann</h3>`;
     html += dejan.map(productCard).join('');
   }
   const shelf = shelfFiltered;
   if (shelf.length > 0) {
-    html += `<h3 style="font-size:12px;color:#565e96;letter-spacing:1.5px;text-transform:uppercase;margin:18px 0 4px;font-weight:600">Regal-Check — dein Supermarkt-Foto</h3>`;
-    html += `<p style="font-size:12px;color:#8b6373;margin-bottom:10px;font-style:italic">Alle Linien von deinem Foto (Juli 2026), INCI-recherchiert. Rezepturen ändern sich — im Zweifel zählt das Etikett.</p>`;
+    html += `<h3 class="list-heading">Regal-Check · Dein Supermarkt-Foto</h3>`;
+    html += `<p class="list-note">Alle Linien von deinem Foto (Juli 2026), INCI-recherchiert. Rezepturen ändern sich — im Zweifel zählt das Etikett.</p>`;
     html += shelf.map(productCard).join('');
   }
   return html;
@@ -1340,7 +1232,7 @@ function renderHairstyles() {
       html += `
         <div class="hairstyle">
           <div class="hairstyle-header">
-            <div class="hairstyle-icon">${h.icon}</div>
+            <div class="hairstyle-icon">N&ordm; ${h.icon}</div>
             <div>
               <div class="hairstyle-name">${escapeHtml(h.name)}</div>
               <div class="hairstyle-when">${escapeHtml(h.when)}</div>

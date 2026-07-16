@@ -389,6 +389,8 @@ a { color: #d4527a; text-decoration: none; }
 .product.discard { border-left-color: #d96868; }
 .product.empty { border-left-color: #b0a3ab; }
 .product.buy { border-left-color: #8fb3d9; }
+.product.maybe { border-left-color: #d9b45c; }
+.product.skip { border-left-color: #c98f8f; }
 
 .product-header {
   display: flex;
@@ -421,6 +423,7 @@ a { color: #d4527a; text-decoration: none; }
 .product-store.mercadona { background: #e0f4e6; color: #3d8550; }
 .product-store.rossmann { background: #fde2e7; color: #b3375f; }
 .product-store.bali { background: #f0e0f4; color: #8a4d9c; }
+.product-store.super { background: #e8e9f4; color: #565e96; }
 
 .product-fn {
   font-size: 12px;
@@ -474,6 +477,8 @@ a { color: #d4527a; text-decoration: none; }
 .tag-discard { background: #fde2e2; color: #a83838; }
 .tag-empty { background: #ece5e9; color: #7a6a72; }
 .tag-buy { background: #e2edf8; color: #35618f; }
+.tag-maybe { background: #faf0d8; color: #8f6b1f; }
+.tag-skip { background: #f5e6e6; color: #8f4a4a; }
 
 /* ===== Guides (Akkordeon) ===== */
 .week-day {
@@ -960,6 +965,81 @@ const SHOPPING = [
     inci: 'Enthält SLES (bei 1×/Woche als Matizador vertretbar) + zwei leichte wasserdispergierbare Silikon-Quats (kein klassisches Buildup). Proteinfrei, mit Panthenol.' }
 ];
 
+// Regal-Check: Nicoles Supermarkt-Foto (Spanien, Juli 2026) — alle sichtbaren Linien INCI-recherchiert
+const SHELF = [
+  // ===== KAUFEN =====
+  { id: 's1', name: 'L\'Oréal Elvive Hidra Hialurónico Acondicionador', store: 'super', cat: 'conditioner', fn: 'DEIN LEERER CONDITIONER — steht hier!', verdict: 'buy',
+    desc: 'Der wichtigste Fund im Regal: genau der Conditioner, der bei dir leer ist. Direkt nachkaufen, wenn du beim Bewährten bleiben willst.',
+    inci: 'Proteinfrei, Hyaluron + Glycerin. Enthält Dimethicone (Position 3) + Amodimethicone → funktioniert gut, braucht aber deinen Klärungs-Reset.' },
+  { id: 's2', name: 'Elvive Color Vive Violeta Mascarilla', store: 'super', cat: 'mask', fn: 'Anti-Gelbstich-Sieger im Regal', verdict: 'buy',
+    desc: 'Die beste Antwort auf deine Gelbstich-Lücke: tont beim Pflegen, ohne das Haar zu strapazieren. Erst 3-5 Min testen — deine porösen Längen ziehen Pigment schnell (sonst Lilastich). Schonender als jedes Violett-Shampoo.',
+    inci: 'Silikonfrei! Violett- + Rosa-Pigment (Acid Violet 43 + Acid Red 52), kationische Pflege-Basis, proteinfrei, keine Sulfate. Mineralöl versiegelt gegen Frizz, baut nicht auf.' },
+  { id: 's3', name: 'Elvive Bond Repair Champú + Acondicionador', store: 'super', cat: 'shampoo', fn: 'Repair-Duo für blondierte Längen', verdict: 'buy',
+    desc: 'Gleiche Formel wie die deutsche Elvital-Version, die auch Dejan Garz empfiehlt — hier direkt verfügbar. Shampoo 1-2× pro Woche im Wechsel mit Curl Perfect, Conditioner dazu.',
+    inci: 'Shampoo: silikon- und proteinfrei, Citronensäure-Bond-Komplex, ohne SLES/SLS. Conditioner: mit Dimethicone + Amodimethicone (Klär-Rhythmus). Ehrlich gesagt: „Bonding" per Citronensäure ist schwächer belegt als echte Bond-Builder — trotzdem das beste Repair-Duo im Regal.' },
+  { id: 's4', name: 'Garnier Hair Food Mascarillas (Aloe, Sandía, Papaya, Banana, Coco)', store: 'super', cat: 'mask', fn: 'Silikonfreie Masken-Familie · ~4-5 €', verdict: 'buy',
+    desc: 'Die ganze Hair-Food-Masken-Wand ist für dich geeignet — alle Sorten haben dieselbe silikonfreie Basis. Deine Reihenfolge: Aloe oder Sandía (am leichtesten, Sandía extra für feines Haar) als Standard; Papaya/Banana (mit Shea, reichhaltiger) für durstige Phasen; Coco (öllastigste) nur sparsam.',
+    inci: 'Alle: silikonfrei, proteinfrei, sulfatfrei, keine trocknenden Alkohole. 3in1: als Maske, Conditioner oder Leave-in für die Spitzen.' },
+
+  // ===== OKAY MIT EINSCHRÄNKUNG =====
+  { id: 's5', name: 'Elvive Color Vive Violeta Champú', store: 'super', cat: 'shampoo', fn: 'Nur wenn zusätzlich zur Maske gewünscht', verdict: 'maybe',
+    desc: 'Tont zuverlässig, aber mit der härtesten Tensidbasis im Regal. Wenn du nur EIN Violett-Produkt kaufst: nimm die Maske. Falls doch: max. 1× pro Woche, nicht in den Längen aufschäumen, danach immer Pflege.',
+    inci: 'SLES + SLS (doppelt sulfathaltig — hart für aufgehellte Längen) + etwas Amodimethicone. Violett-Pigment Acid Violet 43, proteinfrei.' },
+  { id: 's6', name: 'Pantene 3 Minute Miracle Rizos Definidos', store: 'super', cat: 'conditioner', fn: 'Nur mit striktem Klär-Rhythmus', verdict: 'maybe',
+    desc: 'Feuchtigkeitsspendend und proteinfrei — aber das Amino-Silikon zieht genau auf deine porösen, aufgehellten Stellen und ist die hartnäckigste Silikonklasse. Fühlt sich erst toll an, kippt nach Wochen in strohig-belegt. Bei Hitzestyling auf Blondiertem kann es zudem Gelbstich fördern.',
+    inci: 'Bis-Aminopropyl Dimethicone (Amino-Silikon, stark haftend, schwer entfernbar), sonst proteinfrei, keine Sulfate. Nur mit wöchentlicher Klärwäsche.' },
+  { id: 's7', name: 'Pantene Ondas Naturales Crema de Peinado', store: 'super', cat: 'leavein', fn: 'Styling-Creme · sehr sparsam', verdict: 'maybe',
+    desc: 'Die Pumpflaschen im Regal sind diese Styling-Creme (ein „Ondas"-Shampoo gibt es in Spanien nicht). Für deine Wellen die richtige der beiden Pantene-Cremes — aber erbsengroß und nur mit Klär-Rhythmus.',
+    inci: 'Dimethicone (filmbildend) in einem Leave-in = bleibt zu 100% im Haar bis zur nächsten Wäsche. Proteinfrei, mit Panthenol + Spur Arganöl.' },
+  { id: 's8', name: 'Garnier Adiós Daños Mascarilla (orange)', store: 'super', cat: 'mask', fn: 'Protein-Shot · max. alle 3-4 Wochen', verdict: 'maybe',
+    desc: 'Die einzige sinnvolle Protein-Option im Regal: silikonfrei, mit Marula-Öl. Für deine aufgehellten Längen alle 3-4 Wochen als gezielter Aufbau-Impuls okay. Wird das Haar strohig-steif: sofort pausieren.',
+    inci: 'Silikonfrei, sulfatfrei. „Keratin" ist Marketing — tatsächlich Weizen-/Soja-/Mais-Protein + Arginin. Nicht mit anderen Proteinprodukten (z.B. Gliss, Fix-3-Gel) kombinieren.' },
+  { id: 's9', name: 'Garnier Vitamin Force Biotina 10-en-1 (Leave-in-Creme)', store: 'super', cat: 'leavein', fn: 'Leichtes Leave-in mit Silikon-Haken', verdict: 'maybe',
+    desc: 'Proteinfrei und leicht — aber Amodimethicone in einem Produkt, das im Haar bleibt, ist die Buildup-kritischste Kombination. Deine silikonfreien Leave-ins (ISANA, Alterra, Curl Perfect sin aclarado) passen besser. Biotin wirkt äußerlich übrigens gar nicht — reines Marketing.',
+    inci: 'Kein Protein, keine trocknenden Alkohole, aber Amodimethicone (filmbildend) im Leave-in → nur mit Klärwäsche alle 1-2 Wochen.' },
+  { id: 's10', name: 'Garnier Hair Food Champús (Papaya/Banana)', store: 'super', cat: 'shampoo', fn: 'Okay, aber härter als deine', verdict: 'maybe',
+    desc: 'Silikon- und proteinfrei wie die Masken — aber mit SLS als Haupttensid für deine aufgehellten Längen zu entfettend als Standard. Dein Curl Perfect bleibt besser. Wenn doch: nur den Ansatz waschen.',
+    inci: 'Sodium Lauryl Sulfate (kräftigstes Standard-Sulfat), abgemildert durch Zuckertenside. Silikonfrei, proteinfrei.' },
+  { id: 's11', name: 'babaria Champús (Ondas y Rizos / Hydra & Nutritive)', store: 'super', cat: 'shampoo', fn: 'Funktional okay, kleine Haken', verdict: 'maybe',
+    desc: 'Beide silikon-buildup-unkritisch und proteinfrei, aber SLES-Basis und der Konservierer MCI/MI (bekanntes Kontaktallergen — bei empfindlicher Kopfhaut meiden). Kein Vorteil gegenüber deinem Curl Perfect.',
+    inci: 'Ondas y Rizos: silikonfrei, SLES + MCI/MI. Hydra & Nutritive: nur wasserlösliches Silikon (spült aus), SLES + Cocamide DEA + MCI/MI.' },
+  { id: 's12', name: 'babaria Nutritive & Repair Mascarilla', store: 'super', cat: 'mask', fn: 'Brauchbare Glanz-Maske', verdict: 'maybe',
+    desc: 'Leicht, feuchtigkeitsspendend, proteinfrei — mit Argan + Marula. Der Haken: ein filmbildendes Phenyl-Silikon weit vorn. Mit deinem Klär-Rhythmus brauchbar, aber die Garnier Hair Foods können dasselbe ohne Silikon.',
+    inci: 'Trimethylsiloxyphenyl Dimethicone (filmbildend, Position 4) + wasserlösliches PEG-Silikon. Proteinfrei, MCI/MI-Konservierung.' },
+
+  // ===== STEHEN LASSEN =====
+  { id: 's13', name: 'Pantene Doma Crema (Rizos/Caracoles)', store: 'super', cat: 'leavein', fn: 'Falsche Zielgruppe', verdict: 'skip',
+    desc: 'Für dicke 3er-Locken gebaut („doma" = bändigt) — auf deinen feinen 2a-2b-Wellen hängt die schwere Fettalkohol-Silikon-Creme alles aus und der Ansatz strähnt schnell.',
+    inci: 'Dimethicone-Leave-in auf schwerer Cremebasis; ältere Listungen zeigen noch Parabene. Redundant zur Ondas-Variante.' },
+  { id: 's14', name: 'Pantene Coconut Infused Oil Spray', store: 'super', cat: 'oil', fn: 'Kokos-Kostüm, kein Öl', verdict: 'skip',
+    desc: 'Das Kokosöl steht an LETZTER Stelle der INCI — das ist ein parfümiertes Silikonserum, kein Pflege-Öl. Spendet null Feuchtigkeit. Dein Sérum Curl Perfect ist in jeder Hinsicht besser.',
+    inci: 'Cyclopentasiloxane + Dimethiconol (filmbildend) + Alcohol Denat an Position 3, Kokosöl nur als Duft-Alibi ganz hinten.' },
+  { id: 's15', name: 'Pantene Nutri-Plex Rizos Definidos Champú', store: 'super', cat: 'shampoo', fn: 'Wäscht und beschichtet zugleich', verdict: 'skip',
+    desc: 'Auch Pantenes „Curly"-Shampoo fährt das alte System: SLES wäscht hart UND lagert gleichzeitig Silikon ab — derselbe Konstruktionsfehler wie bei deinem aussortierten Hydra-Shampoo.',
+    inci: 'SLES + Dimethicone/Dimethiconol via kationischem Guar. Die sulfatfreien Pantene-Curl-Linien (USA) gibt es in Spanien nicht.' },
+  { id: 's16', name: 'Elvive Dream Long (ganze Linie)', store: 'super', cat: 'mask', fn: 'Protein-Overload-Risiko', verdict: 'skip',
+    desc: 'Jedes Produkt der Linie enthält 3-4 hydrolysierte Proteine — zusammen mit anderen Produkten schnell zu viel für dein feines Haar (wird strohig-steif). Deckt außerdem keine Lücke: Länge schützt du besser mit Bond Repair + sanftem Umgang.',
+    inci: 'Shampoo: SLES + hochdosiertes Dimethicone + 3 Proteine. Maske/Leave-in: Amodimethicone + 4 Proteine.' },
+  { id: 's17', name: 'Elvive Aceite Extraordinario', store: 'super', cat: 'oil', fn: 'Doppelt vorhanden', verdict: 'skip',
+    desc: 'Solides Produkt, aber im Kern ein Silikonserum — exakt die Rolle, die deine Glanz-Masken + dein Sérum schon besetzen. Kein Mehrwert, nur mehr Buildup.',
+    inci: 'Cyclopentasiloxane (flüchtig) + Dimethiconol (filmbildend); Pflanzenöle nur in Deko-Dosierung.' },
+  { id: 's18', name: 'Elvive Total Repair 5 Champú', store: 'super', cat: 'shampoo', fn: 'Härteste Formel im Regal', verdict: 'skip',
+    desc: 'SLES + SLS + schwerer Dimethicone-Film: entzieht deinen aufgehellten Längen Feuchtigkeit und beschichtet gleichzeitig. Die älteste Formel-Generation — Bond Repair macht Repair moderner und milder.',
+    inci: 'Doppelt sulfathaltig + Dimethicone + etwas Weizenprotein.' },
+  { id: 's19', name: 'Elvive Color Vive Mascarilla (rote Linie)', store: 'super', cat: 'mask', fn: 'Kann nichts, was du nicht hast', verdict: 'skip',
+    desc: 'Standard-Farbschutzmaske ohne Toning-Pigment (die rote Farbe ist Produktfärbung). Deine Feuchtigkeits- und Glanz-Pflege deckt das komplett ab.',
+    inci: 'Filmbildende Silikone (Amodimethicone/Dimethicone), UV-Filter in Rinse-off praktisch wirkungslos. Nur teilverifiziert.' },
+  { id: 's20', name: 'Garnier Liso & Brillo / Hair Bomb Keratina (grüne Linie)', store: 'super', cat: 'mask', fn: 'Zieht Wellen platt', verdict: 'skip',
+    desc: 'Die ganze Linie ist auf Glätten per Protein + Silikonfilm gebaut — das Gegenteil von dem, was deine Wellen brauchen. Der Wellenschwung geht verloren, das Protein stapelt sich.',
+    inci: 'Shampoo: SLES + Amodimethicone + Protein-Trio in jeder Wäsche. Maske: silikonfrei, aber ebenfalls Protein-Trio.' },
+  { id: 's21', name: 'Revlon Flex Keratina (650-ml-Linie)', store: 'super', cat: 'shampoo', fn: 'Budget-Falle', verdict: 'skip',
+    desc: 'Billig, aber: echtes Keratin in JEDER Wäsche + kräftiges SLES + Konservierung auf 90er-Jahre-Niveau (Parabene, MCI/MI) und null Feuchtigkeitsleistung. Die Hair-Food-Produkte sind die bessere Budget-Wahl.',
+    inci: 'SLES + Hydrolyzed Keratin + Methyl-/Ethylparaben + MCI/MI.' },
+  { id: 's22', name: 'babaria Ondas y Rizos Mascarilla', store: 'super', cat: 'mask', fn: 'INCI nicht verifizierbar', verdict: 'skip',
+    desc: 'Klingt passend, aber die Inhaltsstoffliste war online nicht verlässlich zu verifizieren (alle Datenbanken zeigen eine offensichtlich falsche Liste). Wenn sie dich interessiert: Etikett im Laden lesen — kritische Checks: Amodimethicone/Dimethicone? Hydrolyzed Protein?',
+    inci: 'Nicht verifizierbar — lieber die verifizierten Garnier Hair Foods daneben nehmen.' }
+];
+
 const PRODUCT_CATEGORIES = {
   all: 'Alle',
   shampoo: 'Shampoo',
@@ -1189,8 +1269,8 @@ function renderRoutines() {
 }
 
 function productCard(p) {
-  const verdictLabel = { keep: 'Behalten', reduce: 'Reduzieren', discard: 'Aussortieren', empty: 'Leer', buy: 'Nachkauf-Tipp' }[p.verdict];
-  const storeLabel = { mercadona: 'Mercadona', rossmann: 'Rossmann', bali: 'Bali Curls' }[p.store];
+  const verdictLabel = { keep: 'Behalten', reduce: 'Reduzieren', discard: 'Aussortieren', empty: 'Leer', buy: 'Kaufen lohnt sich', maybe: 'Okay mit Einschränkung', skip: 'Stehen lassen' }[p.verdict];
+  const storeLabel = { mercadona: 'Mercadona', rossmann: 'Rossmann', bali: 'Bali Curls', super: 'Supermarkt' }[p.store];
   return `
     <div class="product ${p.verdict}">
       <div class="product-header">
@@ -1220,8 +1300,9 @@ function productListHtml() {
   const filtered = filterProducts(PRODUCTS);
   const shopping = filterProducts(SHOPPING);
   const dejan = filterProducts(DEJAN_SHOPPING);
+  const shelfFiltered = filterProducts(SHELF);
 
-  let html = filtered.length === 0 && shopping.length === 0 && dejan.length === 0
+  let html = filtered.length === 0 && shopping.length === 0 && dejan.length === 0 && shelfFiltered.length === 0
     ? `<div class="empty">Keine Produkte gefunden.</div>`
     : filtered.map(productCard).join('');
 
@@ -1232,6 +1313,12 @@ function productListHtml() {
   if (dejan.length > 0) {
     html += `<h3 style="font-size:12px;color:#35618f;letter-spacing:1.5px;text-transform:uppercase;margin:18px 0 10px;font-weight:600">Einkaufszettel — Dejan-Garz-Tipps bei Rossmann</h3>`;
     html += dejan.map(productCard).join('');
+  }
+  const shelf = shelfFiltered;
+  if (shelf.length > 0) {
+    html += `<h3 style="font-size:12px;color:#565e96;letter-spacing:1.5px;text-transform:uppercase;margin:18px 0 4px;font-weight:600">Regal-Check — dein Supermarkt-Foto</h3>`;
+    html += `<p style="font-size:12px;color:#8b6373;margin-bottom:10px;font-style:italic">Alle Linien von deinem Foto (Juli 2026), INCI-recherchiert. Rezepturen ändern sich — im Zweifel zählt das Etikett.</p>`;
+    html += shelf.map(productCard).join('');
   }
   return html;
 }

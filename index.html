@@ -1025,7 +1025,9 @@ const HAIRSTYLE_SECTIONS = {
 
 let state = {
   view: 'routines',
+  routineTab: 'wash', // 'wash' | 'between' | 'wissen'
   productTab: 'bath', // 'bath' | 'shopping' | 'shelf'
+  hairTab: 'schlafen',
   productFilter: 'all',
   productSearch: '',
   checkedSteps: {}, // { 'wq-1_2026-07-15': true }
@@ -1111,7 +1113,7 @@ function render() {
 
   if (state.view === 'routines') {
     headerTitle.textContent = 'Routinen';
-    headerSubtitle.textContent = 'Dein Haar-Guide';
+    headerSubtitle.textContent = { wash: 'Wäsche & Styling', between: 'Zwischen den Wäschen', wissen: 'Dein Haar-Wissen' }[state.routineTab];
     content.innerHTML = renderRoutines();
   } else if (state.view === 'products') {
     headerTitle.textContent = 'Produkte';
@@ -1120,73 +1122,102 @@ function render() {
     setupProductHandlers();
   } else if (state.view === 'hairstyles') {
     headerTitle.textContent = 'Frisuren';
-    headerSubtitle.textContent = `${hairstyleCount()} Looks`;
+    headerSubtitle.textContent = `${HAIRSTYLES[state.hairTab].length} von ${hairstyleCount()} Looks · ${HAIRSTYLE_SECTIONS[state.hairTab]}`;
     content.innerHTML = renderHairstyles();
   }
 }
 
-function renderRoutines() {
-  const guidesHtml = GUIDES.map((g, gi) => {
-    const isOpen = !!state.openGuides[g.id];
-    const stepsHtml = g.steps.map(s => {
-      const done = isStepDone(s.id);
-      return `
-        <div class="step ${done ? 'done' : ''}" data-step="${s.id}">
-          <div class="checkbox"></div>
-          <div class="content-step">
-            <div class="step-title">${escapeHtml(s.title)}</div>
-            <div class="step-desc">${escapeHtml(s.desc)}</div>
-          </div>
-        </div>
-      `;
-    }).join('');
+const ROUTINE_TABS = {
+  wash: ['wash-quick', 'wash-care', 'style-waves', 'style-blowout'],
+  between: ['refresh', 'clarify']
+};
 
+function segRow(pairs, attr, active) {
+  const cells = pairs.map(([k, label]) => `<button class="${active === k ? 'active' : ''}" data-${attr}="${k}">${label}</button>`).join('');
+  return `<div class="seg">${cells}</div>`;
+}
+
+function guideHtml(g) {
+  const gi = GUIDES.indexOf(g);
+  const isOpen = !!state.openGuides[g.id];
+  const stepsHtml = g.steps.map(st => {
+    const done = isStepDone(st.id);
     return `
-      <div class="week-day ${isOpen ? 'open' : ''}">
-        <div class="week-day-header" onclick="toggleGuide('${g.id}')">
-          <div>
-            <div class="week-day-name"><span class="guide-no">N&ordm; ${String(gi + 1).padStart(2, '0')}</span>${escapeHtml(g.title)}</div>
-            <div class="week-day-task">${escapeHtml(g.tag)}</div>
-          </div>
-          <div class="acc-arrow">${isOpen ? '&minus;' : '+'}</div>
-        </div>
-        <div class="week-day-body">
-          <div class="guide-intro">${escapeHtml(g.intro)}</div>
-          ${stepsHtml}
+      <div class="step ${done ? 'done' : ''}" data-step="${st.id}">
+        <div class="checkbox"></div>
+        <div class="content-step">
+          <div class="step-title">${escapeHtml(st.title)}</div>
+          <div class="step-desc">${escapeHtml(st.desc)}</div>
         </div>
       </div>
     `;
   }).join('');
 
   return `
+    <div class="week-day ${isOpen ? 'open' : ''}">
+      <div class="week-day-header" onclick="toggleGuide('${g.id}')">
+        <div>
+          <div class="week-day-name"><span class="guide-no">N&ordm; ${String(gi + 1).padStart(2, '0')}</span>${escapeHtml(g.title)}</div>
+          <div class="week-day-task">${escapeHtml(g.tag)}</div>
+        </div>
+        <div class="acc-arrow">${isOpen ? '&minus;' : '+'}</div>
+      </div>
+      <div class="week-day-body">
+        <div class="guide-intro">${escapeHtml(g.intro)}</div>
+        ${stepsHtml}
+      </div>
+    </div>
+  `;
+}
+
+function renderRoutines() {
+  const seg = segRow([['wash', 'Waschtag'], ['between', 'Zwischendurch'], ['wissen', 'Wissen']], 'rtab', state.routineTab);
+
+  if (state.routineTab === 'wissen') {
+    return seg + `
     <div class="today-hero">
       <div class="day-label">Dein Haar</div>
       <div class="day-name">Feine Wellen, große Mähne</div>
       <div class="day-task">2a-2b Wellen · feines bis mittleres Haar in hoher Dichte · aufgehellte Längen mit erhöhter Porosität. Braucht: Feuchtigkeit, leichte Produkte, Hitzeschutz — und Silikone nur mit Klär-Rhythmus.</div>
     </div>
 
-    ${guidesHtml}
-
-    <div class="card" style="margin-top:16px">
+    <div class="card">
       <h3>Gut zu wissen</h3>
       <p style="font-size:13px"><strong>Silikone sind nicht gleich Silikone:</strong> Filmbildende (Dimethicone, Amodimethicone, Dimethiconol, Quaternium-80) bleiben im Haar und bauen sich auf — bei feinem Haar hängen die Wellen dann durch. Wasserlösliche (PEG-Dimethicone) spülen sich aus, flüchtige (Cyclopentasiloxane) verdunsten von selbst. Deshalb: Glanz-Masken genießen, aber den Klärungs-Reset ernst nehmen.</p>
       <p style="font-size:13px"><strong>Protein:</strong> Ein bisschen hydrolysiertes Protein kann aufgehelltem Haar sogar helfen — nur stapeln sollte man es nicht. Fühlt sich dein Haar trotz Pflege strohig-steif an, eine Zeit lang proteinfrei pflegen (deine aktuelle Routine ist es fast komplett).</p>
       <p style="font-size:13px"><strong>Kalt ausspülen</strong> ist ein netter Glanz-Bonus, aber kein Wundermittel — wichtiger sind Leave-in, sanftes Trocknen und der kalte Luftstoß am Ende des Föhnens.</p>
-      <button class="reset-btn" onclick="handleReset()">Häkchen von heute zurücksetzen</button>
     </div>
 
     <div class="card">
       <h3>Dejan-Garz-Check</h3>
-      <p style="font-size:13px">Deine Routine deckt sich mit seinen wichtigsten Regeln — hier die Übersicht:</p>
+      <p style="font-size:13px">Deine Routine deckt sich mit seinen wichtigsten Regeln:</p>
       <p style="font-size:13px"><strong>1. Nie mit nassen Haaren schlafen</strong> — sein bekanntester Tipp: nasses Haar ist stark aufgequollen und bricht. Abends waschen? Dann vorher trocken föhnen — oder morgens waschen.</p>
       <p style="font-size:13px"><strong>2. So selten wie möglich waschen</strong> — deine ~2 Wäschen pro Woche passen genau. Shampoo nur an die Kopfhaut, Conditioner nur in die Längen: machst du schon.</p>
-      <p style="font-size:13px"><strong>3. Aufgehelltes Haar föhnen, nicht lufttrocknen</strong> — gilt für deine Längen. Diffusor oder Rundbürste, immer mit Hitzeschutz („Hitzeschutz ist nicht verhandelbar").</p>
-      <p style="font-size:13px"><strong>4. Maske alle 5-6 Wäschen, 5-10 Min, danach kurz Conditioner</strong> — entspricht deinem Glanz-Masken-Rhythmus im Pflege-Wäsche-Guide.</p>
-      <p style="font-size:13px"><strong>5. Silikone & Sulfate sind nicht böse</strong> — er sagt: die Dosis macht das Gift. Genau so ist deine Routine gebaut: Silikon-Glanzmasken ja, aber mit Klärungs-Reset.</p>
-      <p style="font-size:13px"><strong>6. Öl nach jeder Wäsche</strong> — dein Sérum-Finish. Und: dünne Haargummis meiden — Spiral-Gummi oder Seiden-Scrunchie hast du schon im Einsatz.</p>
-      <p style="font-size:12px;color:var(--ink-mute);font-style:italic">Hinweis: Dejan Garz verkauft seit 2025 eine eigene Pflegeserie („The Foundation", Öl „The Britney") — inzwischen auch bei Rossmann. Bei seinen neueren Produktempfehlungen also im Hinterkopf behalten, dass er Eigeninteresse hat. Seine Grundregeln oben sind davon unabhängig und fachlich solide. Seine Marken-Tipps, die zu deinem Haar passen, findest du im Produkte-Tab unter „Einkaufszettel — Dejan-Garz-Tipps".</p>
+      <p style="font-size:13px"><strong>3. Aufgehelltes Haar föhnen, nicht lufttrocknen</strong> — gilt für deine Längen. Diffusor oder Rundbürste, immer mit Hitzeschutz.</p>
+      <p style="font-size:13px"><strong>4. Maske alle 5-6 Wäschen, 5-10 Min, danach kurz Conditioner</strong> — entspricht deinem Glanz-Masken-Rhythmus.</p>
+      <p style="font-size:13px"><strong>5. Silikone &amp; Sulfate sind nicht böse</strong> — die Dosis macht das Gift. Genau so ist deine Routine gebaut: Glanzmasken ja, aber mit Klärungs-Reset.</p>
+      <p style="font-size:13px"><strong>6. Öl nach jeder Wäsche</strong> — dein Sérum-Finish. Und: dünne Haargummis meiden — Spiral-Gummi oder Seiden-Scrunchie nutzt du schon.</p>
+      <p style="font-size:12px;color:var(--ink-mute);font-style:italic">Hinweis: Dejan Garz verkauft seit 2025 eine eigene Pflegeserie („The Foundation") — inzwischen auch bei Rossmann. Seine Grundregeln sind davon unabhängig; seine Marken-Tipps für dich stehen im Einkaufszettel.</p>
     </div>
   `;
+  }
+
+  const ids = ROUTINE_TABS[state.routineTab];
+  const guides = ids.map(id => GUIDES.find(g => g.id === id));
+  let html = seg;
+
+  if (state.routineTab === 'wash') {
+    html += `<h3 class="list-heading">Die Wäsche — wähle eine</h3>`;
+    html += guides.slice(0, 2).map(guideHtml).join('');
+    html += `<h3 class="list-heading">Danach: Styling — wähle einen Weg</h3>`;
+    html += guides.slice(2).map(guideHtml).join('');
+  } else {
+    html += `<p class="list-note">Für alle Tage ohne Wäsche — und den regelmäßigen Reset.</p>`;
+    html += guides.map(guideHtml).join('');
+  }
+
+  html += `<button class="reset-btn" onclick="handleReset()">Häkchen von heute zurücksetzen</button>`;
+  return html;
 }
 
 function productCard(p) {
@@ -1275,24 +1306,30 @@ function renderProducts() {
   `;
 }
 
+const HAIRSTYLE_NOTES = {
+  schlafen: 'Der größte Feind deiner Wellen ist das Baumwollkissen.',
+  alltag: 'Schnelle Looks — die meisten brauchen unter einer Minute.',
+  sport: 'Halt ohne Zug: Haarbruch entsteht durch zu straffe Gummis.',
+  spezial: 'Für Anlässe — und für Rettungen an schwierigen Tagen.'
+};
+
 function renderHairstyles() {
-  let html = '';
-  Object.entries(HAIRSTYLE_SECTIONS).forEach(([key, title]) => {
-    html += `<div class="hairstyle-section-title">${escapeHtml(title)}</div>`;
-    HAIRSTYLES[key].forEach(h => {
-      html += `
-        <div class="hairstyle">
-          <div class="hairstyle-header">
-            <div class="hairstyle-icon">N&ordm; ${h.icon}</div>
-            <div>
-              <div class="hairstyle-name">${escapeHtml(h.name)}</div>
-              <div class="hairstyle-when">${escapeHtml(h.when)}</div>
-            </div>
+  const seg = segRow([['schlafen', 'Schlafen'], ['alltag', 'Alltag'], ['sport', 'Sport'], ['spezial', 'Anlass']], 'htab', state.hairTab);
+  let html = seg;
+  html += `<p class="list-note">${escapeHtml(HAIRSTYLE_NOTES[state.hairTab])}</p>`;
+  HAIRSTYLES[state.hairTab].forEach(h => {
+    html += `
+      <div class="hairstyle">
+        <div class="hairstyle-header">
+          <div class="hairstyle-icon">N&ordm; ${h.icon}</div>
+          <div>
+            <div class="hairstyle-name">${escapeHtml(h.name)}</div>
+            <div class="hairstyle-when">${escapeHtml(h.when)}</div>
           </div>
-          <div class="hairstyle-desc">${escapeHtml(h.desc)}</div>
         </div>
-      `;
-    });
+        <div class="hairstyle-desc">${escapeHtml(h.desc)}</div>
+      </div>
+    `;
   });
   return html;
 }
@@ -1318,14 +1355,7 @@ function setupProductHandlers() {
     });
   });
 
-  document.querySelectorAll('.seg button').forEach(b => {
-    b.addEventListener('click', () => {
-      state.productTab = b.dataset.ptab;
-      state.productFilter = 'all';
-      state.productSearch = '';
-      render();
-    });
-  });
+
 }
 
 function toggleGuide(id) {
@@ -1340,11 +1370,25 @@ function handleReset() {
   }
 }
 
-// Step toggle
+// Step toggle + Unterreiter (delegiert)
 document.addEventListener('click', e => {
   const step = e.target.closest('.step[data-step]');
   if (step && state.view === 'routines') {
     toggleStep(step.dataset.step);
+    render();
+    return;
+  }
+  const segBtn = e.target.closest('.seg button');
+  if (segBtn) {
+    if (segBtn.dataset.ptab) {
+      state.productTab = segBtn.dataset.ptab;
+      state.productFilter = 'all';
+      state.productSearch = '';
+    } else if (segBtn.dataset.rtab) {
+      state.routineTab = segBtn.dataset.rtab;
+    } else if (segBtn.dataset.htab) {
+      state.hairTab = segBtn.dataset.htab;
+    }
     render();
   }
 });

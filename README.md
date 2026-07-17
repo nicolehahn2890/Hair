@@ -13,7 +13,7 @@ Persönliche Haarpflege-App für Nicole — Routinen, INCI-geprüfte Produkte un
 | Tab | Unterreiter | Inhalt |
 |---|---|---|
 | **Routinen** | Waschtag · Zwischendurch · Wissen | 6 abhakbare Guides (Wäsche schnell/intensiv, Styling Wellen/Glatt, Refresh, Klärungs-Reset) + Haarprofil, Silikon/Protein-Wissen, Dejan-Garz-Check |
-| **Produkte** | Mein Bad · Einkaufszettel · Regal-Check | 14 eigene Produkte mit INCI-Check, 20 geprüfte Nachkauf-Empfehlungen (inkl. Dejan-Garz-Tipps) + Dejans Produkt-Post vom 17. Juli 2026 (alle 12 Produkte einzeln geprüft), 22 geprüfte Supermarkt-Linien mit Kauf-Urteil |
+| **Produkte** | Mein Bad · Einkaufszettel · Regal-Check | 14 eigene Produkte mit INCI-Check (pro Kategorie nach Verdict sortiert), 23 Nachkauf-Empfehlungen mit Ranking pro Kategorie (Nº 1 = beste Wahl, inkl. der Kauf-Tipps aus Dejans Post vom 17. Juli 2026), Post-Check der 8 übrigen Post-Produkte, 22 geprüfte Supermarkt-Linien mit Kauf-Urteil |
 | **Frisuren** | Schlafen · Alltag · Sport · Anlass | 30 Looks mit Anleitung |
 
 Kein fester Waschtag-Kalender — die Guides sind bewusst flexibel.

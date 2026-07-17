@@ -469,6 +469,15 @@ a { color: var(--rose); text-decoration: none; }
 
 .week-day.open .week-day-header { background: var(--blush); }
 
+.product-rank {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--gold);
+  margin-right: 8px;
+}
+
 .guide-no {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
@@ -811,34 +820,24 @@ const PRODUCTS = [
 
 // Dejan-Garz-approved Produkte, die es bei Rossmann gibt und die Lücken füllen (INCI-gecheckt)
 const DEJAN_SHOPPING = [
-  { id: 'g1', name: 'L\'Oréal Elvital Bond Repair Shampoo', store: 'rossmann', cat: 'shampoo', fn: 'Garz-Tipp · Repair für blondierte Längen · ~7 €', verdict: 'buy',
+  { id: 'g1', name: 'L\'Oréal Elvital Bond Repair Shampoo', store: 'rossmann', cat: 'shampoo', fn: 'Garz-Tipp · Repair für blondierte Längen · ~7 €', verdict: 'buy', rank: 1,
     desc: 'Garz’ Redken-Dupe für blondiertes Haar — füllt deine Repair-Lücke. 1-2× pro Woche statt Curl Perfect.',
     inci: 'Citronensäure-Bond-Komplex, silikonfrei, proteinfrei, keine trocknenden Alkohole. Tensid ohne SLS/SLES, aber kräftiger als dein Curl Perfect — deshalb im Wechsel, nicht als Ersatz.' },
-  { id: 'g2', name: 'Gliss Blonde Perfector Purple Shampoo', store: 'rossmann', cat: 'shampoo', fn: 'Garz-Tipp · gegen Gelbstich · ~4 €', verdict: 'buy',
+  { id: 'g2', name: 'Gliss Blonde Perfector Purple Shampoo', store: 'rossmann', cat: 'shampoo', fn: 'Garz-Tipp · gegen Gelbstich · ~4 €', verdict: 'buy', rank: 3,
     desc: 'Garz’ Silbershampoo-Favorit unter 4 €. Max. 1× pro Woche; die Einwirkzeit (2-5 Min) steuert die Intensität.',
     inci: 'Stark pigmentiert (Acid Violet 43). Enthält Dimethicone und 2× hydrolysiertes Keratin — bei deiner Porosität in kleiner Dosis okay, aber deshalb nicht öfter als wöchentlich.' },
-  { id: 'g3', name: 'Nivea Fresh & Mild Trockenshampoo (helle Haartöne)', store: 'rossmann', cat: 'tool', fn: 'Garz-Tipp · milder Bloom-Boost-Nachfolger · ~3,50 €', verdict: 'buy',
+  { id: 'g3', name: 'Nivea Fresh & Mild Trockenshampoo (helle Haartöne)', store: 'rossmann', cat: 'tool', fn: 'Garz-Tipp · milder Bloom-Boost-Nachfolger · ~3,50 €', verdict: 'buy', rank: 1,
     desc: 'Garz’ milde Trockenshampoo-Empfehlung; die Variante für helle Töne hinterlässt keinen Grauschleier. Nachfolger für deinen Bloom Boost.',
     inci: 'Reisstärke als einziger Puder, dezenter parfümiert als Bloom Boost, aber nicht parfümfrei. Alkohol als Träger (verfliegt am Ansatz).' },
-  { id: 'g4', name: 'L\'Oréal Elvital Öl Magique Midnight Serum', store: 'rossmann', cat: 'oil', fn: 'Garz-Tipp · Overnight-Anti-Frizz · ~8 € (optional)', verdict: 'buy',
+  { id: 'g4', name: 'L\'Oréal Elvital Öl Magique Midnight Serum', store: 'rossmann', cat: 'oil', fn: 'Garz-Tipp · Overnight-Anti-Frizz · ~8 € (optional)', verdict: 'buy', rank: 4,
     desc: 'Besetzt die letzte freie Nische: Overnight-Pflege gegen Frizz. Abends erbsengroß in die Längen. Nice-to-have.',
     inci: 'Creme-Basis aus Fettalkoholen (pflegend, nicht trocknend), proteinfrei. Hauptöl ist Kokos (Position 3, Kamelie nur in Spuren) — falls dein Haar auf Kokosöl steif reagiert, liegt es daran. Amodimethicone in kleiner Dosis → zählt zum Klär-Rhythmus.' }
 ];
 
-// Dejans Produkt-Post vom 17. Juli 2026 — alle 12 Produkte INCI-recherchiert und
-// gegen Nicoles Haarprofil geprüft (feine 2a-2b-Wellen, hohe Dichte, aufgehellte Längen)
+// Dejans Produkt-Post vom 17. Juli 2026 — alle 12 Produkte INCI-recherchiert.
+// Die 4 Kauf-Tipps daraus sind direkt in SHOPPING einsortiert (dp1-dp3 + Bestätigung n5);
+// hier stehen nur noch die 8 Produkte, die nicht oder nur eingeschränkt passen.
 const DEJAN_POST = [
-  // ===== KAUFEN =====
-  { id: 'dp1', name: 'Garnier Fructis Locken Methode Spülung', store: 'rossmann', cat: 'conditioner', fn: 'Post-Sieger · Alltags-Spülung für deine Wellen · ~4-5 €', verdict: 'buy',
-    desc: 'Der beste Match aus dem ganzen Post: silikonfrei, proteinfrei, für Naturwellen gemacht. Als Alltags-Spülung sparsam in die Längen.',
-    inci: 'Verifiziert silikonfrei, proteinfrei, keine trocknenden Alkohole. Hyaluron (Sodium Hyaluronate) + Sheabutter erst an Position 8 — pflegt, ohne feines Haar zu beschweren.' },
-  { id: 'dp2', name: 'L\'Oréal Elvital Hydra Hyaluronic Feuchtigkeitsmaske (deutsche Version)', store: 'rossmann', cat: 'mask', fn: 'Leichteste Feuchtigkeitsmaske im Post · ~4-6 €', verdict: 'buy',
-    desc: 'Überraschung: Die deutsche Maske ist leichter als deine spanische Mascarilla — ölfrei, Glycerin an Position 2, nur zwei Silikone statt drei. Gute Wahl für durstige Längen.',
-    inci: 'Glycerin (Pos. 2) + Hyaluron + Milchsäure, komplett ölfrei, proteinfrei. Enthält Dimethicone + wenig Amodimethicone (filmbildend) → zählt zum Klär-Rhythmus. NICHT identisch mit der spanischen Mascarilla (die hat zusätzlich Dimethiconol).' },
-  { id: 'dp3', name: 'Redken Acidic Bonding Concentrate Conditioner', store: 'online', cat: 'conditioner', fn: 'Repair-Upgrade für blondierte Längen · ~29 € online', verdict: 'buy',
-    desc: 'Die stärkste Repair-Option aus dem Post: saures pH schließt die Schuppenschicht deiner aufgehellten Längen, spürbar gegen Frizz. 1-2× pro Woche statt täglich — die Flasche hält ewig.',
-    inci: 'Proteinfrei, Citronensäure-pH-Konzept. Aber DREI filmbildende Silikone (Dimethicone + 2× Amodimethicone-Typen) → fest an den Klärungs-Reset koppeln, nie in derselben Woche wie Glycolic Gloss. Nicht bei Rossmann — online ab ~29 €/500 ml.' },
-
   // ===== OKAY MIT EINSCHRÄNKUNG =====
   { id: 'dp4', name: 'OGX ProGrowth + Peptide Shampoo', store: 'rossmann', cat: 'shampoo', fn: 'Kopfhaut-Peeling-Shampoo · max. 1×/Woche · ~7 €', verdict: 'maybe',
     desc: 'Dejans „mild und täglich" stimmt so nicht: Das ist ein Clarifying-Shampoo mit Fruchtsäure und kräftigem Tensid. Als wöchentliche Kopfhaut-Wäsche okay — nicht täglich über die blondierten Längen.',
@@ -865,69 +864,75 @@ const DEJAN_POST = [
     inci: 'Dimethicone an Position 4 (hoch dosiert) + Amodimethicone + VIER Öle (Kokos, Argan, Rizinus, Jojoba). Immerhin proteinfrei — aber klar zu schwer für feines bis mittleres Haar. 9,95 €/200 ml.' },
   { id: 'dp11', name: 'Schwarzkopf Gliss Liquid Silk Express-Repair-Spülung', store: 'rossmann', cat: 'leavein', fn: 'Protein-Bombe im Leave-in · falsches Profil', verdict: 'skip',
     desc: 'Dejan empfiehlt sie selbst „bei dicken Haaren" — deine sind fein. Vier Proteinquellen als Leave-in sind für deine aufgehellten Längen ein echtes Overload-Risiko (strohig statt seidig).',
-    inci: 'Hydrolysiertes Keratin (2 Formen) + Seidenprotein/Sericin + Weizenprotein, dazu filmbildende Silikone — bleibt bis zur nächsten Wäsche komplett im Haar. Hitzeschutz-Claim ersetzt kein Hitzeschutzspray.' },
-  { id: 'dp12', name: 'Garnier Fructis Hair Food Aloe Vera 3in1 Maske', store: 'rossmann', cat: 'mask', fn: 'Steht schon auf deinem Einkaufszettel', verdict: 'buy',
-    desc: 'Die kennst du bereits — sie steht seit dem letzten Check auf deinem Einkaufszettel. Dejans Post bestätigt die Wahl.',
-    inci: 'Verifiziert silikonfrei, proteinfrei, vegan, keine schweren Buttern — Details beim Eintrag im Einkaufszettel oben.' }
+    inci: 'Hydrolysiertes Keratin (2 Formen) + Seidenprotein/Sericin + Weizenprotein, dazu filmbildende Silikone — bleibt bis zur nächsten Wäsche komplett im Haar. Hitzeschutz-Claim ersetzt kein Hitzeschutzspray.' }
 ];
 
 // Nachkauf-Empfehlungen pro Kategorie (alle INCI-gecheckt, passend zum Haarprofil)
 const SHOPPING = [
   // Conditioner
-  { id: 'n1', name: 'Mascarilla Curl Perfect Deliplus', store: 'mercadona', cat: 'conditioner', fn: 'Conditioner & Maske in einem · ~2,75 €', verdict: 'buy',
+  { id: 'dp1', name: 'Garnier Fructis Locken Methode Spülung', store: 'rossmann', cat: 'conditioner', fn: 'Aus Dejans Post · Alltags-Spülung für deine Wellen · ~4-5 €', verdict: 'buy', rank: 1,
+    desc: 'Der beste Match aus Dejans Post: silikonfrei, proteinfrei, für Naturwellen gemacht. Als Alltags-Spülung sparsam in die Längen.',
+    inci: 'Verifiziert silikonfrei, proteinfrei, keine trocknenden Alkohole. Hyaluron (Sodium Hyaluronate) + Sheabutter erst an Position 8 — pflegt, ohne feines Haar zu beschweren.' },
+  { id: 'dp3', name: 'Redken Acidic Bonding Concentrate Conditioner', store: 'online', cat: 'conditioner', fn: 'Aus Dejans Post · Repair für Spezial-Tage · ~29 € online', verdict: 'buy', rank: 5,
+    desc: 'Die stärkste Repair-Option: saures pH schließt die Schuppenschicht deiner aufgehellten Längen, spürbar gegen Frizz. 1-2× pro Woche statt täglich — die Flasche hält ewig.',
+    inci: 'Proteinfrei, Citronensäure-pH-Konzept. Aber DREI filmbildende Silikone (Dimethicone + 2× Amodimethicone-Typen) → fest an den Klärungs-Reset koppeln, nie in derselben Woche wie Glycolic Gloss. Nicht bei Rossmann — online ab ~29 €/500 ml.' },
+  { id: 'n1', name: 'Mascarilla Curl Perfect Deliplus', store: 'mercadona', cat: 'conditioner', fn: 'Conditioner & Maske in einem · ~2,75 €', verdict: 'buy', rank: 4,
     desc: 'Die wellenfreundlichste Option — kurz einwirken als Conditioner, 3-5 Min als Maske. Passt zu deiner Curl-Perfect-Linie.',
     inci: 'Silikonfrei, sulfatfrei, proteinfrei. Betain + Panthenol + Squalan geben Feuchtigkeit; Sheabutter macht sie reichhaltig — bei feinem Haar sparsam dosieren.' },
-  { id: 'n2', name: 'ISANA Spülung Feuchtigkeit (Kokoswasser)', store: 'rossmann', cat: 'conditioner', fn: 'Leichteste Alltagsspülung · ~1,50 €', verdict: 'buy',
+  { id: 'n2', name: 'ISANA Spülung Feuchtigkeit (Kokoswasser)', store: 'rossmann', cat: 'conditioner', fn: 'Leichteste Alltagsspülung · ~1,50 €', verdict: 'buy', rank: 3,
     desc: 'Die leichteste Alltagsspülung fürs Budget — beschwert feines Haar am wenigsten. Gute Wahl, wenn du in Deutschland nachkaufst.',
     inci: 'Silikonfrei, proteinfrei, keine trocknenden Alkohole. Glycerin + Panthenol + Niacinamid, nur wenig Öl.' },
-  { id: 'n3', name: 'L\'Oréal Elvital Hydra Hyaluronic Spülung', store: 'rossmann', cat: 'conditioner', fn: 'Das Original nachkaufen · ~4 €', verdict: 'buy',
-    desc: 'Der direkte Ersatz für dein leeres Produkt (gleiche Formel, deutscher Name). Dann aber den Klärungs-Reset ernst nehmen.',
+  { id: 'n3', name: 'L\'Oréal Elvital Hydra Hyaluronic Spülung', store: 'rossmann', cat: 'conditioner', fn: 'Ersatz fürs leere Original · ~4 €', verdict: 'buy', rank: 6,
+    desc: 'Der direkte Ersatz für dein leeres Produkt (gleiche Formel, deutscher Name) — funktioniert, aber die silikonfreien Optionen darüber können dasselbe ohne Klär-Druck.',
     inci: 'Proteinfrei, Hyaluron + Glycerin. Enthält Dimethicone + Amodimethicone (filmbildend) → zusammen mit den Glanz-Masken summiert sich die Silikonlast.' },
-  { id: 'n4', name: 'Garnier Fructis Hair Food Aloe Vera Spülung', store: 'rossmann', cat: 'conditioner', fn: 'Feuchtigkeits-Booster · ~5 €', verdict: 'buy',
+  { id: 'n4', name: 'Garnier Fructis Hair Food Aloe Vera Spülung', store: 'rossmann', cat: 'conditioner', fn: 'Feuchtigkeits-Booster · ~5 €', verdict: 'buy', rank: 2,
     desc: 'Ungewöhnlich feuchtigkeitslastig: Glycerin ganz vorn in der Liste. Leicht, entwirrt gut, beschwert nicht.',
     inci: 'Silikonfrei, proteinfrei, sulfatfrei, keine trocknenden Alkohole. Glycerin an Position 3 (nachgeprüft — Garnier selbst listet es an 2) + Aloe + leichte Öle.' },
 
-  // Masken (silikonfrei — die Lücke zu deinen Silikon-Glanzmasken)
-  { id: 'n5', name: 'Garnier Fructis Hair Food 3in1 Maske (Aloe Vera)', store: 'rossmann', cat: 'mask', fn: 'Feuchtigkeitsmaske ohne Silikon · ~5 €', verdict: 'buy',
+  // Masken
+  { id: 'dp2', name: 'L\'Oréal Elvital Hydra Hyaluronic Feuchtigkeitsmaske (deutsche Version)', store: 'rossmann', cat: 'mask', fn: 'Aus Dejans Post · leichte Feuchtigkeitsmaske · ~4-6 €', verdict: 'buy', rank: 2,
+    desc: 'Überraschung aus dem Post: Die deutsche Maske ist leichter als deine spanische Mascarilla — ölfrei, Glycerin an Position 2, nur zwei Silikone statt drei.',
+    inci: 'Glycerin (Pos. 2) + Hyaluron + Milchsäure, komplett ölfrei, proteinfrei. Enthält Dimethicone + wenig Amodimethicone (filmbildend) → zählt zum Klär-Rhythmus. NICHT identisch mit der spanischen Mascarilla (die hat zusätzlich Dimethiconol).' },
+  { id: 'n5', name: 'Garnier Fructis Hair Food 3in1 Maske (Aloe Vera)', store: 'rossmann', cat: 'mask', fn: 'Feuchtigkeitsmaske ohne Silikon · ~5 €', verdict: 'buy', rank: 1,
     desc: 'Deine fehlende echte Feuchtigkeitsmaske: ganz ohne Silikon, deshalb beliebig oft verwendbar — auch als Conditioner. Taucht auch in Dejans Juli-Post auf — zu Recht.',
     inci: 'Silikonfrei, proteinfrei, vegan. Glycerin + Aloe hoch dosiert, keine schweren Buttern vorn — beschwert feines Haar nicht.' },
-  { id: 'n6', name: 'Bali Curls Deep Hydration Mask', store: 'bali', cat: 'mask', fn: 'Intensiv-Maske · ~9 € · alle 2 Wochen', verdict: 'buy',
+  { id: 'n6', name: 'Bali Curls Deep Hydration Mask', store: 'bali', cat: 'mask', fn: 'Intensiv-Maske · ~9 € · alle 2 Wochen', verdict: 'buy', rank: 3,
     desc: 'Die reichhaltige Variante für sehr durstige Längen, z.B. nach dem Klärungs-Reset. Sparsam, 5-10 Min.',
     inci: 'Silikonfrei, proteinfrei, sulfatfrei. Glycerin (Position 3) + Betain + Panthenol; Shea + Kokos + Avocado sind reparierend, aber butterlastig → nicht wöchentlich stapeln.' },
-  { id: 'n7', name: 'Mascarilla Natural Deliplus', store: 'mercadona', cat: 'mask', fn: 'Leichte Maske / Conditioner-Ersatz · ~2,40 €', verdict: 'buy',
+  { id: 'n7', name: 'Mascarilla Natural Deliplus', store: 'mercadona', cat: 'mask', fn: 'Leichte Maske / Conditioner-Ersatz · ~2,40 €', verdict: 'buy', rank: 4,
     desc: 'Eher cremiger Conditioner als schwere Kur — bei feinem Haar genau richtig. Gut als Zwischenmaske.',
     inci: 'Silikonfrei, proteinfrei, keine trocknenden Alkohole. Leichte Öle (Abessinien-Öl), 97% natürlichen Ursprungs.' },
 
   // Leave-in & Styling
-  { id: 'n8', name: 'Alterra Leave-In Feuchtigkeitsserum (Granatapfel)', store: 'rossmann', cat: 'leavein', fn: 'Leichtestes Leave-in · ~5 €', verdict: 'buy',
+  { id: 'n8', name: 'Alterra Leave-In Feuchtigkeitsserum (Granatapfel)', store: 'rossmann', cat: 'leavein', fn: 'Leichtestes Leave-in · ~5 €', verdict: 'buy', rank: 2,
     desc: 'Aloe-Leave-in, noch leichter als deine beiden aktuellen. Ideal vor dem Wellen-Styling.',
     inci: 'Silikon-, PEG- und proteinfrei. Aloe (Position 2) + Glycerin + Betain + etwas Stärke gegen Beschweren. Alkohol erst weit hinten (unkritisch).' },
-  { id: 'n9', name: 'Bali Curls Curl Defining Spray', store: 'bali', cat: 'leavein', fn: 'Silikonfreier Hitzeschutz + Definition · ~10 €', verdict: 'buy',
+  { id: 'n9', name: 'Bali Curls Curl Defining Spray', store: 'bali', cat: 'leavein', fn: 'Silikonfreier Hitzeschutz + Definition · ~10 €', verdict: 'buy', rank: 1,
     desc: 'Seltene Kombi: Hitzeschutz bis 220°C und komplett silikonfrei. Definition + Schutz in einem Schritt vor dem Diffusor.',
     inci: 'Silikonfrei, sulfatfrei, keine trocknenden Alkohole. Betain + Glycerin + Panthenol; Mais-Stärke-Hydrolysat als pflanzlicher Schutzfilm (kein Protein-Overload).' },
-  { id: 'n10', name: 'Mascarilla sin aclarado Curl Perfect Deliplus', store: 'mercadona', cat: 'leavein', fn: 'Bester Mercadona-Leave-in · ~2,75 €', verdict: 'buy',
+  { id: 'n10', name: 'Mascarilla sin aclarado Curl Perfect Deliplus', store: 'mercadona', cat: 'leavein', fn: 'Bester Mercadona-Leave-in · ~2,75 €', verdict: 'buy', rank: 3,
     desc: 'Der beste INCI-Match im ganzen Mercadona-Sortiment: Glycerin, Aloe, Betain und Panthenol ganz vorn. Erbsengroß ins feuchte Haar, scrunchen.',
     inci: 'Keine klassischen Silikone, proteinfrei, keine trocknenden Alkohole. Enthält minimal Quaternium-80 (silikonbasiertes Quat, sehr geringe Last). Bei der neuen 125-ml-Charge Etikett gegenprüfen.' },
-  { id: 'n11', name: 'Gel activador Curl Perfect Fix 3 Deliplus', store: 'mercadona', cat: 'leavein', fn: 'Wellen-Gel zum Testen · ~3 €', verdict: 'buy',
+  { id: 'n11', name: 'Gel activador Curl Perfect Fix 3 Deliplus', store: 'mercadona', cat: 'leavein', fn: 'Wellen-Gel zum Testen · ~3 €', verdict: 'buy', rank: 4,
     desc: 'Das einzige echte Wellen-Gel bei Mercadona: leichter Halt, Glycerin-Aloe-Basis. Über das Leave-in, scrunchen, Gel-Cast nach dem Trocknen ausbrechen.',
     inci: 'Silikonfrei, keine trocknenden Alkohole. ABER: enthält mehrere hydrolysierte Proteine (Soja/Mais/Weizen/Hafer) — bei Strohgefühl absetzen. Kleine Proteinmengen können deinen aufgehellten Längen aber sogar gut tun.' },
 
   // Öle
-  { id: 'n12', name: 'Alterra Nutri-Care Haaröl', store: 'rossmann', cat: 'oil', fn: 'Pflanzliches Spitzenöl · ~3 €', verdict: 'buy',
+  { id: 'n12', name: 'Alterra Nutri-Care Haaröl', store: 'rossmann', cat: 'oil', fn: 'Pflanzliches Spitzenöl · ~3 €', verdict: 'buy', rank: 1,
     desc: 'Der Rossmann-Zwilling deines Sérums: leichter Ester + Argan, Mandel, Avocado. 1-2 Tropfen in die Spitzen.',
     inci: '100% pflanzlich, silikonfrei, proteinfrei, parfümiert. Coco-Caprylate als leichte Basis — macht feines Haar nicht strähnig.' },
-  { id: 'n13', name: 'Sérum Natural Deliplus', store: 'mercadona', cat: 'oil', fn: 'Leichtes Creme-Serum · ~4 €', verdict: 'buy',
+  { id: 'n13', name: 'Sérum Natural Deliplus', store: 'mercadona', cat: 'oil', fn: 'Leichtes Creme-Serum · ~4 €', verdict: 'buy', rank: 2,
     desc: 'Sehr leichtes Anti-Frizz-Serum ohne Silikon — die bessere Alternative zum „10 en 1". 1-2 Pumps in die Längen.',
     inci: 'Silikonfrei, keine trocknenden Alkohole. Enthält weit hinten ein mildes quaternisiertes Weizenprotein (konditionierend, unkritisch in der Menge).' },
-  { id: 'n14', name: 'Alterra 100% Bio-Arganöl', store: 'rossmann', cat: 'oil', fn: 'Overnight-Kur · ~7-9 €', verdict: 'buy',
+  { id: 'n14', name: 'Alterra 100% Bio-Arganöl', store: 'rossmann', cat: 'oil', fn: 'Overnight-Kur · ~7-9 €', verdict: 'buy', rank: 3,
     desc: 'Pures Arganöl als Overnight-Kur vor dem Waschtag — oder 1 Tropfen als Finish.',
     inci: 'Ein einziger Inhaltsstoff: Argania Spinosa Kernel Oil. Kein Parfüm, nichts sonst. Mittleres Gewicht — für feines Haar in kleinen Mengen gut tragbar.' },
 
   // Shampoos
-  { id: 'n15', name: 'Bali Curls Nourishing Shampoo', store: 'bali', cat: 'shampoo', fn: 'Mildestes Shampoo für DE-Einkäufe · ~9 €', verdict: 'buy',
+  { id: 'n15', name: 'Bali Curls Nourishing Shampoo', store: 'bali', cat: 'shampoo', fn: 'Mildestes Shampoo für DE-Einkäufe · ~9 €', verdict: 'buy', rank: 2,
     desc: 'Der deutsche Ersatz für dein Curl Perfect — das mildeste geprüfte Shampoo bei Rossmann.',
     inci: 'SLS/SLES-frei — Isethionat/Taurat/Sarcosinat gehören zur mildesten Tensidklasse. Silikonfrei, proteinfrei, mit Glycerin + Panthenol.' },
-  { id: 'n16', name: 'Champú Silver Blond Deliplus', store: 'mercadona', cat: 'shampoo', fn: 'Anti-Gelbstich in Spanien · 2,75 €', verdict: 'buy',
+  { id: 'n16', name: 'Champú Silver Blond Deliplus', store: 'mercadona', cat: 'shampoo', fn: 'Anti-Gelbstich in Spanien · 2,75 €', verdict: 'buy', rank: 4,
     desc: 'Violett-Pigment gegen Gelbstich in den aufgehellten Längen. Max. 1× pro Woche, 2-3 Min, danach gut pflegen.',
     inci: 'Enthält SLES (bei 1×/Woche als Matizador vertretbar) + zwei leichte wasserdispergierbare Silikon-Quats (kein klassisches Buildup). Proteinfrei, mit Panthenol.' }
 ];
@@ -1273,7 +1278,7 @@ function productCard(p) {
   return `
     <div class="product ${p.verdict}">
       <div class="product-header">
-        <div class="product-name">${escapeHtml(p.name)}</div>
+        <div class="product-name">${p.rank ? `<span class="product-rank">N&ordm; ${p.rank}</span>` : ''}${escapeHtml(p.name)}</div>
         <span class="product-store ${p.store}">${escapeHtml(storeLabel)}</span>
       </div>
       <div class="product-fn">${escapeHtml(p.fn)}</div>
@@ -1309,15 +1314,16 @@ function groupedHtml(list, groupKeys, keyFn, labels) {
 function productListHtml() {
   let html = '';
   if (state.productTab === 'bath') {
-    const items = filterProducts(PRODUCTS);
+    const verdictOrder = { keep: 0, reduce: 1, discard: 2, empty: 3 };
+    const items = filterProducts(PRODUCTS).slice().sort((a, b) => (verdictOrder[a.verdict] ?? 9) - (verdictOrder[b.verdict] ?? 9));
     if (state.productFilter === 'all' && !state.productSearch) {
       html = groupedHtml(items, Object.keys(PRODUCT_CATEGORIES).filter(k => k !== 'all'), p => p.cat, PRODUCT_CATEGORIES);
     } else {
       html = items.map(productCard).join('');
     }
   } else if (state.productTab === 'shopping') {
-    const items = filterProducts(SHOPPING.concat(DEJAN_SHOPPING));
-    html = `<p class="list-note">Geprüfte Nachkäufe — nur was deine Routine wirklich ergänzt.</p>`;
+    const items = filterProducts(SHOPPING.concat(DEJAN_SHOPPING)).slice().sort((a, b) => (a.rank || 99) - (b.rank || 99));
+    html = `<p class="list-note">Geprüfte Nachkäufe, pro Kategorie gerankt — N&ordm; 1 ist jeweils die beste Wahl für dein Haar.</p>`;
     if (state.productFilter === 'all' && !state.productSearch) {
       html += groupedHtml(items, Object.keys(PRODUCT_CATEGORIES).filter(k => k !== 'all'), p => p.cat, PRODUCT_CATEGORIES);
     } else {
@@ -1326,8 +1332,8 @@ function productListHtml() {
     const postItems = filterProducts(DEJAN_POST);
     if (postItems.length) {
       html += `<h3 class="list-heading">Dejans Post · 17. Juli</h3>`;
-      html += `<p class="list-note">Alle 12 Produkte aus seinem neuesten Post INCI-geprüft. Ehrliches Ergebnis: 4 passen zu deinem Haar, 5 nur mit Einschränkung, 3 nicht — darunter seine eigene Maske.</p>`;
-      html += groupedHtml(postItems, ['buy', 'maybe', 'skip'], p => p.verdict, { buy: 'Passt zu deinem Haar', maybe: 'Okay mit Einschränkung', skip: 'Stehen lassen' });
+      html += `<p class="list-note">Alle 12 Produkte aus seinem Post INCI-geprüft. Die 4 Kauf-Tipps daraus stehen oben einsortiert im Ranking — hier die 8 übrigen: 5 nur mit Einschränkung, 3 zum Stehenlassen (darunter seine eigene Maske).</p>`;
+      html += groupedHtml(postItems, ['maybe', 'skip'], p => p.verdict, { maybe: 'Okay mit Einschränkung', skip: 'Stehen lassen' });
     }
   } else {
     const items = filterProducts(SHELF);

@@ -52,10 +52,12 @@ SHOPIFY = {
     "n15": ("https://bali-care.com", ["nourishing", "shampoo"]),
 }
 
-# Shopify-Produkte mit bekanntem Handle (Titel weicht ab)
+# Shopify-Produkte mit bekanntem Handle (Titel weicht ab / og:image ist Banner)
 SHOPIFY_HANDLE = {
     "n6": "https://bali-care.com/products/deep-hydration-mask",
     "n9": "https://bali-care.com/products/leave-in-diffusing-heat-protection-spray",
+    "dp8": "https://neqi-hair.com/products/treatment-treasure-diamond-glass-all",
+    "dp10": "https://dejangarz.com/products/hairmask",
 }
 
 # Direkte Produktseiten (og:image), in Kandidaten-Reihenfolge
@@ -80,7 +82,7 @@ PAGES = {
         "https://www.docmorris.de/schwarzkopf-gliss-expressrepairspuelung-liquid-silk/57TR3TL6",
     ],
     # Fallback-Seiten fuer Produkte, deren Erststrategie scheitern kann
-    "dp10": ["https://dejangarz.com/products/hairmask"],
+    "g2": ["https://www.schwarzkopf.de/marken/haarpflege/gliss/produktlinien/blonde-perfector/purple-aufbau-shampoo.html"],
     # Hersteller-/Drittseiten fuer Produkte, deren Rossmann-Seite den Runner blockt
     "p7b": ["https://www.loreal-paris.de/elvital/glycolic-gloss/5-minuten-haar-laminierung"],
     "g1": ["https://www.loreal-paris.de/elvital/bond-repair/shampoo"],
@@ -91,19 +93,24 @@ PAGES = {
     "n4": ["https://www.garnier.de/haarpflege/haarpflege-marken/fructis/hair-food/feuchtigkeits-spuelung-mit-aloe-vera"],
     "n5": ["https://www.garnier.de/haarpflege/haarpflege-marken/fructis/hair-food/3in1-maske-fuer-trockenes-haar-angereichert-mit-aloe-vera"],
     "dp1": ["https://www.garnier.de/haarpflege/haarpflege-marken/fructis/locken-methode/spuelung"],
-    "g3": ["https://www.nivea.de/produkte/-40059007559710001.html"],
+    "g3": [
+        "https://www.nivea.ch/de-ch/produkte/fresh-mild-trockenshampoo-blonde-und-helle-haartoene-40059007559710070.html",
+        "https://www.nivea.de/produkte/-40059007559710001.html",
+    ],
     "dp4": [
         "https://www.ogxbeauty.com/products/pro-growth-peptide-shampoo",
         "https://incidecoder.com/products/ogx-progrowth-peptide-shampoo",
     ],
-    "dp6": ["https://www.johnfrieda.com/de-de/produkte/frizz-ease/wunder-reparatur/taegliche-wunderkur-pflegespray/"],
+    "dp6": [
+        "https://basler-beauty.de/marken/john-frieda/john-frieda-frizz-ease-taegliche-wunderkur-sofort-pflegespray-200-ml.html",
+        "https://www.johnfrieda.com/de-de/produkte/frizz-ease/wunder-reparatur/taegliche-wunderkur-pflegespray/",
+    ],
     "dp8": ["https://neqi-hair.com/products/treatment-treasure-diamond-glass-all"],
     "n13": [
-        "https://productosaptos.com/serum-natural-deliplus/",
         "https://sinsiliconas.club/a-examen-serum-natural-deliplus-mercadona/",
         "https://seatcienfuegos.es/mercadona/serum-natural-deliplus-todo-tipo-de-cabello/",
         "https://1source.com/products/serum-natural-mercadona",
-        "https://www.veganoporaccidentespain.com/producto/serum-natural-mercadona/",
+        "https://productosaptos.com/serum-natural-deliplus/",
     ],
 }
 PAGES["dp3"] = [
@@ -209,13 +216,18 @@ def jina_rossmann_image(ean):
                      timeout=90)
     if r.status_code != 200:
         return None, f"r.jina.ai HTTP {r.status_code}"
-    m = re.search(r'(https?://media\.rossmann\.de[^\s\)"\']+)', r.text)
-    if not m:
-        m = re.search(r'(https?://[^\s\)"\']*rossmann[^\s\)"\']+\.(?:jpg|jpeg|png|webp)[^\s\)"\']*)',
-                      r.text)
-    if not m:
-        return None, "kein Rossmann-Bild im gerenderten Markdown"
-    return m.group(1), None
+    urls = re.findall(r'https?://media\.rossmann\.de[^\s\)"\']+', r.text)
+    # Marketing-Banner ("Neu bei uns" etc.) aussortieren; Packshot-URLs
+    # enthalten normalerweise die EAN oder liegen unter article/products
+    junk = ("marketing", "teaser", "banner", "kampagne", "content", "logo", "icon")
+    candidates = [u for u in urls if ean in u]
+    if not candidates:
+        candidates = [u for u in urls
+                      if ("article" in u or "product" in u.lower())
+                      and not any(j in u.lower() for j in junk)]
+    if not candidates:
+        return None, f"kein Packshot mit EAN unter {len(urls)} media.rossmann.de-URLs"
+    return candidates[0], None
 
 
 def download_and_save(img_url, pid):
@@ -260,8 +272,9 @@ def strategies_for(pid):
     for url in PAGES.get(pid, []):
         s.append((f"page:{url.split('/')[2]}", lambda url=url: og_image(url)))
     if pid in ROSSMANN:
-        s.append(("openbeautyfacts", lambda ean=ROSSMANN[pid]: obf_image(ean)))
+        # jina (offizieller Rossmann-Packshot) vor OBF (oft Amateurfotos)
         s.append(("jina-rossmann", lambda ean=ROSSMANN[pid]: jina_rossmann_image(ean)))
+        s.append(("openbeautyfacts", lambda ean=ROSSMANN[pid]: obf_image(ean)))
     return s
 
 

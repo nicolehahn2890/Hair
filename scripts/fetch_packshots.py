@@ -114,8 +114,9 @@ PAGES = {
         "https://productosaptos.com/serum-natural-deliplus/",
     ],
 }
+# Achtung: skinsort.com/products/isana/tiefenreinigung-shampoo liefert ein
+# falsches Bild (Silber & Glanz) — nicht verwenden!
 PAGES["p3"] = [
-    "https://skinsort.com/products/isana/tiefenreinigung-shampoo",
     "https://www.hautschutzengel.de/isana-professional-shampoo-tiefenreinigung-inhaltsstoffe/produkt/377101.html",
 ]
 PAGES["p8b"] = [
@@ -126,6 +127,7 @@ PAGES["p8b"] = [
 # Bing-Bildvorschau als allerletzter Fallback (Ergebnis wird manuell geprueft)
 BING = {
     "p3": "ISANA Professional Shampoo Tiefenreinigung Rossmann",
+    "p11": "ISANA Hitzeschutz Spray 150 ml Rossmann",
     "p8b": "ISANA Professional Leave-In Conditioner Hyaluron Care Rossmann",
     "p12": "ISANA Trockenshampoo Bloom Boost Rossmann",
     "n2": "ISANA Spülung Feuchtigkeit Kokoswasser Rossmann",

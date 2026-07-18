@@ -58,9 +58,10 @@ SHOPIFY_HANDLE = {
     "n6": "https://bali-care.com/products/deep-hydration-mask",
     "n9": "https://bali-care.com/products/leave-in-diffusing-heat-protection-spray",
     "dp10": "https://dejangarz.com/products/hairmask",
+    # dp8 NICHT aus dem NEQI-Shop oder via Bing holen — dort nur Bilder mit
+    # schwarzem Hintergrund (Nicole will weisse). Reseller-Shops nutzen:
+    "dp8": "https://thisisbeauty.us/products/neqi-diamond-glass-styling-spray-all-hair-6-1-fl-oz",
 }
-# dp8 NICHT aus dem NEQI-Shop holen — deren Bilder haben schwarzen Hintergrund
-# (Nicole will weisse). Kommt stattdessen ueber die Bing-Suche (Amazon-Packshot).
 
 # Direkte Produktseiten (og:image), in Kandidaten-Reihenfolge
 PAGES = {
@@ -117,6 +118,9 @@ PAGES = {
 }
 # Achtung: skinsort.com/products/isana/tiefenreinigung-shampoo liefert ein
 # falsches Bild (Silber & Glanz) — nicht verwenden!
+PAGES["dp8"] = [
+    "https://makeupstore.com/product/850235/",
+]
 PAGES["p3"] = [
     "https://www.hautschutzengel.de/isana-professional-shampoo-tiefenreinigung-inhaltsstoffe/produkt/377101.html",
 ]
@@ -162,7 +166,6 @@ BING = {
     "n12": "Alterra Nutri-Care Haaröl Rossmann",
     "n14": "Alterra 100% reines Bio-Arganöl Rossmann",
     "dp10": "Dejan Garz The Foundation Hair Treatment Mask",
-    "dp8": "neqi Diamond Glass Heat Protection Spray all hair Amazon",
 }
 BING.update(SHELF_BING)
 

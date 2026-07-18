@@ -469,6 +469,19 @@ a { color: var(--rose); text-decoration: none; }
 
 .week-day.open .week-day-header { background: var(--blush); }
 
+.product-photo {
+  float: right;
+  width: 54px;
+  height: 72px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 4px;
+  margin: 0 0 6px 10px;
+}
+
+.product { overflow: hidden; }
+
 .product-rank {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
@@ -1012,6 +1025,10 @@ const SHELF = [
     inci: 'Nicht verifizierbar — lieber die verifizierten Garnier Hair Foods daneben nehmen.' }
 ];
 
+// Kleine Original-Packshots (liegen in img/, Dateiname = Produkt-id) — wird nach
+// jedem Foto-Update per Skript aus dem img/-Ordner neu generiert.
+const PRODUCT_IMAGES = {};
+
 const PRODUCT_CATEGORIES = {
   all: 'Alle',
   shampoo: 'Shampoo',
@@ -1275,8 +1292,10 @@ function renderRoutines() {
 function productCard(p) {
   const verdictLabel = { keep: 'Behalten', reduce: 'Reduzieren', discard: 'Aussortieren', empty: 'Leer', buy: 'Kaufen lohnt sich', maybe: 'Okay mit Einschränkung', skip: 'Stehen lassen' }[p.verdict];
   const storeLabel = { mercadona: 'Mercadona', rossmann: 'Rossmann', bali: 'Bali Curls', super: 'Supermarkt', online: 'Online/Salon' }[p.store];
+  const photo = PRODUCT_IMAGES[p.id];
   return `
     <div class="product ${p.verdict}">
+      ${photo ? `<img class="product-photo" src="${photo}" alt="" loading="lazy" onerror="this.remove()">` : ''}
       <div class="product-header">
         <div class="product-name">${p.rank ? `<span class="product-rank">N&ordm; ${p.rank}</span>` : ''}${escapeHtml(p.name)}</div>
         <span class="product-store ${p.store}">${escapeHtml(storeLabel)}</span>
@@ -1284,7 +1303,7 @@ function productCard(p) {
       <div class="product-fn">${escapeHtml(p.fn)}</div>
       <div class="product-desc">${escapeHtml(p.desc)}</div>
       ${p.inci ? `<div class="product-inci"><span class="inci-label">INCI-Check</span>${escapeHtml(p.inci)}</div>` : ''}
-      <span class="product-tag tag-${p.verdict}">${escapeHtml(verdictLabel)}</span>
+      ${['keep', 'buy', 'empty'].includes(p.verdict) ? '' : `<span class="product-tag tag-${p.verdict}">${escapeHtml(verdictLabel)}</span>`}
     </div>
   `;
 }

@@ -107,7 +107,6 @@ PAGES = {
         "https://basler-beauty.de/marken/john-frieda/john-frieda-frizz-ease-taegliche-wunderkur-sofort-pflegespray-200-ml.html",
         "https://www.johnfrieda.com/de-de/produkte/frizz-ease/wunder-reparatur/taegliche-wunderkur-pflegespray/",
     ],
-    "s3": ["https://www.loreal-paris.es/elvive/bond-repair/champu-fortificante-rutina-reparacion-profunda"],
     "s5": ["https://www.loreal-paris.es/elvive/color-vive-violeta/champu-violeta-matizador"],
     "n13": [
         "https://sinsiliconas.club/a-examen-serum-natural-deliplus-mercadona/",

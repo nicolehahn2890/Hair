@@ -41,45 +41,34 @@
   },
   "n13": {
     "ok": true,
-    "source": "page:sinsiliconas.club",
-    "url": "https://sinsiliconas.club/wp-content/uploads/SERUM-NATURAL-MERCADONA-1.jpg"
+    "source": "bereits vorhanden"
   },
   "n16": {
     "ok": true,
     "source": "bereits vorhanden"
   },
   "p3": {
-    "ok": false,
-    "errors": [
-      "rossmann-og: kein og:image",
-      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
-      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 404)"
-    ]
+    "ok": true,
+    "source": "page:skinsort.com",
+    "url": "https://storage.skinsort.com/sg0zzxl57veqzazzkfzgv5ik1v7y"
   },
   "p7b": {
     "ok": true,
     "source": "bereits vorhanden"
   },
   "p8b": {
-    "ok": false,
-    "errors": [
-      "rossmann-og: kein og:image",
-      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
-      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 404)"
-    ]
+    "ok": true,
+    "source": "bing-thumb",
+    "url": "https://tse2.mm.bing.net/th?q=ISANA%20Professional%20Leave-In%20Conditioner%20Hyaluron%20Care%20Rossmann&w=600&h=600"
   },
   "p11": {
     "ok": true,
-    "source": "openbeautyfacts",
-    "url": "https://images.openbeautyfacts.org/images/products/430/561/561/2300/front_en.9.400.jpg"
+    "source": "bereits vorhanden"
   },
   "p12": {
-    "ok": false,
-    "errors": [
-      "rossmann-og: kein og:image",
-      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
-      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 404)"
-    ]
+    "ok": true,
+    "source": "bing-thumb",
+    "url": "https://tse2.mm.bing.net/th?q=ISANA%20Trockenshampoo%20Bloom%20Boost%20Rossmann&w=600&h=600"
   },
   "g1": {
     "ok": true,
@@ -87,25 +76,20 @@
   },
   "g2": {
     "ok": true,
-    "source": "page:www.schwarzkopf.de",
-    "url": "https://dm.henkel-dam.com/is/image/henkel/4015100814750_c1n1_s02_v01_gliss_shp_blonde-perfector_gsbp0_2968359_front-de_png"
+    "source": "bereits vorhanden"
   },
   "g3": {
     "ok": true,
-    "source": "page:www.nivea.ch",
-    "url": "https://img.nivea.com/-/media/miscellaneous/media-center-items/c/8/7/38d5293b81644117b0bbb374c3a24519-web_1010x1180_transparent_png.png?rx=0&amp;ry=309&amp;rw=1010&amp;rh=560&amp;hash=79863D2193FD6D0351A679615FFF6B07"
+    "source": "bereits vorhanden"
   },
   "g4": {
     "ok": true,
     "source": "bereits vorhanden"
   },
   "n2": {
-    "ok": false,
-    "errors": [
-      "rossmann-og: kein og:image",
-      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
-      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 404)"
-    ]
+    "ok": true,
+    "source": "bing-thumb",
+    "url": "https://tse2.mm.bing.net/th?q=ISANA%20Sp%C3%BClung%20Feuchtigkeit%20Kokoswasser%20Rossmann&w=600&h=600"
   },
   "n3": {
     "ok": true,
@@ -120,28 +104,19 @@
     "source": "bereits vorhanden"
   },
   "n8": {
-    "ok": false,
-    "errors": [
-      "rossmann-og: kein og:image",
-      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
-      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 404)"
-    ]
+    "ok": true,
+    "source": "bing-thumb",
+    "url": "https://tse2.mm.bing.net/th?q=Alterra%20Leave-In%20Feuchtigkeitsserum%20Granatapfel%20Rossmann&w=600&h=600"
   },
   "n12": {
-    "ok": false,
-    "errors": [
-      "rossmann-og: kein og:image",
-      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
-      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 200)"
-    ]
+    "ok": true,
+    "source": "bing-thumb",
+    "url": "https://tse2.mm.bing.net/th?q=Alterra%20Nutri-Care%20Haar%C3%B6l%20Rossmann&w=600&h=600"
   },
   "n14": {
-    "ok": false,
-    "errors": [
-      "rossmann-og: kein og:image",
-      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
-      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 404)"
-    ]
+    "ok": true,
+    "source": "bing-thumb",
+    "url": "https://tse2.mm.bing.net/th?q=Alterra%20100%25%20reines%20Bio-Argan%C3%B6l%20Rossmann&w=600&h=600"
   },
   "dp1": {
     "ok": true,
@@ -157,26 +132,20 @@
   },
   "dp6": {
     "ok": true,
-    "source": "page:basler-beauty.de",
-    "url": "https://cdn.basler-beauty.com/media/6f/df/82/1741468330/1433474-0-JOHN-FRIEDA-Frizz-Ease-Taegliche-Wunderkur-Sofort-Pflegespray.jpg?ts=1741468330"
+    "source": "bereits vorhanden"
   },
   "dp8": {
     "ok": true,
-    "source": "shopify-handle",
-    "url": "https://cdn.shopify.com/s/files/1/0798/3045/0522/files/NEQI_DG_Single_All-Hair_Shampoo_1-1-narrow.png?v=1760342058"
+    "source": "bereits vorhanden"
   },
   "dp9": {
     "ok": true,
     "source": "bereits vorhanden"
   },
   "dp10": {
-    "ok": false,
-    "errors": [
-      "rossmann-og: kein og:image",
-      "shopify-handle: Exception: Expecting value: line 1 column 1 (char 0)",
-      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
-      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 404)"
-    ]
+    "ok": true,
+    "source": "bing-thumb",
+    "url": "https://tse2.mm.bing.net/th?q=Dejan%20Garz%20The%20Foundation%20Hair%20Treatment%20Mask&w=600&h=600"
   },
   "p5": {
     "ok": true,

@@ -8,12 +8,12 @@ Persönliche Haarpflege-App für Nicole — Routinen, INCI-geprüfte Produkte un
 
 „Journal de Beauté" — editorialer Papier-Look statt typischer App-Optik: Ecru-Grund, feine Linien, Cormorant-Garamond-Serifen mit Nº-Nummerierung, Stempel-Labels, Karla für Fließtext. Navigation über gezeichnete Linien-Icons (Tropfen, Flakon, Kamm).
 
-## Aufbau — 3 Tabs, jeweils mit Unterreitern
+## Aufbau — 3 Tabs
 
 | Tab | Unterreiter | Inhalt |
 |---|---|---|
 | **Routinen** | Waschtag · Zwischendurch · Wissen | 6 abhakbare Guides (Wäsche schnell/intensiv, Styling Wellen/Glatt, Refresh, Klärungs-Reset) + Haarprofil, Silikon/Protein-Wissen, Dejan-Garz-Check |
-| **Produkte** | Mein Bad · Einkaufszettel · Regal-Check | 14 eigene Produkte mit INCI-Check (pro Kategorie nach Verdict sortiert), 23 Nachkauf-Empfehlungen mit Ranking pro Kategorie (Nº 1 = beste Wahl, inkl. der Kauf-Tipps aus Dejans Post vom 17. Juli 2026), Post-Check der 8 übrigen Post-Produkte, 22 geprüfte Supermarkt-Linien mit Kauf-Urteil |
+| **Produkte** | — (eine Liste) | Alle 63 Produkte mit INCI-Check und Original-Packshot: eigene Produkte, Nachkauf-Empfehlungen, Dejans Post vom 17. Juli 2026 und der Rossmann-Regal-Check (Spanien). Nach Kategorie gruppiert, pro Kategorie gerankt — Nº 1 = beste Wahl, absteigend |
 | **Frisuren** | Schlafen · Alltag · Sport · Anlass | 30 Looks mit Anleitung |
 
 Kein fester Waschtag-Kalender — die Guides sind bewusst flexibel.
@@ -24,6 +24,8 @@ Kein fester Waschtag-Kalender — die Guides sind bewusst flexibel.
 |---|---|
 | `index.html` | Die komplette App (Standalone-HTML, kein Build nötig) |
 | `apple-touch-icon.png`, `favicon-32.png` | App-Icon (drei Haarwellen mit Gold-Sparkles, gerahmt) |
+| `img/` | 63 Produktfotos (Original-Packshots, max. 300px) |
+| `scripts/fetch_packshots.py` + `.github/workflows/fetch-packshots.yml` | Holt Produktfotos über GitHub Actions (manuell startbar) |
 | `hair-app.skill` | Skill-Paket für Claude (Design-System, Datenstrukturen, Regeln) |
 | `Haarberatung_Nicole_v4.pdf` | Ursprüngliche Beratung (Mai 2026) — inhaltlich durch die App abgelöst |
 | `Haarberatung_Mama_v2.pdf` | Beratung für Mama |

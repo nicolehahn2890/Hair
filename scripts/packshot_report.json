@@ -87,10 +87,6 @@
     "ok": true,
     "source": "bereits vorhanden"
   },
-  "n3": {
-    "ok": true,
-    "source": "bereits vorhanden"
-  },
   "n4": {
     "ok": true,
     "source": "bereits vorhanden"
@@ -129,7 +125,8 @@
   },
   "dp8": {
     "ok": true,
-    "source": "bereits vorhanden"
+    "source": "bing-thumb",
+    "url": "https://tse2.mm.bing.net/th?q=neqi%20Diamond%20Glass%20Heat%20Protection%20Spray%20all%20hair%20Amazon&w=600&h=600"
   },
   "dp9": {
     "ok": true,
@@ -186,14 +183,9 @@
   },
   "s5": {
     "ok": true,
-    "source": "page:www.loreal-paris.es",
-    "url": "https://www.loreal-paris.es/-/media/project/loreal/brand-sites/oap/emea/es/products/hair/hair-care/elvive/color-vive-violeta/purple-shampoo/packshot/elvive-violeta-champu-reno-2021-3600523682799-packshot.png"
-  },
-  "s2": {
-    "ok": true,
     "source": "bereits vorhanden"
   },
-  "s4": {
+  "s2": {
     "ok": true,
     "source": "bereits vorhanden"
   },

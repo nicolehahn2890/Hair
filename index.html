@@ -788,9 +788,9 @@ const PRODUCTS = [
     inci: 'SLES-basiert (deshalb nur als Klärung!), aber silikon- und proteinfrei. Enthält Menthol/Campher — Kribbeln auf der Kopfhaut ist normal. Entfernt Produkt-Buildup, keinen Kalk.' },
 
   // Conditioner
-  { id: 'p4', name: 'L\'Oréal Elvive Hidra Hialurónico', store: 'mercadona', cat: 'conditioner', fn: 'LEER — Ersatz nötig', verdict: 'empty',
-    desc: 'Ist leer. Übergangsweise übernimmt der Bali Curls Conditioner — Nachkauf-Optionen findest du im Einkaufszettel.',
-    inci: 'Zur Einordnung: war proteinfrei und feuchtigkeitsspendend, enthielt aber Dimethicone (Position 3) + Amodimethicone — funktionierte gut, brauchte aber regelmäßige Klärung.' },
+  { id: 'p4', name: 'L\'Oréal Elvive Hidra Hialurónico', store: 'rossmann', cat: 'conditioner', fn: 'LEER — Nachkauf bei Rossmann (ES & DE)', verdict: 'empty',
+    desc: 'Ist leer — übergangsweise übernimmt der Bali Curls Conditioner. Nachschub steht bei Rossmann: in Spanien als „Hidra Hialurónico" im Regal, in Deutschland als „Elvital Hydra Hyaluronic Spülung" (~4 €).',
+    inci: 'Proteinfrei, Hyaluron + Glycerin. Enthält Dimethicone (Position 3) + Amodimethicone (filmbildend) → funktioniert gut, zählt aber zum Klär-Rhythmus. Die silikonfreien Optionen darüber können dasselbe ohne Klär-Druck.' },
   { id: 'p5', name: 'Bali Curls Moisturising Conditioner', store: 'bali', cat: 'conditioner', fn: 'Conditioner · aktuell dein Standard', verdict: 'keep',
     desc: 'Übernimmt, bis Ersatz da ist. Reichhaltig: walnussgroß, nur Längen + Spitzen, gründlich ausspülen.',
     inci: 'INCI-geprüft: silikonfrei, proteinfrei, BTMS-mild. Glycerin + Betain + Panthenol = echte Feuchtigkeit. Shea + Kokos stehen weit vorn → bei feinem Haar sparsam dosieren.' },
@@ -834,7 +834,7 @@ const PRODUCTS = [
 // Dejan-Garz-approved Produkte, die es bei Rossmann gibt und die Lücken füllen (INCI-gecheckt)
 const DEJAN_SHOPPING = [
   { id: 'g1', name: 'L\'Oréal Elvital Bond Repair Shampoo', store: 'rossmann', cat: 'shampoo', fn: 'Garz-Tipp · Repair für blondierte Längen · ~7 €', verdict: 'buy', rank: 1,
-    desc: 'Garz’ Redken-Dupe für blondiertes Haar — füllt deine Repair-Lücke. 1-2× pro Woche statt Curl Perfect.',
+    desc: 'Garz’ Redken-Dupe für blondiertes Haar — füllt deine Repair-Lücke. 1-2× pro Woche statt Curl Perfect. Steht auch im spanischen Rossmann als „Elvive Bond Repair" (im Duo mit Conditioner — der enthält Silikone).',
     inci: 'Citronensäure-Bond-Komplex, silikonfrei, proteinfrei, keine trocknenden Alkohole. Tensid ohne SLS/SLES, aber kräftiger als dein Curl Perfect — deshalb im Wechsel, nicht als Ersatz.' },
   { id: 'g2', name: 'Gliss Blonde Perfector Purple Shampoo', store: 'rossmann', cat: 'shampoo', fn: 'Garz-Tipp · gegen Gelbstich · ~4 €', verdict: 'buy', rank: 3,
     desc: 'Garz’ Silbershampoo-Favorit unter 4 €. Max. 1× pro Woche; die Einwirkzeit (2-5 Min) steuert die Intensität.',
@@ -895,9 +895,6 @@ const SHOPPING = [
   { id: 'n2', name: 'ISANA Spülung Feuchtigkeit (Kokoswasser)', store: 'rossmann', cat: 'conditioner', fn: 'Leichteste Alltagsspülung · ~1,50 €', verdict: 'buy', rank: 3,
     desc: 'Die leichteste Alltagsspülung fürs Budget — beschwert feines Haar am wenigsten. Gute Wahl, wenn du in Deutschland nachkaufst.',
     inci: 'Silikonfrei, proteinfrei, keine trocknenden Alkohole. Glycerin + Panthenol + Niacinamid, nur wenig Öl.' },
-  { id: 'n3', name: 'L\'Oréal Elvital Hydra Hyaluronic Spülung', store: 'rossmann', cat: 'conditioner', fn: 'Ersatz fürs leere Original · ~4 €', verdict: 'buy', rank: 6,
-    desc: 'Der direkte Ersatz für dein leeres Produkt (gleiche Formel, deutscher Name) — funktioniert, aber die silikonfreien Optionen darüber können dasselbe ohne Klär-Druck.',
-    inci: 'Proteinfrei, Hyaluron + Glycerin. Enthält Dimethicone + Amodimethicone (filmbildend) → zusammen mit den Glanz-Masken summiert sich die Silikonlast.' },
   { id: 'n4', name: 'Garnier Fructis Hair Food Aloe Vera Spülung', store: 'rossmann', cat: 'conditioner', fn: 'Feuchtigkeits-Booster · ~5 €', verdict: 'buy', rank: 2,
     desc: 'Ungewöhnlich feuchtigkeitslastig: Glycerin ganz vorn in der Liste. Leicht, entwirrt gut, beschwert nicht.',
     inci: 'Silikonfrei, proteinfrei, sulfatfrei, keine trocknenden Alkohole. Glycerin an Position 3 (nachgeprüft — Garnier selbst listet es an 2) + Aloe + leichte Öle.' },
@@ -907,7 +904,7 @@ const SHOPPING = [
     desc: 'Überraschung aus dem Post: Die deutsche Maske ist leichter als deine spanische Mascarilla — ölfrei, Glycerin an Position 2, nur zwei Silikone statt drei.',
     inci: 'Glycerin (Pos. 2) + Hyaluron + Milchsäure, komplett ölfrei, proteinfrei. Enthält Dimethicone + wenig Amodimethicone (filmbildend) → zählt zum Klär-Rhythmus. NICHT identisch mit der spanischen Mascarilla (die hat zusätzlich Dimethiconol).' },
   { id: 'n5', name: 'Garnier Fructis Hair Food 3in1 Maske (Aloe Vera)', store: 'rossmann', cat: 'mask', fn: 'Feuchtigkeitsmaske ohne Silikon · ~5 €', verdict: 'buy', rank: 1,
-    desc: 'Deine fehlende echte Feuchtigkeitsmaske: ganz ohne Silikon, deshalb beliebig oft verwendbar — auch als Conditioner. Taucht auch in Dejans Juli-Post auf — zu Recht.',
+    desc: 'Deine fehlende echte Feuchtigkeitsmaske: ganz ohne Silikon, deshalb beliebig oft verwendbar — auch als Conditioner. Taucht auch in Dejans Juli-Post auf — zu Recht. Im spanischen Rossmann stehen alle Hair-Food-Sorten: Standard Aloe oder Sandía, durstige Phasen Papaya/Banana, Coco sparsam.',
     inci: 'Silikonfrei, proteinfrei, vegan. Glycerin + Aloe hoch dosiert, keine schweren Buttern vorn — beschwert feines Haar nicht.' },
   { id: 'n6', name: 'Bali Curls Deep Hydration Mask', store: 'bali', cat: 'mask', fn: 'Intensiv-Maske · ~9 € · alle 2 Wochen', verdict: 'buy', rank: 3,
     desc: 'Die reichhaltige Variante für sehr durstige Längen, z.B. nach dem Klärungs-Reset. Sparsam, 5-10 Min.',
@@ -953,18 +950,9 @@ const SHOPPING = [
 // Regal-Check: Nicoles Rossmann-Regalfoto (Juli 2026) — alle sichtbaren Linien INCI-recherchiert
 const SHELF = [
   // ===== KAUFEN =====
-  { id: 's1', name: 'L\'Oréal Elvive Hidra Hialurónico Acondicionador', store: 'super', cat: 'conditioner', fn: 'DEIN LEERER CONDITIONER — steht hier!', verdict: 'buy',
-    desc: 'Der wichtigste Fund: genau der Conditioner, der bei dir leer ist. Direkt mitnehmen.',
-    inci: 'Proteinfrei, Hyaluron + Glycerin. Enthält Dimethicone (Position 3) + Amodimethicone → funktioniert gut, braucht aber deinen Klärungs-Reset.' },
   { id: 's2', name: 'Elvive Color Vive Violeta Mascarilla', store: 'super', cat: 'mask', fn: 'Anti-Gelbstich-Sieger im Regal', verdict: 'buy',
     desc: 'Tont beim Pflegen, ohne zu strapazieren — schonender als jedes Violett-Shampoo. Erst 3-5 Min testen, deine porösen Längen ziehen Pigment schnell.',
     inci: 'Silikonfrei! Violett- + Rosa-Pigment (Acid Violet 43 + Acid Red 52), kationische Pflege-Basis, proteinfrei, keine Sulfate. Mineralöl versiegelt gegen Frizz, baut nicht auf.' },
-  { id: 's3', name: 'Elvive Bond Repair Champú + Acondicionador', store: 'super', cat: 'shampoo', fn: 'Repair-Duo für blondierte Längen', verdict: 'buy',
-    desc: 'Gleiche Formel wie die deutsche Version, die auch Garz empfiehlt. Shampoo 1-2× pro Woche im Wechsel mit Curl Perfect.',
-    inci: 'Shampoo: silikon- und proteinfrei, Citronensäure-Bond-Komplex, ohne SLES/SLS. Conditioner: mit Dimethicone + Amodimethicone (Klär-Rhythmus). Ehrlich gesagt: „Bonding" per Citronensäure ist schwächer belegt als echte Bond-Builder — trotzdem das beste Repair-Duo im Regal.' },
-  { id: 's4', name: 'Garnier Hair Food Mascarillas (Aloe, Sandía, Papaya, Banana, Coco)', store: 'super', cat: 'mask', fn: 'Silikonfreie Masken-Familie · ~4-5 €', verdict: 'buy',
-    desc: 'Die ganze Masken-Wand passt — alle Sorten silikonfrei. Standard: Aloe oder Sandía (am leichtesten). Durstige Phasen: Papaya/Banana. Coco nur sparsam.',
-    inci: 'Alle: silikonfrei, proteinfrei, sulfatfrei, keine trocknenden Alkohole. 3in1: als Maske, Conditioner oder Leave-in für die Spitzen.' },
 
   // ===== OKAY MIT EINSCHRÄNKUNG =====
   { id: 's5', name: 'Elvive Color Vive Violeta Champú', store: 'super', cat: 'shampoo', fn: 'Nur wenn zusätzlich zur Maske gewünscht', verdict: 'maybe',
@@ -1027,7 +1015,7 @@ const SHELF = [
 
 // Kleine Original-Packshots (liegen in img/, Dateiname = Produkt-id) — wird nach
 // jedem Foto-Update per Skript aus dem img/-Ordner neu generiert.
-const PRODUCT_IMAGES = { dp1: 'img/dp1.jpg', dp10: 'img/dp10.jpg', dp11: 'img/dp11.jpg', dp2: 'img/dp2.jpg', dp3: 'img/dp3.jpg', dp4: 'img/dp4.jpg', dp5: 'img/dp5.jpg', dp6: 'img/dp6.jpg', dp7: 'img/dp7.jpg', dp8: 'img/dp8.jpg', dp9: 'img/dp9.jpg', g1: 'img/g1.jpg', g2: 'img/g2.jpg', g3: 'img/g3.jpg', g4: 'img/g4.jpg', n1: 'img/n1.jpg', n10: 'img/n10.jpg', n11: 'img/n11.jpg', n12: 'img/n12.jpg', n13: 'img/n13.jpg', n14: 'img/n14.jpg', n15: 'img/n15.jpg', n16: 'img/n16.jpg', n2: 'img/n2.jpg', n3: 'img/n3.jpg', n4: 'img/n4.jpg', n5: 'img/n5.jpg', n6: 'img/n6.jpg', n7: 'img/n7.jpg', n8: 'img/n8.jpg', n9: 'img/n9.jpg', p1: 'img/p1.jpg', p10: 'img/p10.jpg', p11: 'img/p11.jpg', p12: 'img/p12.jpg', p2: 'img/p2.jpg', p3: 'img/p3.jpg', p4: 'img/p4.jpg', p5: 'img/p5.jpg', p6: 'img/p6.jpg', p7: 'img/p7.jpg', p7b: 'img/p7b.jpg', p8: 'img/p8.jpg', p8b: 'img/p8b.jpg', p9: 'img/p9.jpg', s1: 'img/s1.jpg', s10: 'img/s10.jpg', s11: 'img/s11.jpg', s12: 'img/s12.jpg', s13: 'img/s13.jpg', s14: 'img/s14.jpg', s15: 'img/s15.jpg', s16: 'img/s16.jpg', s17: 'img/s17.jpg', s18: 'img/s18.jpg', s19: 'img/s19.jpg', s2: 'img/s2.jpg', s20: 'img/s20.jpg', s21: 'img/s21.jpg', s22: 'img/s22.jpg', s3: 'img/s3.jpg', s4: 'img/s4.jpg', s5: 'img/s5.jpg', s6: 'img/s6.jpg', s7: 'img/s7.jpg', s8: 'img/s8.jpg', s9: 'img/s9.jpg' };
+const PRODUCT_IMAGES = { dp1: 'img/dp1.jpg', dp10: 'img/dp10.jpg', dp11: 'img/dp11.jpg', dp2: 'img/dp2.jpg', dp3: 'img/dp3.jpg', dp4: 'img/dp4.jpg', dp5: 'img/dp5.jpg', dp6: 'img/dp6.jpg', dp7: 'img/dp7.jpg', dp9: 'img/dp9.jpg', g1: 'img/g1.jpg', g2: 'img/g2.jpg', g3: 'img/g3.jpg', g4: 'img/g4.jpg', n1: 'img/n1.jpg', n10: 'img/n10.jpg', n11: 'img/n11.jpg', n12: 'img/n12.jpg', n13: 'img/n13.jpg', n14: 'img/n14.jpg', n15: 'img/n15.jpg', n16: 'img/n16.jpg', n2: 'img/n2.jpg', n4: 'img/n4.jpg', n5: 'img/n5.jpg', n6: 'img/n6.jpg', n7: 'img/n7.jpg', n8: 'img/n8.jpg', n9: 'img/n9.jpg', p1: 'img/p1.jpg', p10: 'img/p10.jpg', p11: 'img/p11.jpg', p12: 'img/p12.jpg', p2: 'img/p2.jpg', p3: 'img/p3.jpg', p4: 'img/p4.jpg', p5: 'img/p5.jpg', p6: 'img/p6.jpg', p7: 'img/p7.jpg', p7b: 'img/p7b.jpg', p8: 'img/p8.jpg', p8b: 'img/p8b.jpg', p9: 'img/p9.jpg', s10: 'img/s10.jpg', s11: 'img/s11.jpg', s12: 'img/s12.jpg', s13: 'img/s13.jpg', s14: 'img/s14.jpg', s15: 'img/s15.jpg', s16: 'img/s16.jpg', s17: 'img/s17.jpg', s18: 'img/s18.jpg', s19: 'img/s19.jpg', s2: 'img/s2.jpg', s20: 'img/s20.jpg', s21: 'img/s21.jpg', s22: 'img/s22.jpg', s5: 'img/s5.jpg', s6: 'img/s6.jpg', s7: 'img/s7.jpg', s8: 'img/s8.jpg', s9: 'img/s9.jpg' };
 
 const PRODUCT_CATEGORIES = {
   all: 'Alle',
@@ -1334,9 +1322,9 @@ function groupedHtml(list, groupKeys, keyFn, labels) {
 // Kriterien: leicht & silikonfrei vor silikonhaltig, profilgenau (Wellen/
 // blondiert) vor generisch, Protein-Flags nach hinten, skip ganz unten.
 const CATEGORY_RANKING = {
-  shampoo:     ['p1', 'g1', 'n15', 's3', 'g2', 'n16', 'p3', 'dp4', 's10', 's11', 's5', 'p2', 's15', 's18', 's21'],
-  conditioner: ['dp1', 'n4', 'p5', 'n2', 'n1', 'dp3', 's1', 'n3', 'p4', 'dp5', 's6', 'dp9'],
-  mask:        ['n5', 's4', 'dp2', 'n6', 'n7', 's2', 'p7b', 'p6', 's8', 's12', 'dp10', 's16', 's19', 's20', 's22'],
+  shampoo:     ['p1', 'g1', 'n15', 'g2', 'n16', 'p3', 'dp4', 's10', 's11', 's5', 'p2', 's15', 's18', 's21'],
+  conditioner: ['dp1', 'n4', 'p5', 'n2', 'n1', 'dp3', 'p4', 'dp5', 's6', 'dp9'],
+  mask:        ['n5', 'dp2', 'n6', 'n7', 's2', 'p7b', 'p6', 's8', 's12', 'dp10', 's16', 's19', 's20', 's22'],
   leavein:     ['n9', 'n8', 'p8b', 'p9', 'p8', 'n10', 'n11', 'dp6', 'dp7', 'dp8', 's7', 's9', 'p7', 's13', 'dp11'],
   oil:         ['p10', 'n12', 'n13', 'n14', 'g4', 's17', 's14'],
   tool:        ['p11', 'g3', 'p12']

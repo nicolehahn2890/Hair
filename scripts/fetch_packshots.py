@@ -37,7 +37,7 @@ ROSSMANN = {
     "p11": "4305615612300", "p12": "4068134123459",
     "g1": "3600524074654", "g2": "4015100814750", "g3": "4005900755971",
     "g4": "3600524135805",
-    "n2": "4068134071149", "n3": "3600524142612", "n4": "3600542398022",
+    "n2": "4068134071149", "n4": "3600542398022",
     "n5": "3600542511049", "n8": "4068134129390", "n12": "4305615835839",
     "n14": "4305615741574",
     "dp1": "3600542656924", "dp4": "3574661876450", "dp5": "3600524251215",
@@ -57,9 +57,10 @@ SHOPIFY = {
 SHOPIFY_HANDLE = {
     "n6": "https://bali-care.com/products/deep-hydration-mask",
     "n9": "https://bali-care.com/products/leave-in-diffusing-heat-protection-spray",
-    "dp8": "https://neqi-hair.com/products/treatment-treasure-diamond-glass-all",
     "dp10": "https://dejangarz.com/products/hairmask",
 }
+# dp8 NICHT aus dem NEQI-Shop holen — deren Bilder haben schwarzen Hintergrund
+# (Nicole will weisse). Kommt stattdessen ueber die Bing-Suche (Amazon-Packshot).
 
 # Direkte Produktseiten (og:image), in Kandidaten-Reihenfolge
 PAGES = {
@@ -88,7 +89,6 @@ PAGES = {
     "p7b": ["https://www.loreal-paris.de/elvital/glycolic-gloss/5-minuten-haar-laminierung"],
     "g1": ["https://www.loreal-paris.de/elvital/bond-repair/shampoo"],
     "g4": ["https://www.loreal-paris.de/elvital/oel-magique/midnight-serum"],
-    "n3": ["https://www.loreal-paris.de/elvital/hydra-hyaluronic/feuchtigkeits-versiegelnde-spuelung-250ml"],
     "dp5": ["https://www.loreal-paris.de/elvital/collagen-lifter/kraeftigende-pflege-spuelung-200ml"],
     "dp9": ["https://www.loreal-paris.de/elvital/glycolic-gloss/spuelung"],
     "n4": ["https://www.garnier.de/haarpflege/haarpflege-marken/fructis/hair-food/feuchtigkeits-spuelung-mit-aloe-vera"],
@@ -106,7 +106,6 @@ PAGES = {
         "https://basler-beauty.de/marken/john-frieda/john-frieda-frizz-ease-taegliche-wunderkur-sofort-pflegespray-200-ml.html",
         "https://www.johnfrieda.com/de-de/produkte/frizz-ease/wunder-reparatur/taegliche-wunderkur-pflegespray/",
     ],
-    "dp8": ["https://neqi-hair.com/products/treatment-treasure-diamond-glass-all"],
     "s3": ["https://www.loreal-paris.es/elvive/bond-repair/champu-fortificante-rutina-reparacion-profunda"],
     "s5": ["https://www.loreal-paris.es/elvive/color-vive-violeta/champu-violeta-matizador"],
     "n13": [
@@ -130,9 +129,8 @@ PAGES["p8b"] = [
 # spanischen Produktnamen, Ergebnis wird per Kontaktbogen visuell geprueft.
 # s1 fehlt bewusst: identisch mit p4 (img/p4.jpg wird kopiert).
 SHELF_BING = {
+    # s1/s3/s4 wurden als Dubletten in p4/g1/n5 zusammengelegt (18. Juli 2026)
     "s2": "L'Oréal Elvive Color Vive Violeta mascarilla morada",
-    "s3": "Elvive Bond Repair champú reparador 285 ml botella blanca",
-    "s4": "Garnier Fructis Hair Food Aloe Vera mascarilla 3 en 1 400 ml",
     "s5": "Elvive Color Vive champú matizador violeta 200 ml packshot botella",
     "s6": "Pantene 3 Minute Miracle Rizos Definidos acondicionador",
     "s7": "Pantene Ondas Naturales crema de peinado",
@@ -164,6 +162,7 @@ BING = {
     "n12": "Alterra Nutri-Care Haaröl Rossmann",
     "n14": "Alterra 100% reines Bio-Arganöl Rossmann",
     "dp10": "Dejan Garz The Foundation Hair Treatment Mask",
+    "dp8": "neqi Diamond Glass Heat Protection Spray all hair Amazon",
 }
 BING.update(SHELF_BING)
 

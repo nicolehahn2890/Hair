@@ -49,9 +49,13 @@ ROSSMANN = {
 SHOPIFY = {
     "p5": ("https://bali-care.com", ["moisturising", "conditioner"]),
     "p9": ("https://bali-care.com", ["hydrating", "curl", "cream"]),
-    "n6": ("https://bali-care.com", ["deep", "hydration", "mask"]),
-    "n9": ("https://bali-care.com", ["heat", "protection"]),
     "n15": ("https://bali-care.com", ["nourishing", "shampoo"]),
+}
+
+# Shopify-Produkte mit bekanntem Handle (Titel weicht ab)
+SHOPIFY_HANDLE = {
+    "n6": "https://bali-care.com/products/deep-hydration-mask",
+    "n9": "https://bali-care.com/products/leave-in-diffusing-heat-protection-spray",
 }
 
 # Direkte Produktseiten (og:image), in Kandidaten-Reihenfolge
@@ -71,12 +75,37 @@ PAGES = {
         "https://incidecoder.com/products/redken-one-united-all-in-one-multi-benefit-treatment",
     ],
     "dp11": [
-        "https://schwarzkopf.de/de/marken/haarpflege/gliss-kur/liquid-silk/express-repair-spuelung.html",
+        "https://www.schwarzkopf.de/de/marken/haarpflege/gliss-kur/liquid-silk/express-repair-spuelung.html",
+        "https://www.schwarzkopf.ch/de/marken/haarpflege/gliss/liquid-silk/express-repair-spuelung.html",
         "https://www.docmorris.de/schwarzkopf-gliss-expressrepairspuelung-liquid-silk/57TR3TL6",
     ],
     # Fallback-Seiten fuer Produkte, deren Erststrategie scheitern kann
     "dp10": ["https://dejangarz.com/products/hairmask"],
+    # Hersteller-/Drittseiten fuer Produkte, deren Rossmann-Seite den Runner blockt
+    "p7b": ["https://www.loreal-paris.de/elvital/glycolic-gloss/5-minuten-haar-laminierung"],
+    "g1": ["https://www.loreal-paris.de/elvital/bond-repair/shampoo"],
+    "g4": ["https://www.loreal-paris.de/elvital/oel-magique/midnight-serum"],
+    "n3": ["https://www.loreal-paris.de/elvital/hydra-hyaluronic/feuchtigkeits-versiegelnde-spuelung-250ml"],
+    "dp5": ["https://www.loreal-paris.de/elvital/collagen-lifter/kraeftigende-pflege-spuelung-200ml"],
+    "dp9": ["https://www.loreal-paris.de/elvital/glycolic-gloss/spuelung"],
+    "n4": ["https://www.garnier.de/haarpflege/haarpflege-marken/fructis/hair-food/feuchtigkeits-spuelung-mit-aloe-vera"],
+    "n5": ["https://www.garnier.de/haarpflege/haarpflege-marken/fructis/hair-food/3in1-maske-fuer-trockenes-haar-angereichert-mit-aloe-vera"],
+    "dp1": ["https://www.garnier.de/haarpflege/haarpflege-marken/fructis/locken-methode/spuelung"],
+    "g3": ["https://www.nivea.de/produkte/-40059007559710001.html"],
+    "dp4": [
+        "https://www.ogxbeauty.com/products/pro-growth-peptide-shampoo",
+        "https://incidecoder.com/products/ogx-progrowth-peptide-shampoo",
+    ],
+    "dp6": ["https://www.johnfrieda.com/de-de/produkte/frizz-ease/wunder-reparatur/taegliche-wunderkur-pflegespray/"],
+    "dp8": ["https://neqi-hair.com/products/treatment-treasure-diamond-glass-all"],
+    "n13": ["https://www.veganoporaccidentespain.com/producto/serum-natural-mercadona/"],
 }
+PAGES["dp3"] = [
+    "https://skinsort.com/products/redken/acidic-bonding-concentrate-conditioner",
+] + PAGES["dp3"]
+PAGES["dp7"] = [
+    "https://skinsort.com/products/redken/one-united-all-in-one-multi-benefit-treatment",
+] + PAGES["dp7"]
 
 session = requests.Session()
 session.headers.update(HEADERS)
@@ -91,15 +120,21 @@ def og_image(url):
     r = get(url)
     if r.status_code != 200:
         return None, f"HTTP {r.status_code}"
-    m = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)', r.text)
-    if not m:
-        m = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']', r.text)
-    if not m:
-        return None, "kein og:image"
-    src = m.group(1)
-    if src.startswith("//"):
-        src = "https:" + src
-    return src, None
+    html = r.text
+    patterns = [
+        r'<meta[^>]+(?:property|name)=["\'](?:og:image|twitter:image)(?::src)?["\'][^>]+content=["\']([^"\']+)',
+        r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+(?:property|name)=["\'](?:og:image|twitter:image)(?::src)?["\']',
+        r'<link[^>]+rel=["\']image_src["\'][^>]+href=["\']([^"\']+)',
+        r'"image"\s*:\s*\[?\s*"(https?:[^"]+)"',
+    ]
+    for pat in patterns:
+        m = re.search(pat, html)
+        if m:
+            src = m.group(1).replace(r"\/", "/")
+            if src.startswith("//"):
+                src = "https:" + src
+            return src, None
+    return None, "kein og:image"
 
 
 def mercadona_image(pid):
@@ -131,13 +166,49 @@ def shopify_image(base, words):
 
 
 def obf_image(ean):
+    # OFF/OBF verlangen einen identifizierenden User-Agent (Browser-UA von
+    # Datacenter-IPs wird geblockt)
+    ua = {"User-Agent": "HairAppPackshots/1.0 (personal hair-care app; github.com/nicolehahn2890/Hair)",
+          "Accept": "application/json"}
+    last = None
     for host in ("world.openbeautyfacts.org", "world.openfoodfacts.org"):
-        r = get(f"https://{host}/api/v2/product/{ean}?fields=image_front_url")
+        r = requests.get(f"https://{host}/api/v2/product/{ean}?fields=image_front_url",
+                         headers=ua, timeout=30)
+        last = r.status_code
         if r.status_code == 200:
             url = (r.json().get("product") or {}).get("image_front_url")
             if url:
                 return url, None
-    return None, "nicht in Open (Beauty|Food) Facts"
+    return None, f"nicht in Open (Beauty|Food) Facts (HTTP {last})"
+
+
+def shopify_handle_image(product_url):
+    r = get(product_url + ".json", headers={**HEADERS, "Accept": "application/json"})
+    if r.status_code != 200:
+        return og_image(product_url)
+    imgs = (r.json().get("product") or {}).get("images") or []
+    if not imgs:
+        return None, "Shopify-Produkt ohne Bilder"
+    return imgs[0]["src"], None
+
+
+def jina_rossmann_image(ean):
+    """Holt die Rossmann-Produktseite ueber den r.jina.ai-Lesedienst (rendert
+    im Browser, umgeht IP-Blocks) und fischt eine media.rossmann.de-Bild-URL
+    aus dem Markdown."""
+    r = requests.get(f"https://r.jina.ai/https://www.rossmann.de/de/p/{ean}",
+                     headers={"User-Agent": HEADERS["User-Agent"],
+                              "X-With-Images-Summary": "true"},
+                     timeout=90)
+    if r.status_code != 200:
+        return None, f"r.jina.ai HTTP {r.status_code}"
+    m = re.search(r'(https?://media\.rossmann\.de[^\s\)"\']+)', r.text)
+    if not m:
+        m = re.search(r'(https?://[^\s\)"\']*rossmann[^\s\)"\']+\.(?:jpg|jpeg|png|webp)[^\s\)"\']*)',
+                      r.text)
+    if not m:
+        return None, "kein Rossmann-Bild im gerenderten Markdown"
+    return m.group(1), None
 
 
 def download_and_save(img_url, pid):
@@ -176,17 +247,21 @@ def strategies_for(pid):
     if pid in SHOPIFY:
         base, words = SHOPIFY[pid]
         s.append(("shopify", lambda base=base, words=words: shopify_image(base, words)))
+    if pid in SHOPIFY_HANDLE:
+        s.append(("shopify-handle", lambda url=SHOPIFY_HANDLE[pid]: shopify_handle_image(url)))
     for url in PAGES.get(pid, []):
         s.append((f"page:{url.split('/')[2]}", lambda url=url: og_image(url)))
     if pid in ROSSMANN:
         s.append(("openbeautyfacts", lambda ean=ROSSMANN[pid]: obf_image(ean)))
+        s.append(("jina-rossmann", lambda ean=ROSSMANN[pid]: jina_rossmann_image(ean)))
     return s
 
 
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     all_ids = list(dict.fromkeys(
-        list(MERCADONA) + list(ROSSMANN) + list(SHOPIFY) + list(PAGES)))
+        list(MERCADONA) + list(ROSSMANN) + list(SHOPIFY)
+        + list(SHOPIFY_HANDLE) + list(PAGES)))
     report = {}
     for pid in all_ids:
         if os.path.exists(os.path.join(OUT_DIR, f"{pid}.jpg")):

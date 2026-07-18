@@ -1,0 +1,277 @@
+{
+  "p1": {
+    "ok": true,
+    "source": "mercadona-api",
+    "url": "https://prod-mercadona.imgix.net/images/8aea9238d8b602b366990e648a3d9353.jpeg?fit=crop&h=3600&w=3600"
+  },
+  "p2": {
+    "ok": true,
+    "source": "mercadona-api",
+    "url": "https://prod-mercadona.imgix.net/images/4141f8e2e8426ae45d896867a3f24c03.jpeg?fit=crop&h=3600&w=3600"
+  },
+  "p6": {
+    "ok": true,
+    "source": "mercadona-api",
+    "url": "https://prod-mercadona.imgix.net/images/3c4349d013e4212676950b328bc2fb52.jpg?fit=crop&h=3600&w=3600"
+  },
+  "p7": {
+    "ok": true,
+    "source": "mercadona-api",
+    "url": "https://prod-mercadona.imgix.net/images/bb87d61a674c68c11a21ac4e921fd7bf.jpg?fit=crop&h=3600&w=3600"
+  },
+  "p8": {
+    "ok": true,
+    "source": "mercadona-api",
+    "url": "https://prod-mercadona.imgix.net/images/9f0066b491165c658ada87e024c9ce19.jpg?fit=crop&h=3600&w=3600"
+  },
+  "p10": {
+    "ok": true,
+    "source": "mercadona-api",
+    "url": "https://prod-mercadona.imgix.net/images/fc95936f4a45533daf431eb177e93735.jpg?fit=crop&h=3600&w=3600"
+  },
+  "n1": {
+    "ok": true,
+    "source": "mercadona-api",
+    "url": "https://prod-mercadona.imgix.net/images/53f08dd7c5d38f39c69e6dfbd0c34c8a.jpeg?fit=crop&h=3600&w=3600"
+  },
+  "n7": {
+    "ok": true,
+    "source": "mercadona-api",
+    "url": "https://prod-mercadona.imgix.net/images/6a520c3d6c821b13129b6ffb7c233106.jpg?fit=crop&h=3600&w=3600"
+  },
+  "n10": {
+    "ok": true,
+    "source": "mercadona-api",
+    "url": "https://prod-mercadona.imgix.net/images/68939f0f87aef6d073573c26ef89d252.jpeg?fit=crop&h=3600&w=3600"
+  },
+  "n11": {
+    "ok": true,
+    "source": "mercadona-api",
+    "url": "https://prod-mercadona.imgix.net/images/ffe5c0c75e6f6b5d9be39c77814521cc.jpg?fit=crop&h=3600&w=3600"
+  },
+  "n13": {
+    "ok": false,
+    "errors": [
+      "mercadona-api: API HTTP 404"
+    ]
+  },
+  "n16": {
+    "ok": true,
+    "source": "mercadona-api",
+    "url": "https://prod-mercadona.imgix.net/images/876f33d986f3d68f74a57970e1768d6b.jpg?fit=crop&h=3600&w=3600"
+  },
+  "p3": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "p7b": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "p8b": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "p11": {
+    "ok": true,
+    "source": "openbeautyfacts",
+    "url": "https://images.openbeautyfacts.org/images/products/430/561/561/2300/front_en.9.400.jpg"
+  },
+  "p12": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "g1": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "g2": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "g3": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "g4": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "n2": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "n3": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "n4": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "n5": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "n8": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "n12": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "n14": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "dp1": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "dp4": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "dp5": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "dp6": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "dp8": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "dp9": {
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts"
+    ]
+  },
+  "dp10": {
+    "ok": true,
+    "source": "page:dejangarz.com",
+    "url": "https://cdn.prod.website-files.com/6780d868e7f83d2abe186420/68ca97d4ea000f101eb5d923_Hairmask.jpg"
+  },
+  "p5": {
+    "ok": true,
+    "source": "shopify",
+    "url": "https://cdn.shopify.com/s/files/1/0828/2567/5096/files/aBali_Curls_Amazon_Moisturising_Conditioner_Form_3.png?v=1774882825"
+  },
+  "p9": {
+    "ok": true,
+    "source": "shopify",
+    "url": "https://cdn.shopify.com/s/files/1/0828/2567/5096/files/00010_MOOD_4262391992616.png?v=1772445734"
+  },
+  "n6": {
+    "ok": false,
+    "errors": [
+      "shopify: kein Titel-Match fuer ['deep', 'hydration', 'mask']"
+    ]
+  },
+  "n9": {
+    "ok": false,
+    "errors": [
+      "shopify: kein Titel-Match fuer ['heat', 'protection']"
+    ]
+  },
+  "n15": {
+    "ok": true,
+    "source": "shopify",
+    "url": "https://cdn.shopify.com/s/files/1/0828/2567/5096/files/Bali_Curls_Amazon_Nourishing_Shampoo_Form_1.png?v=1774882825"
+  },
+  "p4": {
+    "ok": true,
+    "source": "page:www.loreal-paris.es",
+    "url": "https://www.loreal-paris.es/-/media/project/loreal/brand-sites/oap/emea/es/products/hair/hair-care/elvive/hidra-hialuronico/acondicionador/acondicionador-500ml/3600524029661_1.png"
+  },
+  "dp2": {
+    "ok": true,
+    "source": "page:www.loreal-paris.de",
+    "url": "https://www.loreal-paris.de/-/media/project/loreal/brand-sites/oap/emea/dach/products/elvital/haarpflege/hydra-hyaluronic/shampoo/feuchtigkeit-umhuellende-maske-250ml-new-packshot.png"
+  },
+  "dp3": {
+    "ok": false,
+    "errors": [
+      "page:www.redken.com: HTTP 403",
+      "page:incidecoder.com: kein og:image"
+    ]
+  },
+  "dp7": {
+    "ok": false,
+    "errors": [
+      "page:incidecoder.com: HTTP 404"
+    ]
+  },
+  "dp11": {
+    "ok": false,
+    "errors": [
+      "page:schwarzkopf.de: HTTP 404",
+      "page:www.docmorris.de: HTTP 403"
+    ]
+  }
+}

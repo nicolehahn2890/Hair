@@ -129,15 +129,15 @@ PAGES["p8b"] = [
 # s1 fehlt bewusst: identisch mit p4 (img/p4.jpg wird kopiert).
 SHELF_BING = {
     "s2": "L'Oréal Elvive Color Vive Violeta mascarilla morada",
-    "s3": "L'Oréal Elvive Bond Repair champú España",
+    "s3": "Elvive Bond Repair champú reparador 285 ml botella blanca",
     "s4": "Garnier Fructis Hair Food Aloe Vera mascarilla 3 en 1 400 ml",
-    "s5": "L'Oréal Elvive Color Vive Violeta champú morado",
+    "s5": "Elvive Color Vive champú matizador violeta 200 ml packshot botella",
     "s6": "Pantene 3 Minute Miracle Rizos Definidos acondicionador",
     "s7": "Pantene Ondas Naturales crema de peinado",
     "s8": "Garnier Fructis Adiós Daños mascarilla",
     "s9": "Garnier Fructis Vitamin Force Biotina 10 en 1 crema",
     "s10": "Garnier Fructis Hair Food Papaya champú",
-    "s11": "babaria champú ondas y rizos",
+    "s11": "babaria champú ondas y rizos definidos 700 ml botella",
     "s12": "babaria nutritive repair mascarilla capilar",
     "s13": "Pantene doma crema rizos definidos",
     "s14": "Pantene coconut infused oil spray aceite de coco",

@@ -344,7 +344,7 @@ def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     all_ids = list(dict.fromkeys(
         list(MERCADONA) + list(ROSSMANN) + list(SHOPIFY)
-        + list(SHOPIFY_HANDLE) + list(PAGES)))
+        + list(SHOPIFY_HANDLE) + list(PAGES) + list(BING)))
     report = {}
     for pid in all_ids:
         if os.path.exists(os.path.join(OUT_DIR, f"{pid}.jpg")):

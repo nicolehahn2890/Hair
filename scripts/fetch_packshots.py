@@ -98,13 +98,20 @@ PAGES = {
     ],
     "dp6": ["https://www.johnfrieda.com/de-de/produkte/frizz-ease/wunder-reparatur/taegliche-wunderkur-pflegespray/"],
     "dp8": ["https://neqi-hair.com/products/treatment-treasure-diamond-glass-all"],
-    "n13": ["https://www.veganoporaccidentespain.com/producto/serum-natural-mercadona/"],
+    "n13": [
+        "https://productosaptos.com/serum-natural-deliplus/",
+        "https://sinsiliconas.club/a-examen-serum-natural-deliplus-mercadona/",
+        "https://seatcienfuegos.es/mercadona/serum-natural-deliplus-todo-tipo-de-cabello/",
+        "https://1source.com/products/serum-natural-mercadona",
+        "https://www.veganoporaccidentespain.com/producto/serum-natural-mercadona/",
+    ],
 }
 PAGES["dp3"] = [
     "https://skinsort.com/products/redken/acidic-bonding-concentrate-conditioner",
 ] + PAGES["dp3"]
 PAGES["dp7"] = [
-    "https://skinsort.com/products/redken/one-united-all-in-one-multi-benefit-treatment",
+    "https://skinsort.com/products/redken/one-united-multi-benefit-treatment-spray",
+    "https://incidecoder.com/products/redken-all-in-one-multi-benefit-treatment",
 ] + PAGES["dp7"]
 
 session = requests.Session()
@@ -222,7 +229,8 @@ def download_and_save(img_url, pid):
         im.load()
     except Exception as e:
         return f"kein dekodierbares Bild: {e}"
-    if im.width < 100 or im.height < 100:
+    # Schmale Flaschen-Packshots (z.B. 94x400) sind ok — nur echte Thumbnails ablehnen
+    if min(im.width, im.height) < 60 or max(im.width, im.height) < 200:
         return f"Aufloesung zu gering ({im.width}x{im.height})"
     # Auf Weiss legen (Transparenz) und auf max. 300px verkleinern
     if im.mode in ("RGBA", "LA", "P"):

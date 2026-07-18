@@ -107,6 +107,8 @@ PAGES = {
         "https://www.johnfrieda.com/de-de/produkte/frizz-ease/wunder-reparatur/taegliche-wunderkur-pflegespray/",
     ],
     "dp8": ["https://neqi-hair.com/products/treatment-treasure-diamond-glass-all"],
+    "s3": ["https://www.loreal-paris.es/elvive/bond-repair/champu-fortificante-rutina-reparacion-profunda"],
+    "s5": ["https://www.loreal-paris.es/elvive/color-vive-violeta/champu-violeta-matizador"],
     "n13": [
         "https://sinsiliconas.club/a-examen-serum-natural-deliplus-mercadona/",
         "https://seatcienfuegos.es/mercadona/serum-natural-deliplus-todo-tipo-de-cabello/",

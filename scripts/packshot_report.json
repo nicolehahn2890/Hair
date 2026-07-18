@@ -40,11 +40,9 @@
     "source": "bereits vorhanden"
   },
   "n13": {
-    "ok": false,
-    "errors": [
-      "mercadona-api: API HTTP 404",
-      "page:www.veganoporaccidentespain.com: kein og:image"
-    ]
+    "ok": true,
+    "source": "page:productosaptos.com",
+    "url": "https://productosaptos.com/wp-content/uploads/2021/10/serum-natural-deliplus-mercadona.jpg"
   },
   "n16": {
     "ok": true,
@@ -52,18 +50,15 @@
   },
   "p3": {
     "ok": true,
-    "source": "jina-rossmann",
-    "url": "https://www.rossmann.de/medias/Einkaufen-Kategorie-Neu-f.png?context=bWFzdGVyfHVwbG9hZHw2MDM1fGltYWdlL3BuZ3xhR1l6TDJnME9TODBOelF3TnpFMU16STRNekV3TWk5RmFXNXJZWFZtWlc1ZlMyRjBaV2R2Y21sbFgwNWxkVjltTG5CdVp3fGVhYzU2NjliMDFlMGM4ODA4ZTY1MTM0ZjBhOTlhMjIyMDZmMjY4YTg1YThiZmNlYjdmZGE3N2JkNTA4NGMzZjI"
+    "source": "bereits vorhanden"
   },
   "p7b": {
     "ok": true,
-    "source": "page:www.loreal-paris.de",
-    "url": "https://www.loreal-paris.de/-/media/project/loreal/brand-sites/oap/emea/dach/products/elvital/haarpflege/glycolic-gloss/5-minuten-haar-laminierung/productnew.png"
+    "source": "bereits vorhanden"
   },
   "p8b": {
     "ok": true,
-    "source": "jina-rossmann",
-    "url": "https://www.rossmann.de/medias/Einkaufen-Kategorie-Neu-f.png?context=bWFzdGVyfHVwbG9hZHw2MDM1fGltYWdlL3BuZ3xhR1l6TDJnME9TODBOelF3TnpFMU16STRNekV3TWk5RmFXNXJZWFZtWlc1ZlMyRjBaV2R2Y21sbFgwNWxkVjltTG5CdVp3fGVhYzU2NjliMDFlMGM4ODA4ZTY1MTM0ZjBhOTlhMjIyMDZmMjY4YTg1YThiZmNlYjdmZGE3N2JkNTA4NGMzZjI"
+    "source": "bereits vorhanden"
   },
   "p11": {
     "ok": true,
@@ -71,93 +66,75 @@
   },
   "p12": {
     "ok": true,
-    "source": "jina-rossmann",
-    "url": "https://www.rossmann.de/medias/Einkaufen-Kategorie-Neu-f.png?context=bWFzdGVyfHVwbG9hZHw2MDM1fGltYWdlL3BuZ3xhR1l6TDJnME9TODBOelF3TnpFMU16STRNekV3TWk5RmFXNXJZWFZtWlc1ZlMyRjBaV2R2Y21sbFgwNWxkVjltTG5CdVp3fGVhYzU2NjliMDFlMGM4ODA4ZTY1MTM0ZjBhOTlhMjIyMDZmMjY4YTg1YThiZmNlYjdmZGE3N2JkNTA4NGMzZjI"
+    "source": "bereits vorhanden"
   },
   "g1": {
     "ok": true,
-    "source": "page:www.loreal-paris.de",
-    "url": "https://www.loreal-paris.de/-/media/project/loreal/brand-sites/oap/emea/dach/products/elvital/haarpflege/bond-repair/shampoo/221115_elvital-bond-repair_shampoo_pack.png"
+    "source": "bereits vorhanden"
   },
   "g2": {
     "ok": true,
-    "source": "jina-rossmann",
-    "url": "https://www.rossmann.de/medias/Einkaufen-Kategorie-Neu-f.png?context=bWFzdGVyfHVwbG9hZHw2MDM1fGltYWdlL3BuZ3xhR1l6TDJnME9TODBOelF3TnpFMU16STRNekV3TWk5RmFXNXJZWFZtWlc1ZlMyRjBaV2R2Y21sbFgwNWxkVjltTG5CdVp3fGVhYzU2NjliMDFlMGM4ODA4ZTY1MTM0ZjBhOTlhMjIyMDZmMjY4YTg1YThiZmNlYjdmZGE3N2JkNTA4NGMzZjI"
+    "source": "bereits vorhanden"
   },
   "g3": {
     "ok": true,
-    "source": "page:www.nivea.de",
-    "url": "https://assets.beiersdorf.com/-/media/images/2/8/b/a/275857-web_1010x1180_transparent_png.png?mh=1200&amp;mw=1200&amp;ctx=DE&amp;rx=0&amp;ry=325&amp;rw=1009&amp;rh=528&amp;hash=507EF71A90406D3CB8D06BBF7F3FB60F"
+    "source": "bereits vorhanden"
   },
   "g4": {
     "ok": true,
-    "source": "page:www.loreal-paris.de",
-    "url": "https://www.loreal-paris.de/-/media/project/loreal/brand-sites/oap/emea/dach/products/elvital/haarpflege/oel-magique/midnight-serum/231108_loreal_dach-merge_cluster-update_3600524135805_magique-midnight-serum_pack.png"
+    "source": "bereits vorhanden"
   },
   "n2": {
     "ok": true,
-    "source": "jina-rossmann",
-    "url": "https://www.rossmann.de/medias/Einkaufen-Kategorie-Neu-f.png?context=bWFzdGVyfHVwbG9hZHw2MDM1fGltYWdlL3BuZ3xhR1l6TDJnME9TODBOelF3TnpFMU16STRNekV3TWk5RmFXNXJZWFZtWlc1ZlMyRjBaV2R2Y21sbFgwNWxkVjltTG5CdVp3fGVhYzU2NjliMDFlMGM4ODA4ZTY1MTM0ZjBhOTlhMjIyMDZmMjY4YTg1YThiZmNlYjdmZGE3N2JkNTA4NGMzZjI"
+    "source": "bereits vorhanden"
   },
   "n3": {
     "ok": true,
-    "source": "page:www.loreal-paris.de",
-    "url": "https://www.loreal-paris.de/-/media/project/loreal/brand-sites/oap/emea/dach/products/elvital/haarpflege/hydra-hyaluronic/spuelung/250ml/250114_loreal_elvital_hydra-hyaluronic_sp_250ml_3600524142612_pack.png"
+    "source": "bereits vorhanden"
   },
   "n4": {
     "ok": true,
-    "source": "page:www.garnier.de",
-    "url": "https://www.garnier.de/-/media/project/loreal/brand-sites/garnier/emea/de/de-de/prd-haarpflege/haarpflege_fructis/haarpflege_fructis_hairfood/aloe-vera/spuelung/241216_garnier_fructis_hairfood_aloe-vera_sp_pack.png?rev=08b46f48d2b74fd892209c47b759eefe"
+    "source": "bereits vorhanden"
   },
   "n5": {
     "ok": true,
-    "source": "page:www.garnier.de",
-    "url": "https://www.garnier.de/-/media/project/loreal/brand-sites/garnier/emea/de/de-de/prd-haarpflege/haarpflege_fructis/haarpflege_fructis_hairfood/aloe-vera/maske/241216_garnier_fructis_hairfood_aloe-vera_maske_pack.png?rev=0ad15b4f1d44410f8b2ea3d05b364aaf"
+    "source": "bereits vorhanden"
   },
   "n8": {
     "ok": true,
-    "source": "jina-rossmann",
-    "url": "https://www.rossmann.de/medias/Einkaufen-Kategorie-Neu-f.png?context=bWFzdGVyfHVwbG9hZHw2MDM1fGltYWdlL3BuZ3xhR1l6TDJnME9TODBOelF3TnpFMU16STRNekV3TWk5RmFXNXJZWFZtWlc1ZlMyRjBaV2R2Y21sbFgwNWxkVjltTG5CdVp3fGVhYzU2NjliMDFlMGM4ODA4ZTY1MTM0ZjBhOTlhMjIyMDZmMjY4YTg1YThiZmNlYjdmZGE3N2JkNTA4NGMzZjI"
+    "source": "bereits vorhanden"
   },
   "n12": {
     "ok": true,
-    "source": "jina-rossmann",
-    "url": "https://www.rossmann.de/medias/Einkaufen-Kategorie-Neu-f.png?context=bWFzdGVyfHVwbG9hZHw2MDM1fGltYWdlL3BuZ3xhR1l6TDJnME9TODBOelF3TnpFMU16STRNekV3TWk5RmFXNXJZWFZtWlc1ZlMyRjBaV2R2Y21sbFgwNWxkVjltTG5CdVp3fGVhYzU2NjliMDFlMGM4ODA4ZTY1MTM0ZjBhOTlhMjIyMDZmMjY4YTg1YThiZmNlYjdmZGE3N2JkNTA4NGMzZjI"
+    "source": "bereits vorhanden"
   },
   "n14": {
     "ok": true,
-    "source": "jina-rossmann",
-    "url": "https://www.rossmann.de/medias/Einkaufen-Kategorie-Neu-f.png?context=bWFzdGVyfHVwbG9hZHw2MDM1fGltYWdlL3BuZ3xhR1l6TDJnME9TODBOelF3TnpFMU16STRNekV3TWk5RmFXNXJZWFZtWlc1ZlMyRjBaV2R2Y21sbFgwNWxkVjltTG5CdVp3fGVhYzU2NjliMDFlMGM4ODA4ZTY1MTM0ZjBhOTlhMjIyMDZmMjY4YTg1YThiZmNlYjdmZGE3N2JkNTA4NGMzZjI"
+    "source": "bereits vorhanden"
   },
   "dp1": {
     "ok": true,
-    "source": "page:www.garnier.de",
-    "url": "https://www.garnier.de/-/media/project/loreal/brand-sites/garnier/emea/de/de-de/prd-haarpflege/haarpflege_fructis/locken-methode/spuelung/251127_fructis_locken-methode_sp_200ml_3600542656924_pack.png?rev=31669e35f5274b3cac7a6408c3c178e6"
+    "source": "bereits vorhanden"
   },
   "dp4": {
     "ok": true,
-    "source": "page:www.ogxbeauty.com",
-    "url": "https://images.ctfassets.net/ya8mvjlg9l8b/5hCGZ57kmdxOqInDi67luF/8e2531c456c90c5bd96f6ed29a4b7495/1_Pro_Growth___Peptide_Shampoo_13oz.webp"
+    "source": "bereits vorhanden"
   },
   "dp5": {
     "ok": true,
-    "source": "page:www.loreal-paris.de",
-    "url": "https://www.loreal-paris.de/-/media/project/loreal/brand-sites/oap/emea/dach/products/elvital/haarpflege/collagen-lifter/collagen-lifter-kraeftigende-pflege-spuelung-packshot.png"
+    "source": "bereits vorhanden"
   },
   "dp6": {
     "ok": true,
-    "source": "jina-rossmann",
-    "url": "https://www.rossmann.de/medias/Einkaufen-Kategorie-Neu-f.png?context=bWFzdGVyfHVwbG9hZHw2MDM1fGltYWdlL3BuZ3xhR1l6TDJnME9TODBOelF3TnpFMU16STRNekV3TWk5RmFXNXJZWFZtWlc1ZlMyRjBaV2R2Y21sbFgwNWxkVjltTG5CdVp3fGVhYzU2NjliMDFlMGM4ODA4ZTY1MTM0ZjBhOTlhMjIyMDZmMjY4YTg1YThiZmNlYjdmZGE3N2JkNTA4NGMzZjI"
+    "source": "bereits vorhanden"
   },
   "dp8": {
     "ok": true,
-    "source": "page:neqi-hair.com",
-    "url": "http://neqi-hair.com/cdn/shop/files/NEQI_DG_Single_All-Hair_Shampoo_1-1-narrow.png?v=1760342058"
+    "source": "bereits vorhanden"
   },
   "dp9": {
     "ok": true,
-    "source": "page:www.loreal-paris.de",
-    "url": "https://www.loreal-paris.de/-/media/project/loreal/brand-sites/oap/emea/dach/products/elvital/haarpflege/glycolic-gloss/spuelung/img1.png"
+    "source": "bereits vorhanden"
   },
   "dp10": {
     "ok": true,
@@ -177,13 +154,11 @@
   },
   "n6": {
     "ok": true,
-    "source": "shopify-handle",
-    "url": "https://cdn.shopify.com/s/files/1/0828/2567/5096/files/Bali_Curls_Amazon_Deep_Repair_Mask_Form_1.png?v=1773212924"
+    "source": "bereits vorhanden"
   },
   "n9": {
     "ok": true,
-    "source": "shopify-handle",
-    "url": "https://cdn.shopify.com/s/files/1/0828/2567/5096/files/Bali_Curls_Amazon_Curl_Defining_Spray_Form_2.png?v=1773212924"
+    "source": "bereits vorhanden"
   },
   "p4": {
     "ok": true,
@@ -195,22 +170,16 @@
   },
   "dp3": {
     "ok": true,
-    "source": "page:skinsort.com",
-    "url": "https://storage.skinsort.com/rsea5zpfwv2rq6hgvcjgyasvt23x"
+    "source": "bereits vorhanden"
   },
   "dp7": {
-    "ok": false,
-    "errors": [
-      "page:skinsort.com: HTTP 404",
-      "page:incidecoder.com: HTTP 404"
-    ]
+    "ok": true,
+    "source": "page:skinsort.com",
+    "url": "https://storage.skinsort.com/rf0qak69pqkmy1jilgsxdwp8dn9e"
   },
   "dp11": {
-    "ok": false,
-    "errors": [
-      "page:www.schwarzkopf.de: HTTP 404",
-      "page:www.schwarzkopf.ch: Aufloesung zu gering (94x400) (https://dm.henkel-dam.com/is/image/henkel/4015100813395_GLISS_Express-Repair-Spuelung_Liquid_Silk_200ml_2931674_front-CH)",
-      "page:www.docmorris.de: HTTP 403"
-    ]
+    "ok": true,
+    "source": "page:www.schwarzkopf.ch",
+    "url": "https://dm.henkel-dam.com/is/image/henkel/4015100813395_GLISS_Express-Repair-Spuelung_Liquid_Silk_200ml_2931674_front-CH"
   }
 }

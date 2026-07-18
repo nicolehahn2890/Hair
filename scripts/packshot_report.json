@@ -179,23 +179,23 @@
     "ok": true,
     "source": "bereits vorhanden"
   },
+  "s3": {
+    "ok": true,
+    "source": "page:www.loreal-paris.es",
+    "url": "https://www.loreal-paris.es/-/media/project/loreal/brand-sites/oap/emea/es/products/hair/hair-care/elvive/bond-repair/champu/nuevo-pack/bond-repair-champu.png"
+  },
+  "s5": {
+    "ok": true,
+    "source": "page:www.loreal-paris.es",
+    "url": "https://www.loreal-paris.es/-/media/project/loreal/brand-sites/oap/emea/es/products/hair/hair-care/elvive/color-vive-violeta/purple-shampoo/packshot/elvive-violeta-champu-reno-2021-3600523682799-packshot.png"
+  },
   "s2": {
     "ok": true,
     "source": "bereits vorhanden"
   },
-  "s3": {
-    "ok": true,
-    "source": "bing-thumb",
-    "url": "https://tse2.mm.bing.net/th?q=Elvive%20Bond%20Repair%20champ%C3%BA%20reparador%20285%20ml%20botella%20blanca&w=600&h=600"
-  },
   "s4": {
     "ok": true,
     "source": "bereits vorhanden"
-  },
-  "s5": {
-    "ok": true,
-    "source": "bing-thumb",
-    "url": "https://tse2.mm.bing.net/th?q=Elvive%20Color%20Vive%20champ%C3%BA%20matizador%20violeta%20200%20ml%20packshot%20botella&w=600&h=600"
   },
   "s6": {
     "ok": true,
@@ -219,8 +219,7 @@
   },
   "s11": {
     "ok": true,
-    "source": "bing-thumb",
-    "url": "https://tse2.mm.bing.net/th?q=babaria%20champ%C3%BA%20ondas%20y%20rizos%20definidos%20700%20ml%20botella&w=600&h=600"
+    "source": "bereits vorhanden"
   },
   "s12": {
     "ok": true,

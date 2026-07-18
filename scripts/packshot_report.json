@@ -41,32 +41,45 @@
   },
   "n13": {
     "ok": true,
-    "source": "page:productosaptos.com",
-    "url": "https://productosaptos.com/wp-content/uploads/2021/10/serum-natural-deliplus-mercadona.jpg"
+    "source": "page:sinsiliconas.club",
+    "url": "https://sinsiliconas.club/wp-content/uploads/SERUM-NATURAL-MERCADONA-1.jpg"
   },
   "n16": {
     "ok": true,
     "source": "bereits vorhanden"
   },
   "p3": {
-    "ok": true,
-    "source": "bereits vorhanden"
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 404)"
+    ]
   },
   "p7b": {
     "ok": true,
     "source": "bereits vorhanden"
   },
   "p8b": {
-    "ok": true,
-    "source": "bereits vorhanden"
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 404)"
+    ]
   },
   "p11": {
     "ok": true,
-    "source": "bereits vorhanden"
+    "source": "openbeautyfacts",
+    "url": "https://images.openbeautyfacts.org/images/products/430/561/561/2300/front_en.9.400.jpg"
   },
   "p12": {
-    "ok": true,
-    "source": "bereits vorhanden"
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 404)"
+    ]
   },
   "g1": {
     "ok": true,
@@ -74,19 +87,25 @@
   },
   "g2": {
     "ok": true,
-    "source": "bereits vorhanden"
+    "source": "page:www.schwarzkopf.de",
+    "url": "https://dm.henkel-dam.com/is/image/henkel/4015100814750_c1n1_s02_v01_gliss_shp_blonde-perfector_gsbp0_2968359_front-de_png"
   },
   "g3": {
     "ok": true,
-    "source": "bereits vorhanden"
+    "source": "page:www.nivea.ch",
+    "url": "https://img.nivea.com/-/media/miscellaneous/media-center-items/c/8/7/38d5293b81644117b0bbb374c3a24519-web_1010x1180_transparent_png.png?rx=0&amp;ry=309&amp;rw=1010&amp;rh=560&amp;hash=79863D2193FD6D0351A679615FFF6B07"
   },
   "g4": {
     "ok": true,
     "source": "bereits vorhanden"
   },
   "n2": {
-    "ok": true,
-    "source": "bereits vorhanden"
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 404)"
+    ]
   },
   "n3": {
     "ok": true,
@@ -101,16 +120,28 @@
     "source": "bereits vorhanden"
   },
   "n8": {
-    "ok": true,
-    "source": "bereits vorhanden"
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 404)"
+    ]
   },
   "n12": {
-    "ok": true,
-    "source": "bereits vorhanden"
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 200)"
+    ]
   },
   "n14": {
-    "ok": true,
-    "source": "bereits vorhanden"
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 404)"
+    ]
   },
   "dp1": {
     "ok": true,
@@ -126,19 +157,26 @@
   },
   "dp6": {
     "ok": true,
-    "source": "bereits vorhanden"
+    "source": "page:basler-beauty.de",
+    "url": "https://cdn.basler-beauty.com/media/6f/df/82/1741468330/1433474-0-JOHN-FRIEDA-Frizz-Ease-Taegliche-Wunderkur-Sofort-Pflegespray.jpg?ts=1741468330"
   },
   "dp8": {
     "ok": true,
-    "source": "bereits vorhanden"
+    "source": "shopify-handle",
+    "url": "https://cdn.shopify.com/s/files/1/0798/3045/0522/files/NEQI_DG_Single_All-Hair_Shampoo_1-1-narrow.png?v=1760342058"
   },
   "dp9": {
     "ok": true,
     "source": "bereits vorhanden"
   },
   "dp10": {
-    "ok": true,
-    "source": "bereits vorhanden"
+    "ok": false,
+    "errors": [
+      "rossmann-og: kein og:image",
+      "shopify-handle: Exception: Expecting value: line 1 column 1 (char 0)",
+      "jina-rossmann: kein Packshot mit EAN unter 0 media.rossmann.de-URLs",
+      "openbeautyfacts: nicht in Open (Beauty|Food) Facts (HTTP 404)"
+    ]
   },
   "p5": {
     "ok": true,
@@ -174,12 +212,10 @@
   },
   "dp7": {
     "ok": true,
-    "source": "page:skinsort.com",
-    "url": "https://storage.skinsort.com/rf0qak69pqkmy1jilgsxdwp8dn9e"
+    "source": "bereits vorhanden"
   },
   "dp11": {
     "ok": true,
-    "source": "page:www.schwarzkopf.ch",
-    "url": "https://dm.henkel-dam.com/is/image/henkel/4015100813395_GLISS_Express-Repair-Spuelung_Liquid_Silk_200ml_2931674_front-CH"
+    "source": "bereits vorhanden"
   }
 }

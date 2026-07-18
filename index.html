@@ -1095,7 +1095,6 @@ const HAIRSTYLE_SECTIONS = {
 let state = {
   view: 'routines',
   routineTab: 'wash', // 'wash' | 'between' | 'wissen'
-  productTab: 'bath', // 'bath' | 'shopping' | 'shelf'
   hairTab: 'schlafen',
   productFilter: 'all',
   productSearch: '',
@@ -1186,7 +1185,7 @@ function render() {
     content.innerHTML = renderRoutines();
   } else if (state.view === 'products') {
     headerTitle.textContent = 'Produkte';
-    headerSubtitle.textContent = { bath: `${PRODUCTS.length} im Bad · INCI-geprüft`, shopping: `${SHOPPING.length + DEJAN_SHOPPING.length + DEJAN_POST.length} Produkte geprüft`, shelf: `${SHELF.length} Linien geprüft` }[state.productTab];
+    headerSubtitle.textContent = `${PRODUCTS.length + SHOPPING.length + DEJAN_SHOPPING.length + DEJAN_POST.length + SHELF.length} Produkte · INCI-geprüft`;
     content.innerHTML = renderProducts();
     setupProductHandlers();
   } else if (state.view === 'hairstyles') {
@@ -1297,7 +1296,7 @@ function productCard(p) {
     <div class="product ${p.verdict}">
       ${photo ? `<img class="product-photo" src="${photo}" alt="" loading="lazy" onerror="this.remove()">` : ''}
       <div class="product-header">
-        <div class="product-name">${p.rank ? `<span class="product-rank">N&ordm; ${p.rank}</span>` : ''}${escapeHtml(p.name)}</div>
+        <div class="product-name">${p._rank && p._rank < 99 ? `<span class="product-rank">N&ordm; ${p._rank}</span>` : ''}${escapeHtml(p.name)}</div>
         <span class="product-store ${p.store}">${escapeHtml(storeLabel)}</span>
       </div>
       <div class="product-fn">${escapeHtml(p.fn)}</div>
@@ -1330,34 +1329,37 @@ function groupedHtml(list, groupKeys, keyFn, labels) {
   return html;
 }
 
+// Eine Liste fuer alles — pro Kategorie global gerankt: Nº 1 = beste Wahl
+// fuers Haarprofil, absteigend bis zu den Stehenlassen-Kandidaten.
+// Kriterien: leicht & silikonfrei vor silikonhaltig, profilgenau (Wellen/
+// blondiert) vor generisch, Protein-Flags nach hinten, skip ganz unten.
+const CATEGORY_RANKING = {
+  shampoo:     ['p1', 'g1', 'n15', 's3', 'g2', 'n16', 'p3', 'dp4', 's10', 's11', 's5', 'p2', 's15', 's18', 's21'],
+  conditioner: ['dp1', 'n4', 'p5', 'n2', 'n1', 'dp3', 's1', 'n3', 'p4', 'dp5', 's6', 'dp9'],
+  mask:        ['n5', 's4', 'dp2', 'n6', 'n7', 's2', 'p7b', 'p6', 's8', 's12', 'dp10', 's16', 's19', 's20', 's22'],
+  leavein:     ['n9', 'n8', 'p8b', 'p9', 'p8', 'n10', 'n11', 'dp6', 'dp7', 'dp8', 's7', 's9', 'p7', 's13', 'dp11'],
+  oil:         ['p10', 'n12', 'n13', 'n14', 'g4', 's17', 's14'],
+  tool:        ['p11', 'g3', 'p12']
+};
+
+function allProducts() {
+  const pos = p => {
+    const i = (CATEGORY_RANKING[p.cat] || []).indexOf(p.id);
+    return i === -1 ? 99 : i;
+  };
+  return PRODUCTS
+    .concat(SHOPPING, DEJAN_SHOPPING, DEJAN_POST, SHELF)
+    .map(p => ({ ...p, _rank: pos(p) + 1 }))
+    .sort((a, b) => a._rank - b._rank);
+}
+
 function productListHtml() {
-  let html = '';
-  if (state.productTab === 'bath') {
-    const verdictOrder = { keep: 0, reduce: 1, discard: 2, empty: 3 };
-    const items = filterProducts(PRODUCTS).slice().sort((a, b) => (verdictOrder[a.verdict] ?? 9) - (verdictOrder[b.verdict] ?? 9));
-    if (state.productFilter === 'all' && !state.productSearch) {
-      html = groupedHtml(items, Object.keys(PRODUCT_CATEGORIES).filter(k => k !== 'all'), p => p.cat, PRODUCT_CATEGORIES);
-    } else {
-      html = items.map(productCard).join('');
-    }
-  } else if (state.productTab === 'shopping') {
-    const items = filterProducts(SHOPPING.concat(DEJAN_SHOPPING)).slice().sort((a, b) => (a.rank || 99) - (b.rank || 99));
-    html = `<p class="list-note">Geprüfte Nachkäufe, pro Kategorie gerankt — N&ordm; 1 ist jeweils die beste Wahl für dein Haar.</p>`;
-    if (state.productFilter === 'all' && !state.productSearch) {
-      html += groupedHtml(items, Object.keys(PRODUCT_CATEGORIES).filter(k => k !== 'all'), p => p.cat, PRODUCT_CATEGORIES);
-    } else {
-      html += items.map(productCard).join('');
-    }
-    const postItems = filterProducts(DEJAN_POST);
-    if (postItems.length) {
-      html += `<h3 class="list-heading">Dejans Post · 17. Juli</h3>`;
-      html += `<p class="list-note">Alle 12 Produkte aus seinem Post INCI-geprüft. Die 4 Kauf-Tipps daraus stehen oben einsortiert im Ranking — hier die 8 übrigen: 5 nur mit Einschränkung, 3 zum Stehenlassen (darunter seine eigene Maske).</p>`;
-      html += groupedHtml(postItems, ['maybe', 'skip'], p => p.verdict, { maybe: 'Okay mit Einschränkung', skip: 'Stehen lassen' });
-    }
+  const items = filterProducts(allProducts());
+  let html = `<p class="list-note">Alle Produkte INCI-geprüft und pro Kategorie gerankt — N&ordm; 1 ist die beste Wahl für dein Haar, danach absteigend bis zu den Stehenlassen-Kandidaten.</p>`;
+  if (state.productFilter === 'all' && !state.productSearch) {
+    html += groupedHtml(items, Object.keys(PRODUCT_CATEGORIES).filter(k => k !== 'all'), p => p.cat, PRODUCT_CATEGORIES);
   } else {
-    const items = filterProducts(SHELF);
-    html = `<p class="list-note">Dein Supermarkt-Foto (Juli 2026), Linie für Linie geprüft. Rezepturen ändern sich — im Zweifel zählt das Etikett.</p>`;
-    html += groupedHtml(items, ['buy', 'maybe', 'skip'], p => p.verdict, { buy: 'Kaufen lohnt sich', maybe: 'Okay mit Einschränkung', skip: 'Stehen lassen' });
+    html += items.map(productCard).join('');
   }
   if (!html.includes('class="product')) {
     html = `<div class="empty">Nichts gefunden.</div>`;
@@ -1370,14 +1372,7 @@ function renderProducts() {
     `<button class="chip ${state.productFilter === k ? 'active' : ''}" data-filter="${k}">${escapeHtml(v)}</button>`
   ).join('');
 
-  const segHtml = [
-    ['bath', 'Mein Bad'],
-    ['shopping', 'Einkaufszettel'],
-    ['shelf', 'Regal-Check']
-  ].map(([k, label]) => `<button class="${state.productTab === k ? 'active' : ''}" data-ptab="${k}">${label}</button>`).join('');
-
   return `
-    <div class="seg">${segHtml}</div>
     <input type="search" class="search-bar" id="product-search" placeholder="Produkt suchen..." value="${escapeHtml(state.productSearch)}">
     <div class="filter-chips">${chipsHtml}</div>
     <div id="product-list">${productListHtml()}</div>
@@ -1458,11 +1453,7 @@ document.addEventListener('click', e => {
   }
   const segBtn = e.target.closest('.seg button');
   if (segBtn) {
-    if (segBtn.dataset.ptab) {
-      state.productTab = segBtn.dataset.ptab;
-      state.productFilter = 'all';
-      state.productSearch = '';
-    } else if (segBtn.dataset.rtab) {
+    if (segBtn.dataset.rtab) {
       state.routineTab = segBtn.dataset.rtab;
     } else if (segBtn.dataset.htab) {
       state.hairTab = segBtn.dataset.htab;

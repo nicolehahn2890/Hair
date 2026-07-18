@@ -124,6 +124,33 @@ PAGES["p8b"] = [
     "https://www.hautschutzengel.de/isana-professional-leave-in-conditioner-hyaluron-care-inhaltsstoffe/produkt/246343.html",
 ]
 
+# Regal-Check (s1-s22, spanischer Supermarkt): Bing-Bildsuche mit praezisen
+# spanischen Produktnamen, Ergebnis wird per Kontaktbogen visuell geprueft.
+# s1 fehlt bewusst: identisch mit p4 (img/p4.jpg wird kopiert).
+SHELF_BING = {
+    "s2": "L'Oréal Elvive Color Vive Violeta mascarilla morada",
+    "s3": "L'Oréal Elvive Bond Repair champú España",
+    "s4": "Garnier Fructis Hair Food Aloe Vera mascarilla 3 en 1 400 ml",
+    "s5": "L'Oréal Elvive Color Vive Violeta champú morado",
+    "s6": "Pantene 3 Minute Miracle Rizos Definidos acondicionador",
+    "s7": "Pantene Ondas Naturales crema de peinado",
+    "s8": "Garnier Fructis Adiós Daños mascarilla",
+    "s9": "Garnier Fructis Vitamin Force Biotina 10 en 1 crema",
+    "s10": "Garnier Fructis Hair Food Papaya champú",
+    "s11": "babaria champú ondas y rizos",
+    "s12": "babaria nutritive repair mascarilla capilar",
+    "s13": "Pantene doma crema rizos definidos",
+    "s14": "Pantene coconut infused oil spray aceite de coco",
+    "s15": "Pantene Pro-V Rizos Definidos champú",
+    "s16": "L'Oréal Elvive Dream Long champú",
+    "s17": "L'Oréal Elvive Aceite Extraordinario cabello",
+    "s18": "L'Oréal Elvive Total Repair 5 champú",
+    "s19": "L'Oréal Elvive Color Vive mascarilla roja",
+    "s20": "Garnier Fructis Hair Bomb Liso y Brillo champú",
+    "s21": "Revlon Flex Keratina champú 650 ml",
+    "s22": "babaria ondas y rizos mascarilla",
+}
+
 # Bing-Bildvorschau als allerletzter Fallback (Ergebnis wird manuell geprueft)
 BING = {
     "p3": "ISANA Professional Shampoo Tiefenreinigung Rossmann",
@@ -136,6 +163,7 @@ BING = {
     "n14": "Alterra 100% reines Bio-Arganöl Rossmann",
     "dp10": "Dejan Garz The Foundation Hair Treatment Mask",
 }
+BING.update(SHELF_BING)
 
 PAGES["dp3"] = [
     "https://skinsort.com/products/redken/acidic-bonding-concentrate-conditioner",

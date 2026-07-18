@@ -300,10 +300,15 @@ def strategies_for(pid):
         s.append(("incibeauty", lambda ean=ean: og_image(f"https://incibeauty.com/en/produit/{ean}")))
         # jina (offizieller Rossmann-Packshot) vor OBF (oft Amateurfotos)
         s.append(("jina-rossmann", lambda ean=ean: jina_rossmann_image(ean)))
-        s.append(("openbeautyfacts", lambda ean=ean: obf_image(ean)))
+        obf = ("openbeautyfacts", lambda ean=ean: obf_image(ean))
+    else:
+        obf = None
     if pid in BING:
+        # Bing-Packshot vor OBF (dort oft Amateurfotos)
         q = requests.utils.quote(BING[pid])
         s.append(("bing-thumb", lambda q=q: (f"https://tse2.mm.bing.net/th?q={q}&w=600&h=600", None)))
+    if obf:
+        s.append(obf)
     return s
 
 

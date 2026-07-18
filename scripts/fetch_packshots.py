@@ -50,6 +50,7 @@ SHOPIFY = {
     "p5": ("https://bali-care.com", ["moisturising", "conditioner"]),
     "p9": ("https://bali-care.com", ["hydrating", "curl", "cream"]),
     "n15": ("https://bali-care.com", ["nourishing", "shampoo"]),
+    "dp10": ("https://dejangarz.com", ["foundation"]),
 }
 
 # Shopify-Produkte mit bekanntem Handle (Titel weicht ab / og:image ist Banner)
@@ -113,6 +114,27 @@ PAGES = {
         "https://productosaptos.com/serum-natural-deliplus/",
     ],
 }
+PAGES["p3"] = [
+    "https://skinsort.com/products/isana/tiefenreinigung-shampoo",
+    "https://www.hautschutzengel.de/isana-professional-shampoo-tiefenreinigung-inhaltsstoffe/produkt/377101.html",
+]
+PAGES["p8b"] = [
+    "https://incidecoder.com/products/isana-professional-hyaluron-care-leave-in-conditioner",
+    "https://www.hautschutzengel.de/isana-professional-leave-in-conditioner-hyaluron-care-inhaltsstoffe/produkt/246343.html",
+]
+
+# Bing-Bildvorschau als allerletzter Fallback (Ergebnis wird manuell geprueft)
+BING = {
+    "p3": "ISANA Professional Shampoo Tiefenreinigung Rossmann",
+    "p8b": "ISANA Professional Leave-In Conditioner Hyaluron Care Rossmann",
+    "p12": "ISANA Trockenshampoo Bloom Boost Rossmann",
+    "n2": "ISANA Spülung Feuchtigkeit Kokoswasser Rossmann",
+    "n8": "Alterra Leave-In Feuchtigkeitsserum Granatapfel Rossmann",
+    "n12": "Alterra Nutri-Care Haaröl Rossmann",
+    "n14": "Alterra 100% reines Bio-Arganöl Rossmann",
+    "dp10": "Dejan Garz The Foundation Hair Treatment Mask",
+}
+
 PAGES["dp3"] = [
     "https://skinsort.com/products/redken/acidic-bonding-concentrate-conditioner",
 ] + PAGES["dp3"]
@@ -272,9 +294,14 @@ def strategies_for(pid):
     for url in PAGES.get(pid, []):
         s.append((f"page:{url.split('/')[2]}", lambda url=url: og_image(url)))
     if pid in ROSSMANN:
+        ean = ROSSMANN[pid]
+        s.append(("incibeauty", lambda ean=ean: og_image(f"https://incibeauty.com/en/produit/{ean}")))
         # jina (offizieller Rossmann-Packshot) vor OBF (oft Amateurfotos)
-        s.append(("jina-rossmann", lambda ean=ROSSMANN[pid]: jina_rossmann_image(ean)))
-        s.append(("openbeautyfacts", lambda ean=ROSSMANN[pid]: obf_image(ean)))
+        s.append(("jina-rossmann", lambda ean=ean: jina_rossmann_image(ean)))
+        s.append(("openbeautyfacts", lambda ean=ean: obf_image(ean)))
+    if pid in BING:
+        q = requests.utils.quote(BING[pid])
+        s.append(("bing-thumb", lambda q=q: (f"https://tse2.mm.bing.net/th?q={q}&w=600&h=600", None)))
     return s
 
 
